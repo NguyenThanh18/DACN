@@ -96,6 +96,57 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\css\bootstrap.css" />
+    <Content Include="Assets\css\flexslider.css" />
+    <Content Include="Assets\css\owl.carousel.css" />
+    <Content Include="Assets\css\smoothbox.css" />
+    <Content Include="Assets\css\style.css" />
+    <Content Include="Assets\font\fontawesome-webfont.svg" />
+    <Content Include="Assets\image\1.jpg" />
+    <Content Include="Assets\image\2.jpg" />
+    <Content Include="Assets\image\3.jpg" />
+    <Content Include="Assets\image\4.jpg" />
+    <Content Include="Assets\image\5.jpg" />
+    <Content Include="Assets\image\6.jpg" />
+    <Content Include="Assets\image\7.jpg" />
+    <Content Include="Assets\image\8.jpg" />
+    <Content Include="Assets\image\9.jpg" />
+    <Content Include="Assets\image\a.jpg" />
+    <Content Include="Assets\image\a.png" />
+    <Content Include="Assets\image\a1.jpg" />
+    <Content Include="Assets\image\a2.jpg" />
+    <Content Include="Assets\image\a3.jpg" />
+    <Content Include="Assets\image\a4.jpg" />
+    <Content Include="Assets\image\a5.jpg" />
+    <Content Include="Assets\image\a6.jpg" />
+    <Content Include="Assets\image\agent.jpg" />
+    <Content Include="Assets\image\ba1.jpg" />
+    <Content Include="Assets\image\ba2.jpg" />
+    <Content Include="Assets\image\ba3.jpg" />
+    <Content Include="Assets\image\ban1.jpg" />
+    <Content Include="Assets\image\banner.jpg" />
+    <Content Include="Assets\image\c1.jpg" />
+    <Content Include="Assets\image\c2.jpg" />
+    <Content Include="Assets\image\c3.jpg" />
+    <Content Include="Assets\image\cir.png" />
+    <Content Include="Assets\image\icons.svg" />
+    <Content Include="Assets\image\img-sprite.png" />
+    <Content Include="Assets\image\p1.jpg" />
+    <Content Include="Assets\image\p2.jpg" />
+    <Content Include="Assets\image\p3.jpg" />
+    <Content Include="Assets\image\s1.jpg" />
+    <Content Include="Assets\image\s2.jpg" />
+    <Content Include="Assets\image\s3.jpg" />
+    <Content Include="Assets\image\s4.jpg" />
+    <Content Include="Assets\image\s5.jpg" />
+    <Content Include="Assets\image\t1.jpg" />
+    <Content Include="Assets\image\t2.jpg" />
+    <Content Include="Assets\js\bootstrap.min.js" />
+    <Content Include="Assets\js\jquery.min.js" />
+    <Content Include="Assets\js\numscroller-1.0.js" />
+    <Content Include="Assets\js\owl.carousel.js" />
+    <Content Include="Assets\js\responsiveslides.min.js" />
+    <Content Include="Assets\js\smoothbox.jquery2.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -106,6 +157,12 @@
     <Content Include="ScriptSQL\ScriptQLBV.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Assets\font\fontawesome-webfont.eot" />
+    <Content Include="Assets\font\fontawesome-webfont.ttf" />
+    <Content Include="Assets\font\fontawesome-webfont.woff" />
+    <Content Include="Assets\font\FontAwesome.otf" />
+    <Content Include="Assets\font\glyphicons-halflings-regular.woff" />
+    <Content Include="Assets\font\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -116,21 +173,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Common\CommonConstants.cs" />
+    <Compile Include="Common\Encryptor.cs" />
+    <Compile Include="Common\UserLogin.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\BaiViet.cs" />
-    <Compile Include="Models\BaoCao.cs" />
-    <Compile Include="Models\DBContext.cs" />
-    <Compile Include="Models\HinhAnh.cs" />
-    <Compile Include="Models\KieuBD.cs" />
-    <Compile Include="Models\LoaiBD.cs" />
-    <Compile Include="Models\NhaTro.cs" />
-    <Compile Include="Models\Quan.cs" />
-    <Compile Include="Models\TaiKhoan.cs" />
-    <Compile Include="Models\ThanhPho.cs" />
+    <Compile Include="Models\DAO\UserDAO.cs" />
+    <Compile Include="Models\EF\BaiViet.cs" />
+    <Compile Include="Models\EF\BaoCao.cs" />
+    <Compile Include="Models\EF\DBContext.cs" />
+    <Compile Include="Models\EF\HinhAnh.cs" />
+    <Compile Include="Models\EF\KieuBD.cs" />
+    <Compile Include="Models\EF\LoaiBD.cs" />
+    <Compile Include="Models\EF\NhaTro.cs" />
+    <Compile Include="Models\EF\Quan.cs" />
+    <Compile Include="Models\EF\TaiKhoan.cs" />
+    <Compile Include="Models\EF\ThanhPho.cs" />
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +211,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Views\Account\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -158,7 +221,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Account\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
