@@ -29,5 +29,19 @@ namespace DACN.Models.DAO
         {
             return db.TaiKhoans.SingleOrDefault(x => x.Username == name);
         }
+        public long Insert(TaiKhoan entity)
+        {
+            db.TaiKhoans.Add(entity);
+            db.SaveChanges();
+            return entity.idTK;
+        }
+        public bool CheckUserName(string userName)
+        {
+            return db.TaiKhoans.Count(x => x.Username == userName) > 0;
+        }
+        public bool CheckEmail(string email)
+        {
+            return db.TaiKhoans.Count(x => x.Email == email) > 0;
+        }
     }
 }
