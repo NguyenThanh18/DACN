@@ -83,3 +83,4 @@ go
 
 insert into TaiKhoan values ('admin','thanhnguyen1234' ,'1234','wh.knightz@gmail.com','0123456789',	'2011-11-30', 'nam', N'Nguyễn Trường Thành')
 insert into TaiKhoan values ('user','thanhson1234' ,'1234','wh.knightz@gmail.com','0123456789',	'2011-11-30', 'nam', N'Đỗ Thanh Sơn')
+insert into TaiKhoan values ('user','thanhson12345' ,'e10adc3949ba59abbe56e057f20f883e','wh1.knightz@gmail.com','0123456789',	'2011-11-30', 'nam', N'Đỗ Thanh Sơn')
