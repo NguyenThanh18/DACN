@@ -1,4 +1,4 @@
-namespace DACN.Models
+namespace DACN.Models.EF
 {
     using System;
     using System.Collections.Generic;

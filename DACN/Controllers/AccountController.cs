@@ -1,6 +1,7 @@
 ﻿using DACN.Common;
 using DACN.Models;
 using DACN.Models.DAO;
+using DACN.Models.EF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,7 +58,7 @@ namespace DACN.Controllers
 
             }
 
-            return PartialView("Login", model);
+            return RedirectToAction("HomePage", "Home", model);
         }
         public ActionResult Logout()
         {

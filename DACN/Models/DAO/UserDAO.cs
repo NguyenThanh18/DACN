@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using DACN.Common;
+using DACN.Models.EF;
+
 namespace DACN.Models.DAO
 {
     public class UserDAO

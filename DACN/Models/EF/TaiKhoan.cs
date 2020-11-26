@@ -1,4 +1,4 @@
-namespace DACN.Models
+namespace DACN.Models.EF
 {
     using System;
     using System.Collections.Generic;
@@ -42,6 +42,8 @@ namespace DACN.Models
 
         [StringLength(50)]
         public string HoTen { get; set; }
+
+        public bool? TrangThai { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BaiViet> BaiViets { get; set; }

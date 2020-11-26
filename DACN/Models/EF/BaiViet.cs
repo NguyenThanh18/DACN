@@ -1,4 +1,4 @@
-namespace DACN.Models
+namespace DACN.Models.EF
 {
     using System;
     using System.Collections.Generic;
@@ -30,6 +30,8 @@ namespace DACN.Models
         public int? idTK { get; set; }
 
         public int? idNT { get; set; }
+
+        public bool? TrangThai { get; set; }
 
         public virtual NhaTro NhaTro { get; set; }
 
