@@ -24,10 +24,6 @@ namespace DACN.Models.EF
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<BaiViet>()
-                .Property(e => e.MoTa)
-                .IsUnicode(false);
-
             modelBuilder.Entity<HinhAnh>()
                 .Property(e => e.Link)
                 .IsUnicode(false);

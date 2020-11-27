@@ -27,9 +27,6 @@ namespace DACN.Models.EF
 
         public int? NhaTam { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime? NgayDang { get; set; }
-
         public int? Gia { get; set; }
 
         public int? idBDS { get; set; }

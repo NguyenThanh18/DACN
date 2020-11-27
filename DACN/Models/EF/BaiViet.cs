@@ -24,7 +24,6 @@ namespace DACN.Models.EF
         [StringLength(255)]
         public string TieuDePhu { get; set; }
 
-        [Column(TypeName = "text")]
         public string MoTa { get; set; }
 
         public int? idTK { get; set; }
@@ -32,6 +31,9 @@ namespace DACN.Models.EF
         public int? idNT { get; set; }
 
         public bool? TrangThai { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime? NgayDang { get; set; }
 
         public virtual NhaTro NhaTro { get; set; }
 

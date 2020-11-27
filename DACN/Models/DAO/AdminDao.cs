@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Management;
 
 namespace DACN.Models.DAO
 {
@@ -15,8 +16,11 @@ namespace DACN.Models.DAO
             var result = db.TaiKhoans.SingleOrDefault(x => x.Username == userName);
             if (result == null)
                 return 0;
-            else if (result.Pass == password && result.RoleTK == "admin")
+            else if (result.RoleTK != "admin")
+                return -3;
+            else if (result.Pass == password)
                 return 1;
+
             else
             {
                 if (result.Pass != password)
