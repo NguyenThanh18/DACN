@@ -148,10 +148,12 @@
     <Content Include="Assets\js\responsiveslides.min.js" />
     <Content Include="Assets\js\smoothbox.jquery2.js" />
     <Content Include="Content\Admin\css\all.min.css" />
+    <Content Include="Content\Admin\css\dataTables.bootstrap4.min.css" />
     <Content Include="Content\Admin\css\sb-admin-2.min.css" />
     <Content Include="Content\Admin\css\styles.css" />
     <Content Include="Content\Admin\img\undraw_profile.svg" />
     <Content Include="Content\Admin\js\bootstrap.bundle.min.js" />
+    <Content Include="Content\Admin\js\jquery.dataTables.min.js" />
     <Content Include="Content\Admin\js\jquery.easing.min.js" />
     <Content Include="Content\Admin\js\jquery.min.js" />
     <Content Include="Content\Admin\js\sb-admin-2.min.js" />
@@ -194,6 +196,7 @@
     <Content Include="Areas\Admin\Views\Shared\_TopBar.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Home\QLTK.cshtml" />
+    <Content Include="Views\Shared\_FormConfirm.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -227,6 +230,7 @@
     <Compile Include="Models\EF\Quan.cs" />
     <Compile Include="Models\EF\TaiKhoan.cs" />
     <Compile Include="Models\EF\ThanhPho.cs" />
+    <Compile Include="Models\Function\FuncAccount.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -260,6 +264,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\SharedAdmin\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

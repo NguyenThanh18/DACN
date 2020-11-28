@@ -14,6 +14,8 @@ namespace DACN.Models
 
         public string UserName { set; get; }
 
+        public string FullName { set; get; }
+
         [StringLength(20, MinimumLength = 6, ErrorMessage = "Độ dài mật khẩu ít nhất 6 ký tự.")]
         [Required(ErrorMessage = "Yêu cầu nhập mật khẩu")]
         public string Password { set; get; }

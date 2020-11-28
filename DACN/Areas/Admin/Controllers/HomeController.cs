@@ -1,4 +1,5 @@
 ﻿using DACN.Models.EF;
+using DACN.Models.Function;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,5 +22,6 @@ namespace DACN.Areas.Admin.Controllers
             ViewBag.QLTK = qltk;
             return View();
         }
+        
     }
 }

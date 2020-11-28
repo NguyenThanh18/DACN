@@ -1,6 +1,8 @@
 ﻿using DACN.Common;
 using DACN.Models;
 using DACN.Models.DAO;
+using DACN.Models.EF;
+using DACN.Models.Function;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +14,7 @@ namespace DACN.Areas.Admin.Controllers
 {
     public class AccountController : Controller
     {
+        private DBContext db = new DBContext();
         // GET: Admin/Account
         public ActionResult Index()
         {
@@ -60,6 +63,59 @@ namespace DACN.Areas.Admin.Controllers
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Login");
+        }
+        public ActionResult XoaTaiKhoan()
+        {
+            string Username = RouteData.Values["id"].ToString();
+            // Trước khi xóa Tài Khoản phải xóa tất cả bài viết liên quan
+
+            // Sau đó mới xóa Tài Khoản
+            var HamTK = new FuncAccount();
+            HamTK.Delete(Username);
+            return RedirectToAction("QLTK", "Home");
+        }
+        [HttpPost]
+        public ActionResult ThemTaiKhoan(RegisterModel models )
+        {
+            if (ModelState.IsValid)
+            {
+                var dao = new UserDAO();
+                if (dao.CheckUserName(models.UserName))
+                {
+                    ModelState.AddModelError("", "Tên đăng ký đã tồn tại !");
+                }
+                else if (dao.CheckEmail(models.Email))
+                {
+                    ModelState.AddModelError("", "Email đăng ký đã tồn tại !");
+                }
+                else
+                {
+                    var user = new TaiKhoan();
+                    user.Username = models.UserName;
+                    user.Pass = Encryptor.MD5Hash(models.Password);
+                    user.Email = models.Email;
+                    user.SDT = models.Phone;
+                    user.RoleTK = CommonConstants.USER_GROUP;
+                    user.HoTen = models.FullName;
+                    DateTime now = DateTime.Now;
+
+                    user.NgayTao = now;
+
+                    var result = dao.Insert(user);
+
+                    if (result > 0)
+                    {
+                        var res = dao.Login(user.Username, user.Pass);
+                        if (res == 1)
+                        {
+                            ModelState.AddModelError("", "Đăng Ký Thành Công !");
+                            return RedirectToAction("QLTK", "Home");
+                        }
+                    }
+                    else ModelState.AddModelError("", "Đăng Ký Thất Bại !");
+                }
+            }
+            return RedirectToAction("QLTK", "Home");
         }
     }
 }

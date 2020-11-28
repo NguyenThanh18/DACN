@@ -20,7 +20,7 @@ go
 create table KieuBDS(
 	idKieuBDS int IDENTITY(1,1) primary key,
 	TenKieu nvarchar(50),
-)
+)C:\Users\ntt18\source\repos\DACN\DACN\ScriptSQL\ScriptQLBV.sql
 go
 
 create table LoaiBDS(
@@ -96,7 +96,7 @@ add TrangThai bit
 
 --Chỉnh sửa lại cột mô tả từ text thành nvarchar(max)
 ALTER TABLE BaiViet 
-ALTER COLUMN MoTa NVARCHAR(MAX) [NULL]
+ALTER COLUMN MoTa NVARCHAR(MAX) 
 --Xóa cột ngày đăng Nhà trọ và thêm vào bài viết
 ALTER TABLE NhaTro
 DROP COLUMN NgayDang
