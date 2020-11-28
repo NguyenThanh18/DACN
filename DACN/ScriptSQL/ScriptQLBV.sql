@@ -96,7 +96,7 @@ add TrangThai bit
 
 --Chỉnh sửa lại cột mô tả từ text thành nvarchar(max)
 ALTER TABLE BaiViet 
-ALTER COLUMN MoTa NVARCHAR(MAX) [NULL]
+ALTER COLUMN MoTa NVARCHAR(MAX) 
 --Xóa cột ngày đăng Nhà trọ và thêm vào bài viết
 ALTER TABLE NhaTro
 DROP COLUMN NgayDang
@@ -107,3 +107,11 @@ add  NgayDang date
 insert into Quan values (N'Quận 1')
 insert into NhaTro values (40, NULL, NULL, NULL, 5500000, NULL, NULL, 1)
 insert into BaiViet values (N'Phòng Studio, 1PN đầy đủ tiện nghi có ban công ngay CV Lê Văn Tám Q1', N'Thạch Thị Thanh, Phường Tân Định, Quận 1, TPHCM', N'Vị trí đắt địa trung tâm Quận 3, dễ dàng di chuyển qua các khu vực nội thành Q1, Q10, Q11, Tân Bình, Phú Nhuận Nhà xây đẹp, đẳng cấp, khu vực an ninh, dân trí cao. Trang bị đầy đủ nội thất sịn sò : Tivi internet, tủ lạnh, bếp hút mùi...', 5, 1, 1, '2020-11-27')
+
+-- updata 28-11
+create table Phuong(
+	idPhuong int IDENTITY(1,1) primary key,
+	TenPhuong nvarchar(50),
+	idQuan int references Quan(idQuan)
+)
+go
