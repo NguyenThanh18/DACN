@@ -96,7 +96,7 @@ add TrangThai bit
 
 --Chỉnh sửa lại cột mô tả từ text thành nvarchar(max)
 ALTER TABLE BaiViet 
-ALTER COLUMN MoTa NVARCHAR(MAX) [NULL]
+ALTER COLUMN MoTa NVARCHAR(MAX) 
 --Xóa cột ngày đăng Nhà trọ và thêm vào bài viết
 ALTER TABLE NhaTro
 DROP COLUMN NgayDang
