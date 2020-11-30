@@ -25,5 +25,6 @@ namespace DACN.Models
         public string Email { set; get; }
 
         public string Phone { set; get; }
+        public string GioiTinh { set; get; }
     }
 }

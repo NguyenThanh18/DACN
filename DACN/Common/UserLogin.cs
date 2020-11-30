@@ -9,6 +9,7 @@ namespace DACN.Common
     {
         public long userID { get; set; }
         public string UserName { get; set; }
+        public string HoTen { get; set; }
         public string GroupID { set; get; }
     }
 }

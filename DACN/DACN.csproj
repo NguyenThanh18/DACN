@@ -197,6 +197,7 @@
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Home\QLTK.cshtml" />
     <Content Include="Views\Shared\_FormConfirm.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\SuaTaiKhoan.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -230,7 +231,7 @@
     <Compile Include="Models\EF\Quan.cs" />
     <Compile Include="Models\EF\TaiKhoan.cs" />
     <Compile Include="Models\EF\ThanhPho.cs" />
-    <Compile Include="Models\Function\FuncAccount.cs" />
+    <Compile Include="Models\Function\FunctionAccount.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

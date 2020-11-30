@@ -20,7 +20,7 @@ go
 create table KieuBDS(
 	idKieuBDS int IDENTITY(1,1) primary key,
 	TenKieu nvarchar(50),
-)C:\Users\ntt18\source\repos\DACN\DACN\ScriptSQL\ScriptQLBV.sql
+)
 go
 
 create table LoaiBDS(

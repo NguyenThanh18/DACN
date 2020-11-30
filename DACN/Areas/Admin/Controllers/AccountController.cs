@@ -70,7 +70,7 @@ namespace DACN.Areas.Admin.Controllers
             // Trước khi xóa Tài Khoản phải xóa tất cả bài viết liên quan
 
             // Sau đó mới xóa Tài Khoản
-            var HamTK = new FuncAccount();
+            var HamTK = new FunctionAccount();
             HamTK.Delete(Username);
             return RedirectToAction("QLTK", "Home");
         }
@@ -97,6 +97,7 @@ namespace DACN.Areas.Admin.Controllers
                     user.SDT = models.Phone;
                     user.RoleTK = CommonConstants.USER_GROUP;
                     user.HoTen = models.FullName;
+                    user.GioiTinh = models.GioiTinh;
                     DateTime now = DateTime.Now;
 
                     user.NgayTao = now;
@@ -116,6 +117,26 @@ namespace DACN.Areas.Admin.Controllers
                 }
             }
             return RedirectToAction("QLTK", "Home");
+        }
+        public ActionResult SuaTaiKhoan()
+        {
+            string idTK = RouteData.Values["id"].ToString();
+            int temp = Int32.Parse(idTK);
+            var tk = db.TaiKhoans.Find(temp);
+            return View(tk);
+        }
+        [HttpPost]
+        public ActionResult SuaTaiKhoan(TaiKhoan tk)
+        {
+            string idTK = RouteData.Values["id"].ToString();
+            int temp = Int32.Parse(idTK);
+            if (ModelState.IsValid)
+            {
+                var HamTK = new FunctionAccount();
+                HamTK.Update(tk, temp);
+                return RedirectToAction("QLTK", "Home");
+            }
+            return View(tk);
         }
     }
 }
