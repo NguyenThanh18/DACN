@@ -14,6 +14,20 @@ namespace DACN.Areas.Admin.Controllers
         // GET: Admin/Home
         public ActionResult Index()
         {
+            DateTime now = DateTime.Now;
+            string dt = now.ToString().Substring(0, 10);
+            var res = db.BaiViets.ToList();
+            int sl = 0;
+            int slBVChuaDuyet = 0;
+            foreach (var item in res)
+            {
+                if (item.NgayDang.ToString().Substring(0, 10) == dt && item.TrangThai == true)
+                    sl++;
+                else if (item.TrangThai == false)
+                    slBVChuaDuyet++;
+            }
+            ViewBag.SL = sl;
+            ViewBag.SLBVCD = slBVChuaDuyet;
             return View();
         }
         public ActionResult QLTK()
@@ -22,6 +36,19 @@ namespace DACN.Areas.Admin.Controllers
             ViewBag.QLTK = qltk;
             return View();
         }
-        
+        public ActionResult QLBV()
+        {
+            var qltk = db.BaiViets.SqlQuery("select * from BaiViet b, NhaTro n where b.idNT = n.idNT").ToList();
+            ViewBag.QLBV = qltk;
+            return View();
+        }
+        public ActionResult QLBC()
+        {
+            var qltk = db.BaoCaos.ToList();
+            ViewBag.QLBC = qltk;
+            return View();
+        }
+
+
     }
 }

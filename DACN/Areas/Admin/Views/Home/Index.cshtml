@@ -1,7 +1,6 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    var sl = @ViewBag.SL;
 }
 
 @{
@@ -25,7 +24,7 @@
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Bài viết trong tháng
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">@sl</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.SL</div>
                         </div>
                         <div class="col-auto">
                         </div>
@@ -43,7 +42,7 @@
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                 Bài viết cần duyệt
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                         </div>
                         <div class="col-auto">
                         </div>

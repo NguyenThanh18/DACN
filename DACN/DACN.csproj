@@ -198,6 +198,8 @@
     <Content Include="Areas\Admin\Views\Home\QLTK.cshtml" />
     <Content Include="Views\Shared\_FormConfirm.cshtml" />
     <Content Include="Areas\Admin\Views\Account\SuaTaiKhoan.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\QLBV.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\QLBC.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -211,6 +213,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PostsController.cs" />
     <Compile Include="Common\CommonConstants.cs" />
     <Compile Include="Common\Encryptor.cs" />
     <Compile Include="Common\UserLogin.cs" />
@@ -232,6 +235,8 @@
     <Compile Include="Models\EF\TaiKhoan.cs" />
     <Compile Include="Models\EF\ThanhPho.cs" />
     <Compile Include="Models\Function\FunctionAccount.cs" />
+    <Compile Include="Models\Function\FunctionNhaTro.cs" />
+    <Compile Include="Models\Function\FunctionPosts.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -265,6 +270,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Posts\" />
     <Folder Include="Areas\Admin\Views\SharedAdmin\" />
   </ItemGroup>
   <PropertyGroup>
