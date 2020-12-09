@@ -125,6 +125,11 @@ namespace DACN.Areas.Admin.Controllers
             var tk = db.TaiKhoans.Find(temp);
             return View(tk);
         }
+        public ActionResult ShowAccount(int idTK)
+        {
+            ViewBag.infoAcc = db.TaiKhoans.Find(idTK);
+            return RedirectToAction("QLTK", "Home");
+        }
         [HttpPost]
         public ActionResult SuaTaiKhoan(TaiKhoan tk)
         {
