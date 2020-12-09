@@ -223,6 +223,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DAO\AdminDao.cs" />
+    <Compile Include="Models\DAO\ReportDao.cs" />
     <Compile Include="Models\DAO\UserDAO.cs" />
     <Compile Include="Models\EF\BaiViet.cs" />
     <Compile Include="Models\EF\BaoCao.cs" />
@@ -231,6 +232,7 @@
     <Compile Include="Models\EF\KieuBD.cs" />
     <Compile Include="Models\EF\LoaiBD.cs" />
     <Compile Include="Models\EF\NhaTro.cs" />
+    <Compile Include="Models\EF\Phuong.cs" />
     <Compile Include="Models\EF\Quan.cs" />
     <Compile Include="Models\EF\TaiKhoan.cs" />
     <Compile Include="Models\EF\ThanhPho.cs" />

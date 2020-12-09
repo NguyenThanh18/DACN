@@ -3,5 +3,111 @@
     ViewBag.Title = "QLBC";
 }
 
-<h2>QLBC</h2>
+
+
+@{
+    ViewBag.Title = "QLBV";
+    var listBC = ViewBag.QLBC;
+}
+<link href="~/Content/Admin/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="~/Content/Admin/css/dataTables.bootstrap4.min.css" />
+<script>
+    $(function () {
+        $("#slider").responsiveSlides({
+            auto: true,
+            nav: true,
+            speed: 500,
+            namespace: "callbacks",
+            pager: true,
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $("#owl-demo").owlCarousel({
+            items: 1,
+            lazyLoad: true,
+            autoPlay: true,
+            navigation: false,
+            navigationText: false,
+            pagination: true,
+        });
+    });
+</script>
+<!-- Custom styles for this template-->
+<link href="~/Content/Admin/css/sb-admin-2.min.css" rel="stylesheet">
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Danh sách tài khoản</h6>
+            <br />
+            <button type="button" class="btn btn-outline-primary" aria-hidden="true"><a id="btn-sign-in" data-toggle="modal" data-target="#myModal" data-modal-show="one">Thêm mới</a></button>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tiêu đề</th>
+                            <th>Mô tả</th>
+                            <th style="min-width: 95px">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in listBC)
+                        {
+                            <tr>
+                                <td>@item.idBC</td>
+                                <td style="overflow: hidden; text-overflow: ellipsis; max-height: 30px">@item.TieuDe</td>
+                                <td style="overflow: hidden; text-overflow: ellipsis;  max-height: 30px">@item.TenBaoCao</td>
+                                <td>
+
+                                    @Html.ActionLink(
+                                    "Edit",
+                                    "XemBaoCao",
+                                    "Posts",
+                                    new { id = item.idBV },
+                                    new { @style = "color: white", @class = "btn btn-primary" })
+                                    @Html.ActionLink(
+                                    "Del",
+                                    "XoaBaoCao",
+                                    "Posts",
+                                    new { id = item.idBV },
+                                    //new { idNT = item.idNT},
+                                    new { onclick = "return confirm('Bạn có chắc muốn xóa?');", @style = "color: white", @class = "btn btn-danger" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--ADD Acount-->
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="~/Content/Admin/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="~/Content/Admin/js/jquery.dataTables.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="~/Content/Admin/js/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="~/Content/Admin/js/sb-admin-2.min.js"></script>
+<script>
+    $('.dataTable').DataTable();
+</script>
+
+@Html.Partial("~/Views/Shared/_FormConfirm.cshtml")
+
+
 

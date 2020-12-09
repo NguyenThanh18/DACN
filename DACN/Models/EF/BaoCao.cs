@@ -20,6 +20,11 @@ namespace DACN.Models.EF
 
         public int? idBV { get; set; }
 
+        public bool? TrangThai { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime? NgayBC { get; set; }
+
         public virtual BaiViet BaiViet { get; set; }
     }
 }

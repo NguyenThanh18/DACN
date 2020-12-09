@@ -115,3 +115,7 @@ create table Phuong(
 	idQuan int references Quan(idQuan)
 )
 go
+--update 09-12
+ALTER TABLE BaoCao 
+add  NgayBC date 
+add TrangThai bit

@@ -18,6 +18,7 @@ namespace DACN.Models.EF
         public virtual DbSet<KieuBD> KieuBDS { get; set; }
         public virtual DbSet<LoaiBD> LoaiBDS { get; set; }
         public virtual DbSet<NhaTro> NhaTroes { get; set; }
+        public virtual DbSet<Phuong> Phuongs { get; set; }
         public virtual DbSet<Quan> Quans { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
         public virtual DbSet<ThanhPho> ThanhPhoes { get; set; }
