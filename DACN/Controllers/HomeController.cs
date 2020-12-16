@@ -1,4 +1,5 @@
-﻿using DACN.Models.EF;
+﻿using DACN.Models.DAO;
+using DACN.Models.EF;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +13,17 @@ namespace DACN.Controllers
     {
         private DBContext db = new DBContext();
         // GET: Home
-        public ActionResult Index()
-        {
-            return View();
-        }
         public ActionResult HomePage()
         {
+            ViewBag.listBaiViet = new BaiVietDAO().ListAll();
+            ViewBag.Quan = db.Quans.ToList();
+            ViewBag.listKieuBDS = db.KieuBDS.ToList();
             return View();
+        }
+        public ActionResult ListKieuBDS()
+        {
+            ViewBag.listKieuBDS = new KieuBDSDAO().ListAll();
+            return PartialView();
         }
         public ActionResult BaiVietTrongThang()
         {

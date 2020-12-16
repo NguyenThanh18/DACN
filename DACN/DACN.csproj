@@ -179,7 +179,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="ScriptSQL\ScriptQLBV.sql" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Assets\fonts\fontawesome-webfont.eot" />
@@ -219,17 +218,27 @@
     <Compile Include="Common\UserLogin.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PostingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BaiVietModel.cs" />
     <Compile Include="Models\DAO\AdminDao.cs" />
+    <Compile Include="Models\DAO\BaiVietDAO.cs" />
+    <Compile Include="Models\DAO\KieuBDSDAO.cs" />
+    <Compile Include="Models\DAO\LoaiBDSDAO.cs" />
+    <Compile Include="Models\DAO\NhaTroDAO.cs" />
+    <Compile Include="Models\DAO\PhuongDAO.cs" />
+    <Compile Include="Models\DAO\QuanDAO.cs" />
     <Compile Include="Models\DAO\ReportDao.cs" />
     <Compile Include="Models\DAO\UserDAO.cs" />
+    <Compile Include="Models\DetailModel.cs" />
     <Compile Include="Models\EF\BaiViet.cs" />
     <Compile Include="Models\EF\BaoCao.cs" />
     <Compile Include="Models\EF\DBContext.cs" />
     <Compile Include="Models\EF\HinhAnh.cs" />
     <Compile Include="Models\EF\KieuBD.cs" />
+    <Compile Include="Models\EF\LoaiBaiViet.cs" />
     <Compile Include="Models\EF\LoaiBD.cs" />
     <Compile Include="Models\EF\NhaTro.cs" />
     <Compile Include="Models\EF\Phuong.cs" />
@@ -240,6 +249,7 @@
     <Compile Include="Models\Function\FunctionNhaTro.cs" />
     <Compile Include="Models\Function\FunctionPosts.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\NhaTroModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -256,12 +266,16 @@
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Home\HomePage.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Posting\DanhSachBV.cshtml" />
+    <Content Include="Views\Posting\Detail.cshtml" />
+    <Content Include="Views\Posting\Index.cshtml" />
+    <Content Include="Views\Posting\ListBDS.cshtml" />
+    <Content Include="Views\Home\ListKieuBDS.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -274,6 +288,7 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Posts\" />
     <Folder Include="Areas\Admin\Views\SharedAdmin\" />
+    <Folder Include="ScriptSQL\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

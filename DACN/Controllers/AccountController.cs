@@ -30,7 +30,7 @@ namespace DACN.Controllers
                 var resuft = dao.Login(model.UserName, Encryptor.MD5Hash(model.Password));
                 if (resuft == 1)
                 {
-                    var user = dao.GetByID(model.UserName);
+                    var user = dao.GetByName(model.UserName);
                     var userSession = new UserLogin();
                     userSession.UserName = user.Username;
                     userSession.userID = user.idTK;

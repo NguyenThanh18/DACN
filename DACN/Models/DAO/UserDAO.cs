@@ -27,7 +27,11 @@ namespace DACN.Models.DAO
                 return -3;
             }
         }
-        public TaiKhoan GetByID(string name)
+        public TaiKhoan GetByID(int? id)
+        {
+            return db.TaiKhoans.SingleOrDefault(x => x.idTK == id);
+        }
+        public TaiKhoan GetByName(string name)
         {
             return db.TaiKhoans.SingleOrDefault(x => x.Username == name);
         }

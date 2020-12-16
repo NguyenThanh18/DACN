@@ -36,7 +36,7 @@ namespace DACN.Areas.Admin.Controllers
             // Trước khi xóa bài viết sau đó xóa nhà trọ
             var bc = db.BaoCaos.Find(Int32.Parse(id));
             var bv = db.BaiViets.Find(bc.idBV);
-            var nt = db.NhaTroes.Find(bv.NhaTro);
+            var nt = db.NhaTroes.Find(bv.idNT);
             var HamP = new FunctionPosts();
             var HamNT = new FunctionNhaTro();
             var HamBC = new ReportDao();

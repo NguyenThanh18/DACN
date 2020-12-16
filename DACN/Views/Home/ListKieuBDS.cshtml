@@ -1,0 +1,15 @@
+﻿
+@{
+    var listKieuBDS = ViewBag.listKieuBDS;
+}
+
+
+<a class="dropdown-toggle menu__link" data-toggle="dropdown" href="#">
+    <span class="menu__helper">Bất Động Sản <b class="caret"></b></span> 
+</a>
+<ul class="dropdown-menu" style="font-size: 15px">
+    @foreach (var item in listKieuBDS)
+    {
+        <li><a href="">@item.TenKieu</a></li>
+    }
+</ul>
