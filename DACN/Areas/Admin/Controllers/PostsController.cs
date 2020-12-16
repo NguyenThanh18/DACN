@@ -46,5 +46,13 @@ namespace DACN.Areas.Admin.Controllers
 
             return RedirectToAction("QLBC", "Home");
         }
+        public ActionResult DuyetBaoCao()
+        {
+            string id = RouteData.Values["id"].ToString();
+            var bc = db.BaoCaos.Find(Int32.Parse(id));
+            bc.TrangThai = true;
+            db.SaveChanges();
+            return RedirectToAction("QLBC", "Home");
+        }
     }
 }

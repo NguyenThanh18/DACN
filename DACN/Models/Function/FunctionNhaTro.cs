@@ -27,7 +27,8 @@ namespace DACN.Models.Function
         }
         public int Insert(NhaTro model)
         {
-            
+            db.NhaTroes.Add(model);
+            db.SaveChanges();
             return model.idNT;
         }
         public string Update(TaiKhoan model, int id)

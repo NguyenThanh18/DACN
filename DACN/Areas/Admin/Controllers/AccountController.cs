@@ -123,7 +123,7 @@ namespace DACN.Areas.Admin.Controllers
             string idTK = RouteData.Values["id"].ToString();
             int temp = Int32.Parse(idTK);
             var tk = db.TaiKhoans.Find(temp);
-            return View(tk);
+            return PartialView("SuaTaiKhoan",tk);
         }
         public ActionResult ShowAccount(int idTK)
         {
@@ -139,7 +139,7 @@ namespace DACN.Areas.Admin.Controllers
             {
                 var HamTK = new FunctionAccount();
                 HamTK.Update(tk, temp);
-                return RedirectToAction("QLTK", "Home");
+                return PartialView("SuaTaiKhoan", tk);
             }
             return View(tk);
         }

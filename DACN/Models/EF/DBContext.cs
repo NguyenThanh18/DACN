@@ -29,6 +29,18 @@ namespace DACN.Models.EF
                 .Property(e => e.Link)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<LoaiBD>()
+                .Property(e => e.Alias)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Phuong>()
+                .Property(e => e.Alias)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Quan>()
+                .Property(e => e.Alias)
+                .IsUnicode(false);
+
             modelBuilder.Entity<TaiKhoan>()
                 .Property(e => e.RoleTK)
                 .IsUnicode(false);
@@ -51,6 +63,10 @@ namespace DACN.Models.EF
 
             modelBuilder.Entity<TaiKhoan>()
                 .Property(e => e.GioiTinh)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ThanhPho>()
+                .Property(e => e.Alias)
                 .IsUnicode(false);
         }
     }

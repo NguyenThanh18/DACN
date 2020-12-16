@@ -70,8 +70,7 @@
                                 <td>@(new HtmlString(newdt))</td>
                                 <td>@item.RoleTK</td>
                                 <td>
-                                    <a href="#" onclick="EditStudentRecord(@item.idTK)">edit</a>
-                                    @Html.ActionLink(
+                                   @Html.ActionLink(
                                     "Edit",
                                     "SuaTaiKhoan",
                                     "Account",
@@ -161,5 +160,5 @@
     $('.dataTable').DataTable();
 </script>
 
-@Html.Partial("~/Views/Shared/_FormConfirm.cshtml")
+
 

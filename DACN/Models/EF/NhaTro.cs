@@ -35,6 +35,8 @@ namespace DACN.Models.EF
 
         public int? idQuan { get; set; }
 
+        public string SoNha { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BaiViet> BaiViets { get; set; }
 

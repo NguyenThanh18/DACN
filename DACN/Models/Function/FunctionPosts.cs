@@ -25,10 +25,11 @@ namespace DACN.Models.Function
             db.SaveChanges();
             return idBV;
         }
-        public string Insert(TaiKhoan model)
+        public int Insert(BaiViet model)
         {
-           
-            return model.Username;
+            db.BaiViets.Add(model);
+            db.SaveChanges();
+            return model.idBV;
         }
         public int Update(BaiViet model1, int id, NhaTro model2)
         {

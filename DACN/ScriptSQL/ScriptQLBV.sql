@@ -118,4 +118,18 @@ go
 --update 09-12
 ALTER TABLE BaoCao 
 add  NgayBC date 
+ALTER TABLE BaoCao 
 add TrangThai bit
+
+--update 15-12
+alter table ThanhPho
+add Alias varchar(50)
+
+alter table Quan
+add Alias varchar(50)
+
+alter table Phuong
+add Alias varchar(50)
+
+alter table LoaiBDS
+add Alias varchar(50)
