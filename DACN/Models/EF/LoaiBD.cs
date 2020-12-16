@@ -15,6 +15,8 @@ namespace DACN.Models.EF
         [StringLength(50)]
         public string TenLoai { get; set; }
 
+        public int? IDLoaiBaiViet { get; set; }
+
         [StringLength(50)]
         public string Alias { get; set; }
     }
