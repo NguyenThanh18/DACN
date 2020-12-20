@@ -16,7 +16,5 @@ namespace DACN.Models.EF
         public string TenPhuong { get; set; }
 
         public int? idQuan { get; set; }
-
-        public virtual Quan Quan { get; set; }
     }
 }

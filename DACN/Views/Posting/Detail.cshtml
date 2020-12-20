@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     var detail = ViewBag.Detail;
     var listNhaTro = ViewBag.ListNhaTro;
+    var listnew = (List<DACN.Models.EF.BaiViet>)ViewBag.listnew;
 }
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -122,8 +123,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <a>0368257602</a>
                     <a>Gửi tin nhắn</a>
                 </div>
+            </div>
+            <div class="col-md-3 p-lg-3">
+                <h2 class="text-left">Có Thể Bạn Quan Tâm</h2>
+                @foreach (var itemnew in listnew)
+                {
+                    <div class="col-md-5">
+                        <img src="~/Assets/images/ba1.jpg" width="190" height="120" />
+                    </div>
+                    <a style="color: black;" href="/Posting/Detail/@itemnew.idBV">
+                        <div style="border: 1px solid #eee; border-radius: 5px; background-color: #eee; margin-bottom: 15px; margin-top: 10px;">
+                            <div style="padding: 5px 10px 5px 10px;">
+                                <label>@itemnew.TieuDe</label><br />
+                                @itemnew.TieuDePhu<br /><br />
+                                <label style="color:#00deb6">Ngày Đăng: &nbsp;</label>@itemnew.NgayDang
+                            </div>
+                        </div>
+                    </a>
+                }
+            </div>
 
-                    <!-- js -->
-                    <script type="text/javascript" src="~/Assets2/js/jquery-2.1.4.min.js"></script>
-                    <script type="text/javascript" src="~/Assets2/js/bootstrap.js"></script>
+            <!-- js -->
+            <script type="text/javascript" src="~/Assets2/js/jquery-2.1.4.min.js"></script>
+            <script type="text/javascript" src="~/Assets2/js/bootstrap.js"></script>
 

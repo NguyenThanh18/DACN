@@ -9,12 +9,6 @@ namespace DACN.Models.EF
     [Table("Quan")]
     public partial class Quan
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Quan()
-        {
-            Phuongs = new HashSet<Phuong>();
-        }
-
         [Key]
         public int idQuan { get; set; }
 
@@ -23,9 +17,5 @@ namespace DACN.Models.EF
 
         public int? idTP { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Phuong> Phuongs { get; set; }
-
-        public virtual ThanhPho ThanhPho { get; set; }
     }
 }
