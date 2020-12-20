@@ -70,17 +70,6 @@ namespace DACN.Controllers
             }
             return Json(listResult, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult BaiVietTrongThang()
-        {
-            //DateTime dt = DateTime.Now;
-            //var fd = new DateTime(dt.Year, dt.Month, 1);
-            //var ld = fd.AddMonths(1).AddDays(-1);
-            //var res = db.BaiViets.Where(s => s.NgayDang >= new DateTime(dt.Year, dt.Month, 1) && s.NgayDang <= new DateTime(dt.Year, dt.Month, ld.Day)).ToList();
-            //ViewBag.SLBV = res;
-            var res = db.BaiViets.SqlQuery("select count(*) as SL from BaiViet b where YEAR(b.NgayDang) = YEAR(GETDATE()) and MONTH(NgayDang) = MONTH(GETDATE())").ToList();
-            ViewBag.SL = res;
-            return View();
-        }
         public ActionResult Search(SearchModel entity)
         {
             var listBaiViet = new List<Models.EF.BaiViet>();
