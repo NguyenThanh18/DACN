@@ -238,11 +238,11 @@
     <Compile Include="Models\EF\DBContext.cs" />
     <Compile Include="Models\EF\HinhAnh.cs" />
     <Compile Include="Models\EF\KieuBD.cs" />
-    <Compile Include="Models\EF\LoaiBaiViet.cs" />
     <Compile Include="Models\EF\LoaiBD.cs" />
     <Compile Include="Models\EF\NhaTro.cs" />
     <Compile Include="Models\EF\Phuong.cs" />
     <Compile Include="Models\EF\Quan.cs" />
+    <Compile Include="Models\EF\sysdiagram.cs" />
     <Compile Include="Models\EF\TaiKhoan.cs" />
     <Compile Include="Models\EF\ThanhPho.cs" />
     <Compile Include="Models\Function\FunctionAccount.cs" />

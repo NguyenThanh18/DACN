@@ -30,6 +30,12 @@ namespace DACN.Areas.Admin.Controllers
 
             return RedirectToAction("QLBV", "Home");
         }
+        public ActionResult ThemBaiViet()
+        {
+            var session = (DACN.Common.UserLogin)Session[DACN.Common.CommonConstants.USER_SESSION];
+            session.UserName = 
+            return RedirectToAction("QLBV", "Home");
+        }
         public ActionResult XoaBaoCao()
         {
             string id = RouteData.Values["id"].ToString();

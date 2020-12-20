@@ -70,7 +70,6 @@
                                 <td>@(new HtmlString(newdt))</td>
                                 <td>@item.RoleTK</td>
                                 <td>
-                                    <a href="#" onclick="EditStudentRecord(@item.idTK)">edit</a>
                                     @Html.ActionLink(
                                     "Edit",
                                     "SuaTaiKhoan",
@@ -139,13 +138,6 @@
         </div>
     </div>
 </div>
-
-<script>
-    function EditStudentRecord(idTK) {
-        var url = "/Home/ShowAccount?idTK=" + idTK;
-        $("#MyModal1").modal();
-    }
-</script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>

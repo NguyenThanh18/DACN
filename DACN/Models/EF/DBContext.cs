@@ -16,11 +16,11 @@ namespace DACN.Models.EF
         public virtual DbSet<BaoCao> BaoCaos { get; set; }
         public virtual DbSet<HinhAnh> HinhAnhs { get; set; }
         public virtual DbSet<KieuBD> KieuBDS { get; set; }
-        public virtual DbSet<LoaiBaiViet> LoaiBaiViets { get; set; }
         public virtual DbSet<LoaiBD> LoaiBDS { get; set; }
         public virtual DbSet<NhaTro> NhaTroes { get; set; }
         public virtual DbSet<Phuong> Phuongs { get; set; }
         public virtual DbSet<Quan> Quans { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; }
         public virtual DbSet<ThanhPho> ThanhPhoes { get; set; }
 
@@ -28,6 +28,18 @@ namespace DACN.Models.EF
         {
             modelBuilder.Entity<HinhAnh>()
                 .Property(e => e.Link)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<LoaiBD>()
+                .Property(e => e.Alias)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Phuong>()
+                .Property(e => e.Alias)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Quan>()
+                .Property(e => e.Alias)
                 .IsUnicode(false);
 
             modelBuilder.Entity<TaiKhoan>()
@@ -52,6 +64,10 @@ namespace DACN.Models.EF
 
             modelBuilder.Entity<TaiKhoan>()
                 .Property(e => e.GioiTinh)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<ThanhPho>()
+                .Property(e => e.Alias)
                 .IsUnicode(false);
         }
     }
