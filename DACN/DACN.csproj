@@ -199,6 +199,8 @@
     <Content Include="Areas\Admin\Views\Account\SuaTaiKhoan.cshtml" />
     <Content Include="Areas\Admin\Views\Home\QLBV.cshtml" />
     <Content Include="Areas\Admin\Views\Home\QLBC.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\XemBaiViet.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\Posting.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -251,6 +253,7 @@
     <Compile Include="Models\Function\FunctionPosts.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\NhaTroModel.cs" />
+    <Compile Include="Models\PostingModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Models\SearchModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -278,6 +281,8 @@
     <Content Include="Views\Posting\Index.cshtml" />
     <Content Include="Views\Posting\ListBDS.cshtml" />
     <Content Include="Views\Home\ListKieuBDS.cshtml" />
+    <Content Include="Views\Posting\Posting.cshtml" />
+    <Content Include="Views\Posting\Posted.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -288,7 +293,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\Posts\" />
     <Folder Include="Areas\Admin\Views\SharedAdmin\" />
     <Folder Include="ScriptSQL\" />
   </ItemGroup>

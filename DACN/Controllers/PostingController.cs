@@ -66,5 +66,53 @@ namespace DACN.Controllers
             ViewBag.Detail = result;
             return View();
         }
+        public ActionResult Posting()
+        {
+            ViewBag.TP = db.ThanhPhoes.ToList();
+            ViewBag.Quan = db.Quans.ToList();
+            ViewBag.Phuong = db.Phuongs.ToList();
+            ViewBag.LoaiBDS = db.LoaiBDS.ToList();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Posting(PostingModel model)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var daoNT = new NhaTroDAO();
+                var daoPost = new BaiVietDAO();
+
+                var bv = new BaiViet();
+                var nt = new NhaTro();
+
+                nt.DienTich = model.DienTich;
+                nt.PhongNgu = model.PhongNgu;
+                nt.Lau = model.Lau;
+                nt.NhaTam = model.NhaTam;
+                nt.Gia = model.Gia;
+                nt.SoNha = model.SoNha;
+                nt.idPhuong = model.idPhuong;
+                nt.idQuan = model.idQuan;
+                daoNT.Insert(nt);
+
+                NhaTro temp = db.NhaTroes.OrderByDescending(p => p.idNT).FirstOrDefault();
+                bv.TieuDe = model.TieuDe;
+                bv.TieuDePhu = model.TieuDePhu;
+                bv.MoTa = model.MoTa;
+                bv.TrangThai = false;
+                DateTime now = DateTime.Now;
+                bv.NgayDang = now;
+                bv.idNT = temp.idNT;
+                var session = (DACN.Common.UserLogin)Session[DACN.Common.CommonConstants.USER_SESSION];
+                string ten = session.UserName;
+                TaiKhoan tk = db.TaiKhoans.Find(session.userID);
+                bv.idTK = tk.idTK;
+                daoPost.Insert(bv);
+
+
+            }
+            return View("Posted", model);
+        }
     }
 }
