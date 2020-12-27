@@ -42,7 +42,6 @@ namespace DACN.Models.EF
 
         [StringLength(50)]
         public string HoTen { get; set; }
-
         public bool? TrangThai { get; set; }
 
         [StringLength(12)]

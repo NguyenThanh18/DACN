@@ -1,4 +1,4 @@
-﻿
+﻿@model  DACN.Models.EF.TaiKhoan
 @{
     ViewBag.Title = "XacThuc";
 }
@@ -7,20 +7,50 @@
         width: 400px;
         margin: auto;
         padding: 20px;
+        border-radius: 3px;
     }
+
     .shadow {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
+
+    .btn {
+    }
+
+        .btn:hover {
+            background-color: #0984e3;
+            color: white;
+        }
 </style>
+@using (Html.BeginForm("SaveInfo", "Sms", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
 <div class="content shadow">
     <h3 class="text-center" style="margin-bottom: 30px">Xác thực tài khoản</h3>
     <div class="form-group">
         <label for="cmnd">CMND</label>
-        <input type="text" class="form-control" />
+        <input type="text" class="form-control" name="cmnd" />
     </div>
     <div class="form-group">
         <label for="cmnd">Số điện thoại</label>
-        <input type="text" class="form-control" />
+        <div class="form-inline">
+            <input type="text" class="form-control" placeholder="+84XXXXXXXXX" style="width: 220px" value="" name="PhoneNumber" id="PhoneNumber" />
+            <input class="btn btn-outline-secondary" onclick="sendOTP()" type="button" value="Gửi mã xác nhận" />
+        </div>
     </div>
-    <input type="button" class="btn btn-primary" value="Xác nhận"/>
+    <div class="form-group" style="padding-bottom: 40px">
+        <input class="col-md-9 form-control" type="text" id="OTPCode" placeholder="EnterOTP" />
+    </div>
+    <div class="form-group">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+            <p class="text-danger" id="verifyOTP"></p>
+            <p class="text-danger" id="verifyOTP1"></p>
+        </div>
+    </div>
+    <input type="button" class="btn btn-primary" value="Xác nhận" id="btnSubmit" onclick="verifyOTP()" />
+    <input type="submit" class="btn btn-primary" value="Quay lại" id="btnSubmit1" style="display: none" />
 </div>
+}
+
+<script type="text/javascript" src="~/Scripts/SmsScripts/Sms.js"></script>
