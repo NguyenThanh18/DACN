@@ -12,7 +12,6 @@ namespace DACN.Models.EF
         [Key]
         public int idHA { get; set; }
 
-        [StringLength(255)]
         public string Link { get; set; }
 
         public int? idNT { get; set; }

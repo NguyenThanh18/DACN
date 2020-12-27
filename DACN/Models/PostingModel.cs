@@ -20,6 +20,7 @@ namespace DACN.Models
         public int Lau { get; set; }
         public int NhaTam { get; set; }
         public int DienTich { get; set; }
-
+        public string Images { get; set; }
+        public HttpPostedFileBase ImageUpload { get; set; }
     }
 }

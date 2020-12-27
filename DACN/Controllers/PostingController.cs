@@ -4,6 +4,7 @@ using DACN.Models.DAO;
 using DACN.Models.EF;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -68,6 +69,12 @@ namespace DACN.Controllers
         }
         public ActionResult Posting()
         {
+            var session = (DACN.Common.UserLogin)Session[DACN.Common.CommonConstants.USER_SESSION];
+            TaiKhoan tk = db.TaiKhoans.Find(session.userID);
+            if (tk.QuyenHan.Equals("view"))
+            {
+                return View("XacThuc",tk);
+            }
             ViewBag.TP = db.ThanhPhoes.ToList();
             ViewBag.Quan = db.Quans.ToList();
             ViewBag.Phuong = db.Phuongs.ToList();
@@ -80,6 +87,13 @@ namespace DACN.Controllers
 
             if (ModelState.IsValid)
             {
+                if (model.ImageUpload != null)
+                {
+                    string fileName = Path.GetFileNameWithoutExtension(model.ImageUpload.FileName);
+                    //string extension = Path.GetExtension(model.ImageUpload.FileName);
+                    //file.SaveAs(Server.MapPath("~/Content/Images/" + file.FileName));
+                    model.Images = "~/Content/Images/" + fileName;
+                }
                 var daoNT = new NhaTroDAO();
                 var daoPost = new BaiVietDAO();
 
@@ -93,6 +107,7 @@ namespace DACN.Controllers
                 nt.Gia = model.Gia;
                 nt.SoNha = model.SoNha;
                 nt.idPhuong = model.idPhuong;
+                nt.Image = model.Images;
                 nt.idQuan = model.idQuan;
                 daoNT.Insert(nt);
 
@@ -113,6 +128,11 @@ namespace DACN.Controllers
 
             }
             return View("Posted", model);
+        }
+        public string ProcessUpload(HttpPostedFileBase file)
+        {
+            file.SaveAs(Server.MapPath("~/Content/Images/" + file.FileName));
+            return "/Content/Images" + file.FileName;
         }
     }
 }

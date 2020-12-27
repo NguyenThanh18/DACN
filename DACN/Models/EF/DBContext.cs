@@ -66,6 +66,10 @@ namespace DACN.Models.EF
                 .Property(e => e.GioiTinh)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<TaiKhoan>()
+                .Property(e => e.CMND)
+                .IsUnicode(false);
+
             modelBuilder.Entity<ThanhPho>()
                 .Property(e => e.Alias)
                 .IsUnicode(false);
