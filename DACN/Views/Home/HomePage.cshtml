@@ -63,154 +63,152 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     {
         <div id="user_id" hidden>@session.userID</div>
     }
-    <div class="content">
+    <div class="">
         <div class="serach-w3agile">
-            <div class="container">
-                <h3 class="tittle">Tìm Kiếm Tổ Ấm Của Bạn</h3>
-                <div class="place-grids" style="margin-left: 170px">
-                    <form id="BaiVietFrm">
+            <h3 class="tittle">Tìm Kiếm Tổ Ấm Của Bạn</h3>
+            <div class="place-grids">
+                <form id="BaiVietFrm" style="margin-left: 130px">
 
-                        @Html.AntiForgeryToken()
-                        @Html.ValidationSummary(false, "", new { @class = "text-danger" });
-                        <div class="col-md-2 place-grid" id="quan">
-                            <h5>Quận/Huyện</h5>
-                            <select class="sel" id="idQuan" name="idQuan">
-                                <option value="0">Select</option>
-                                @foreach (var item in listQuan)
-                                {
-                                    <option value="@item.idQuan">@item.TenQuan</option>
-                                }
-                            </select>
-                        </div>
-                        <div class="col-md-2 place-grid" id="phuong">
-                            <h5>Phường/Xã</h5>
-                            <select class="sel" name="idPhuong" id="idPhuong">
-                                <option value="0">Select</option>
-                                @foreach (var item in listPhuong)
-                                {
-                                    <option value="@item.idPhuong">@item.TenPhuong</option>
-                                }
-                            </select>
-                        </div>
-                        <div class="col-md-2 place-grid">
-                            <h5>Dịch vụ</h5>
-                            <select class="sel" name="idBDS">
-                                <option value="0">Select</option>
-                                @foreach (var item in listKieuBDS)
-                                {
-                                    <option value="@item.idKieuBDS">@item.TenKieu</option>
-                                }
-                            </select>
-                        </div>
-                        <div class="col-md-2 place-grid" style="margin-top: 0px">
-                            <h5>Mức Giá</h5>
-                            <select class="sel" name="MucGiaS">
-                                <option value="0">Select</option>
-                                <option value="<600000">< 600000 VND</option>
-                                <option value="600000-800000">600000 - 800000 VND</option>
-                                <option value=">1000000">> 1000000 VND</option>
-                            </select>
-                        </div>
-                        <div class="col-md-2 place-grid" style="margin-top: 3.7rem">
-                            <input class="btn" id="btn_search" type="button" value="Tìm Kiếm" style="background-color:#05222A;color:#ffffff; width: 100%">
-                        </div>
-                    </form>
-                    <div class="clearfix"></div>
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" });
+                    <div class="col-md-2 place-grid" id="quan" style="margin-left: 20px;">
+                        <h5>Quận/Huyện</h5>
+                        <select class="sel" id="idQuan" name="idQuan" style="width: 110%;">
+                            <option value="0">Select</option>
+                            @foreach (var item in listQuan)
+                            {
+                                <option value="@item.idQuan">@item.TenQuan</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-2 place-grid" id="phuong">
+                        <h5>Phường/Xã</h5>
+                        <select class="sel" name="idPhuong" id="idPhuong" style="width: 110%;">
+                            <option value="0">Select</option>
+                            @foreach (var item in listPhuong)
+                            {
+                                <option value="@item.idPhuong">@item.TenPhuong</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-2 place-grid">
+                        <h5>Dịch vụ</h5>
+                        <select class="sel" name="idBDS" style="width: 110%;">
+                            <option value="0">Select</option>
+                            @foreach (var item in listKieuBDS)
+                            {
+                                <option value="@item.idKieuBDS">@item.TenKieu</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-2 place-grid" style="margin-top: 0px;">
+                        <h5>Mức Giá</h5>
+                        <select class="sel" name="MucGiaS" style="width: 110%">
+                            <option value="0">Select</option>
+                            <option value="<600000">< 600000 VND</option>
+                            <option value="600000-800000">600000 - 800000 VND</option>
+                            <option value=">1000000">> 1000000 VND</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 place-grid" style="margin-top: 3.7rem;">
+                        <input class="btn" id="btn_search" type="button" value="Tìm Kiếm" style="background-color:#05222A;color:#ffffff; width: 100%">
+                    </div>
+                </form>
+                <div class="clearfix"></div>
                 </div>
             </div>
-        </div>
-        <div class="popular-w3">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-9  p-lg-3">
-                        <h2 class="text-left">Tất Cả Bài Viết</h2>
-                        <div class="popular-grids" id="listbaiviet">
-                            <div class="row" id="show_bai_viet">
-                                @foreach (var item in listBaiViet)
-                                {
-                                    <a style="color: black;" href="/Posting/Detail/@item.idBV">
-                                        <div class="col-md-6" style="height: 150px">
-                                            <div class="form-row">
-                                                <div class="col-md-5">
-                                                    <img src="~/Assets/images/ba1.jpg" width="190" height="120" />
-                                                </div>
-                                                <div class="col-md-7" style="width: 55%">
-                                                    <label>@item.TieuDe</label><br />
-                                                    @item.TieuDePhu<br /><br />
-                                                    <label style="color:#00deb6">Ngày Đăng: &nbsp;</label>@item.NgayDang
+            <div class="popular-w3">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-9  p-lg-3">
+                            <h2 class="text-left">Tất Cả Bài Viết</h2>
+                            <div class="popular-grids" id="listbaiviet">
+                                <div class="row" id="show_bai_viet">
+                                    @foreach (var item in listBaiViet)
+                                    {
+                                        <a style="color: black;" href="/Posting/Detail/@item.idBV">
+                                            <div class="col-md-6" style="height: 150px">
+                                                <div class="form-row">
+                                                    <div class="col-md-5">
+                                                        <img src="~/Assets/images/ba1.jpg" width="190" height="120" />
+                                                    </div>
+                                                    <div class="col-md-7" style="width: 55%">
+                                                        <label>@item.TieuDe</label><br />
+                                                        @item.TieuDePhu<br /><br />
+                                                        <label style="color:#00deb6">Ngày Đăng: &nbsp;</label>@item.NgayDang
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </a>
-                                }
+                                        </a>
+                                    }
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-3 p-lg-3">
-                        <h2 class="text-left">Tin Mới Đăng</h2>
-                        @foreach (var itemnew in listnew)
-                        {
-                            <a style="color: black;" href="/Posting/Detail/@itemnew.idBV">
-                                <div style="border: 1px solid #eee; border-radius: 5px; background-color: #eee; margin-bottom: 15px; margin-top: 10px;">
-                                    <div style="padding: 5px 10px 5px 10px;">
-                                        <label>@itemnew.TieuDe</label><br />
-                                        @itemnew.TieuDePhu<br /><br />
-                                        <label style="color:#00deb6">Ngày Đăng: &nbsp;</label>@itemnew.NgayDang
+                        <div class="col-md-3 p-lg-3">
+                            <h2 class="text-left">Tin Mới Đăng</h2>
+                            @foreach (var itemnew in listnew)
+                            {
+                                <a style="color: black;" href="/Posting/Detail/@itemnew.idBV">
+                                    <div style="border: 1px solid #eee; border-radius: 5px; background-color: #eee; margin-bottom: 15px; margin-top: 10px;">
+                                        <div style="padding: 5px 10px 5px 10px;">
+                                            <label>@itemnew.TieuDe</label><br />
+                                            @itemnew.TieuDePhu<br /><br />
+                                            <label style="color:#00deb6">Ngày Đăng: &nbsp;</label>@itemnew.NgayDang
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        }
+                                </a>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!--popular-->
-        <!--footer-->
-        <div class="footer-section">
-            <div class="container">
-                <div class="footer-grids">
-                    <div class="col-md-3 footer-grid">
-                        <h4>About </h4>
-                        <p>Chúng tôi biết bạn có rất nhiều lựa chọn, nhưng Green Group tự hào là trang web đứng top google về các từ khóa: cho thuê phòng trọ, nhà trọ, thuê nhà nguyên căn, cho thuê căn hộ, tìm người ở ghép...Vì vậy tin của bạn đăng trên website sẽ tiếp cận được với nhiều khách hàng hơn, do đó giao dịch nhanh hơn, tiết kiệm chi phí hơn</p>
-                    </div>
-                    <div class="col-md-3 footer-grid">
-                        <h4>Property Types</h4>
-                        <ul>
-                            <li>Tìm kiếm nhanh chóng, hiệu quả</li>
-                            <li>Hợp tác với nhiều trang web</li>
-                            <li>Có mặt trên khắp cả nước</li>
-                            <li>Cam kết uy tín chất lượng</li>
-                            <li>Làm việc chuyên nghiệp tận tâm</li>
-                            <li>Giá cả chính xác</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-3 footer-grid">
-                        <h4>Useful links</h4>
-                        <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about.html">About</a></li>
-                            <li><a href="services.html">Services</a></li>
-                            <li><a href="contact.html">Contact</a></li>
-                            <li><a href="codes.html">Codes</a></li>
-                            <li><a href="projects.html">Projects</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-3 footer-grid">
-                        <h4>Contacts</h4>
-                        <ul>
-                            <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>0368 257 602</li>
-                            <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:dts.thanhson1810@mail.com"> dts.thanhson1810@mail.com</a></li>
-                            <li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>475A Penthouse Đà Lạt</li>
-                            <li><i class="glyphicon glyphicon-time" aria-hidden="true"></i>Mon-Sat 8:00 am to 5:00 pm</li>
-                        </ul>
+            <!--popular-->
+            <!--footer-->
+            <div class="footer-section">
+                <div class="container">
+                    <div class="footer-grids">
+                        <div class="col-md-3 footer-grid">
+                            <h4>About </h4>
+                            <p>Chúng tôi biết bạn có rất nhiều lựa chọn, nhưng Green Group tự hào là trang web đứng top google về các từ khóa: cho thuê phòng trọ, nhà trọ, thuê nhà nguyên căn, cho thuê căn hộ, tìm người ở ghép...Vì vậy tin của bạn đăng trên website sẽ tiếp cận được với nhiều khách hàng hơn, do đó giao dịch nhanh hơn, tiết kiệm chi phí hơn</p>
+                        </div>
+                        <div class="col-md-3 footer-grid">
+                            <h4>Property Types</h4>
+                            <ul>
+                                <li>Tìm kiếm nhanh chóng, hiệu quả</li>
+                                <li>Hợp tác với nhiều trang web</li>
+                                <li>Có mặt trên khắp cả nước</li>
+                                <li>Cam kết uy tín chất lượng</li>
+                                <li>Làm việc chuyên nghiệp tận tâm</li>
+                                <li>Giá cả chính xác</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 footer-grid">
+                            <h4>Useful links</h4>
+                            <ul>
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="about.html">About</a></li>
+                                <li><a href="services.html">Services</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="codes.html">Codes</a></li>
+                                <li><a href="projects.html">Projects</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3 footer-grid">
+                            <h4>Contacts</h4>
+                            <ul>
+                                <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>0368 257 602</li>
+                                <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:dts.thanhson1810@mail.com"> dts.thanhson1810@mail.com</a></li>
+                                <li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>475A Penthouse Đà Lạt</li>
+                                <li><i class="glyphicon glyphicon-time" aria-hidden="true"></i>Mon-Sat 8:00 am to 5:00 pm</li>
+                            </ul>
+                        </div>
+                        <div class="clearfix"> </div>
                     </div>
                     <div class="clearfix"> </div>
                 </div>
-                <div class="clearfix"> </div>
-            </div>
 
+            </div>
         </div>
-    </div>
     <!--footer-->
     <!--copy-->
     <div class="copy-section">

@@ -51,6 +51,9 @@ namespace DACN.Models.EF
         [StringLength(10)]
         public string QuyenHan { get; set; }
 
+        [Column(TypeName = "text")]
+        public string Avatar { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BaiViet> BaiViets { get; set; }
 

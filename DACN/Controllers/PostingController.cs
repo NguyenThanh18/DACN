@@ -54,7 +54,7 @@ namespace DACN.Controllers
             {
                 result.Add(new DetailModel
                 {
-                    idBV = baiviet.idTK,
+                    idBV = baiviet.idBV,
                     tieude = baiviet.TieuDe,
                     mota = baiviet.MoTa,
                     ngaydang = baiviet.NgayDang.ToString(),
@@ -65,6 +65,7 @@ namespace DACN.Controllers
                 });
             }
             ViewBag.Detail = result;
+            ViewBag.listnew = db.BaiViets.SqlQuery("select * from BaiViet where NgayDang >= GETDATE()").ToList();
             return View();
         }
         public ActionResult Posting()
@@ -133,6 +134,27 @@ namespace DACN.Controllers
         {
             file.SaveAs(Server.MapPath("~/Content/Images/" + file.FileName));
             return "/Content/Images" + file.FileName;
+        }
+
+        public ActionResult SaveWishlist(int id, int user_id)
+        {
+            var wishlist = new DanhSachYeuThich();
+            wishlist.IdBV = id;
+            wishlist.IdTK = user_id;
+            wishlist.DaySave = DateTime.Now;
+            db.DanhSachYeuThiches.Add(wishlist);
+            db.SaveChanges();
+            return Json(new { Message = "success", JsonRequestBehavior = JsonRequestBehavior.AllowGet });
+        }
+        public ActionResult Comment(CommentModel model)
+        {
+            var comment = new Comment();
+            comment.UserName = model.UserName;
+            comment.ContentComment = model.ContentComment;
+            comment.DateComment = DateTime.Now;
+            db.Comments.Add(comment);
+            db.SaveChanges();
+            return View();
         }
     }
 }
