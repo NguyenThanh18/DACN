@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "SuaTaiKhoan";
+    var edit = ViewBag.EditTK;
+}
+
+@using DACN.Models.EF
+@model TaiKhoan
+@using (Html.BeginForm("SuaTaiKhoan", "Account", FormMethod.Post))
+{
+    // @Html.AntiForgeryToken()
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" });
+    <label>Username </label>
+    <input type="text" class="form-control" name="Username" placeholder="Nhập username" required="" value="@Model.Username">
+    <br>
+    <label>Password</label>
+    <input type="password" class="form-control" name="Pass" placeholder="Nhập password mới" required="">
+    <br>
+    <div class="form-inline">
+        <label>Giới tính</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="radio" id="Nam" name="GioiTinh" value="Nam">
+        <label for="Nam">Nam</label><br>&nbsp;&nbsp;&nbsp;
+        <input type="radio" id="Nu" name="GioiTinh" value="Nu">
+        <label for="Nu">Nữ</label><br>&nbsp;&nbsp;&nbsp;
+        <input type="radio" id="Khac" name="GioiTinh" value="Khac">
+        <label for="Khac">Khác</label>
+    </div>
+    <label>Họ tên</label>
+    <input type="text" class="form-control" name="Hoten" placeholder="Nhập họ tên" required="" value="@Model.HoTen">
+    <br>
+    <label>Số điện thoại</label>
+    <input type="text" class="form-control" name="SDT" placeholder="Nhập số điện thoại" required="" value="@Model.SDT">
+    <br>
+    <label>Email</label>
+    <input type="text" class="form-control" name="Email" placeholder="Nhập email" required="" value="@Model.Email">
+    <br>
+    <div class="form-inline">
+        <label></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="radio" id="Nam" name="RoleTK" value="admin">
+        <label for="admin">admin</label><br>&nbsp;&nbsp;&nbsp;
+        <input type="radio" id="Nu" name="RoleTK" value="user">
+        <label for="user">user</label><br>&nbsp;&nbsp;&nbsp;
+    </div>
+
+
+    <input type="submit" class="btn btn-primary" value="Cập nhật">
+}

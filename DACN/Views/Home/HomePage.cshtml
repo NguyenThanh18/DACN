@@ -1,0 +1,374 @@
+﻿@{
+    ViewBag.Title = "HomePage";
+    var listBaiViet = ViewBag.listBaiViet;
+    var listKieuBDS = ViewBag.listKieuBDS;
+    var listQuan = ViewBag.Quan;
+    var listPhuong = ViewBag.Phuong;
+    var listnew = (List<DACN.Models.EF.BaiViet>)ViewBag.listnew;
+    var session = (DACN.Common.UserLogin)Session[DACN.Common.CommonConstants.USER_SESSION];
+
+}
+@model DACN.Models.LoginModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!--css-->
+    <link href="~/Assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!--css-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Home Plat Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link rel="stylesheet" href="~/Assets/css/flexslider.css" type="text/css" media="screen" />
+    <!--js-->
+    <script src="~/Assets/js/jquery.min.js"></script>
+    <script src="~/Assets/js/bootstrap.min.js"></script>
+    <!--js-->
+    <!--webfonts-->
+    <link href='//fonts.googleapis.com/css?family=Josefin+Sans:400,700italic,700,600italic,600,400italic,300italic,300,100italic,100' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <!--webfonts-->
+    <script src="~/Assets/js/responsiveslides.min.js"></script>
+    <script>
+        $(function () {
+            $("#slider").responsiveSlides({
+                auto: true,
+                nav: true,
+                speed: 500,
+                namespace: "callbacks",
+                pager: true,
+            });
+        });
+    </script>
+    <link href="~/Assets/css/owl.carousel.css" rel="stylesheet">
+    <script src="~/Assets/js/owl.carousel.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#owl-demo").owlCarousel({
+                items: 1,
+                lazyLoad: true,
+                autoPlay: true,
+                navigation: false,
+                navigationText: false,
+                pagination: true,
+            });
+        });
+    </script>
+</head>
+<body>
+    @if (session != null)
+    {
+        <div id="user_id" hidden>@session.userID</div>
+    }
+    <div class="content">
+        <div class="serach-w3agile">
+            <div class="container">
+                <h3 class="tittle">Tìm Kiếm Tổ Ấm Của Bạn</h3>
+                <div class="place-grids" style="margin-left: 170px">
+                    <form id="BaiVietFrm">
+
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(false, "", new { @class = "text-danger" });
+                        <div class="col-md-2 place-grid" id="quan">
+                            <h5>Quận/Huyện</h5>
+                            <select class="sel" id="idQuan" name="idQuan">
+                                <option value="0">Select</option>
+                                @foreach (var item in listQuan)
+                                {
+                                    <option value="@item.idQuan">@item.TenQuan</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-2 place-grid" id="phuong">
+                            <h5>Phường/Xã</h5>
+                            <select class="sel" name="idPhuong" id="idPhuong">
+                                <option value="0">Select</option>
+                                @foreach (var item in listPhuong)
+                                {
+                                    <option value="@item.idPhuong">@item.TenPhuong</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-2 place-grid">
+                            <h5>Dịch vụ</h5>
+                            <select class="sel" name="idBDS">
+                                <option value="0">Select</option>
+                                @foreach (var item in listKieuBDS)
+                                {
+                                    <option value="@item.idKieuBDS">@item.TenKieu</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-2 place-grid" style="margin-top: 0px">
+                            <h5>Mức Giá</h5>
+                            <select class="sel" name="MucGiaS">
+                                <option value="0">Select</option>
+                                <option value="<600000">< 600000 VND</option>
+                                <option value="600000-800000">600000 - 800000 VND</option>
+                                <option value=">1000000">> 1000000 VND</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2 place-grid" style="margin-top: 3.7rem">
+                            <input class="btn" id="btn_search" type="button" value="Tìm Kiếm" style="background-color:#05222A;color:#ffffff; width: 100%">
+                        </div>
+                    </form>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="popular-w3">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-9  p-lg-3">
+                        <h2 class="text-left">Tất Cả Bài Viết</h2>
+                        <div class="popular-grids" id="listbaiviet">
+                            <div class="row" id="show_bai_viet">
+                                @foreach (var item in listBaiViet)
+                                {
+                                    <a style="color: black;" href="/Posting/Detail/@item.idBV">
+                                        <div class="col-md-6" style="height: 150px">
+                                            <div class="form-row">
+                                                <div class="col-md-5">
+                                                    <img src="~/Assets/images/ba1.jpg" width="190" height="120" />
+                                                </div>
+                                                <div class="col-md-7" style="width: 55%">
+                                                    <label>@item.TieuDe</label><br />
+                                                    @item.TieuDePhu<br /><br />
+                                                    <label style="color:#00deb6">Ngày Đăng: &nbsp;</label>@item.NgayDang
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 p-lg-3">
+                        <h2 class="text-left">Tin Mới Đăng</h2>
+                        @foreach (var itemnew in listnew)
+                        {
+                            <a style="color: black;" href="/Posting/Detail/@itemnew.idBV">
+                                <div style="border: 1px solid #eee; border-radius: 5px; background-color: #eee; margin-bottom: 15px; margin-top: 10px;">
+                                    <div style="padding: 5px 10px 5px 10px;">
+                                        <label>@itemnew.TieuDe</label><br />
+                                        @itemnew.TieuDePhu<br /><br />
+                                        <label style="color:#00deb6">Ngày Đăng: &nbsp;</label>@itemnew.NgayDang
+                                    </div>
+                                </div>
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--popular-->
+        <!--footer-->
+        <div class="footer-section">
+            <div class="container">
+                <div class="footer-grids">
+                    <div class="col-md-3 footer-grid">
+                        <h4>About </h4>
+                        <p>Chúng tôi biết bạn có rất nhiều lựa chọn, nhưng Green Group tự hào là trang web đứng top google về các từ khóa: cho thuê phòng trọ, nhà trọ, thuê nhà nguyên căn, cho thuê căn hộ, tìm người ở ghép...Vì vậy tin của bạn đăng trên website sẽ tiếp cận được với nhiều khách hàng hơn, do đó giao dịch nhanh hơn, tiết kiệm chi phí hơn</p>
+                    </div>
+                    <div class="col-md-3 footer-grid">
+                        <h4>Property Types</h4>
+                        <ul>
+                            <li>Tìm kiếm nhanh chóng, hiệu quả</li>
+                            <li>Hợp tác với nhiều trang web</li>
+                            <li>Có mặt trên khắp cả nước</li>
+                            <li>Cam kết uy tín chất lượng</li>
+                            <li>Làm việc chuyên nghiệp tận tâm</li>
+                            <li>Giá cả chính xác</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 footer-grid">
+                        <h4>Useful links</h4>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="services.html">Services</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="codes.html">Codes</a></li>
+                            <li><a href="projects.html">Projects</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 footer-grid">
+                        <h4>Contacts</h4>
+                        <ul>
+                            <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i>0368 257 602</li>
+                            <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:dts.thanhson1810@mail.com"> dts.thanhson1810@mail.com</a></li>
+                            <li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>475A Penthouse Đà Lạt</li>
+                            <li><i class="glyphicon glyphicon-time" aria-hidden="true"></i>Mon-Sat 8:00 am to 5:00 pm</li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+
+        </div>
+    </div>
+    <!--footer-->
+    <!--copy-->
+    <div class="copy-section">
+        <div class="container">
+            <p>&copy; 2020 Green Roofs Group. All rights reserved | Design by <a href="#">VJIT Student</a></p>
+        </div>
+    </div>
+    <!--copy-->
+    <!--signin-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-info">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body real-spa">
+                    <div class="login-grids">
+                        <div class="login">
+                            <div class="login-right">
+                                @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                                {
+                                    // @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary(false, "", new { @class = "text-danger" });
+                                    <h3>Sign In</h3>
+                                    <input type="text" name="username" placeholder="Enter your UserName" required="">
+                                    <input type="password" name="Password" placeholder="Password" required="">
+                                    <h4><a href="#">Forgot password</a> / <a href="#">Create new password</a></h4>
+                                    <div class="single-bottom">
+                                        <input type="checkbox" id="brand" value="">
+                                        <label for="brand"><span></span>Remember Me.</label>
+                                    </div>
+                                    <input type="submit" value="Sign In">
+                                }
+                            </div>
+                        </div>
+                        <p>By logging in you agree to our <a href="#">Terms</a> and <a href="#">Conditions</a> and <a href="#">Privacy Policy</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--signin-->
+    <!--Register-->
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-info">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body real-spa">
+                    <div class="login-grids">
+                        <div class="login">
+                            <div class="login-right">
+                                @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+                                {
+                                    // @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <h3>Register</h3>
+                                    <input type="text" name="username" placeholder="Enter your UserName" required="">
+                                    <input type="text" name="phone" placeholder="Enter your number phone" required="">
+                                    <input type="text" name="email" placeholder="Enter your Email" required="">
+                                    <input type="password" name="Password" placeholder="Password" required="">
+                                    <h4><a href="#">Forgot password</a> / <a href="#">Create new password</a></h4>
+
+                                    <input type="submit" value="Register Now">
+                                }
+
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <p>By logging in you agree to our <a href="#">Terms</a> and <a href="#">Conditions</a> and <a href="#">Privacy Policy</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Register-->
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#idQuan').change(function () {
+                var idQuan = $('#idQuan option:selected').val();
+                $('#idPhuong').attr('disabled', false)
+                $('#phuong').remove('select[id="idPhuong"]');
+                $('#phuong').html('<h5>Phường/Xã</h5><select class= "sel" id = "idPhuong" name = "idPhuong"><option value="0">Select</option></select >')
+                if (idQuan != 0) {
+                    $.ajax({
+                        type: "post",
+                        url: "/Home/ListPhuongByID",
+                        data: { id: idQuan },
+                        dataType: "json",
+                        success: function (result) {
+                            if (result.length == 0) {
+                                $('#idPhuong').html('<option value="-1">Không có phường nào.</option>')
+                                $('#idPhuong').attr('disabled', true)
+                            }
+                            else if (result.length != 0) {
+                                $('#phuong').html('<h5>Phường/Xã</h5><select class= "sel" id = "idPhuong" name = "idPhuong"><option value="">Tất Cả</option></select >')
+                                $.each(result, function (index, value) {
+                                    if (idQuan == value.idQuan) {
+                                        $('#idPhuong').append('<option value="' + value.idPhuong + '">' + value.TenPhuong + '</option>')
+                                    }
+                                })
+                            }
+                        }
+                    })
+                }
+            })
+        })
+        $('#idPhuong').change(function () {
+            var name = $('#idPhuong option:selected').text();
+            $('#quan').remove('select[id="idQuan"]');
+            $('#quan').html('<h5>Quận/Huyện</h5><select class= "sel" id = "idQuan" name = "idQuan"><option value="0">Select</option></select >')
+            if (idQuan != 0) {
+                $.ajax({
+                    type: "post",
+                    url: "/Home/ListQuanByName",
+                    data: { name: name },
+                    dataType: "json",
+                    success: function (result) {
+                        if (result.length != 0) {
+                            $('#quan').html('<h5>Quận/Huyện</h5><select class= "sel" id = "idQuan" name = "idQuan"><option value="">Tất Cả</option></select >')
+                            $.each(result, function (index, value) {
+                                $('#idQuan').append('<option value="' + value[0] + '">' + value[1] + '</option>')
+                            })
+                        }
+                    }
+                })
+            }
+        })
+        var param = [];
+        $('#btn_search').click(function () {
+            param = $('#BaiVietFrm').serializeArray();
+            var user_id = $('#user_id').text();
+            $('#listbaiviet').remove('div[id="show_bai_viet"]');
+            $('#listbaiviet').html('<div class="row" id="show_bai_viet"></div>')
+            $.ajax({
+                type: "post",
+                url: "/Home/Search",
+                data: param,
+                dataType: "json",
+                success: function (result) {
+                    console.log(result.length == 0)
+                    if (result != null) {
+                        $.each(result, function (index, value) {
+                            $('#show_bai_viet').append('<a style="color: black;" href="/posting/detail/' + value.idbv + '"><div class="col-md-6" style="height: 150px"><div class="form-row"><div class="col-md-5"><img src="~/assets/images/ba1.jpg" width="190" height="120" /></div><div class="col-md-7" style="width: 55%"><label>' + value.tieude + '</label><br />' + value.tieudephu + '<br /><br /><label>ngày đăng: &nbsp;</label>' + value.ngaydang + '</div></div></div></a>')
+                        })
+                    }
+                    if (result.length == 0) {
+                        console.log('12')
+                        $('#show_bai_viet').html('<div class="text-center" style="color: red;"><h3 style="margin-bottom:  100px;">Không Tìm Thấy Bài Viết Nào.</h3></div>')
+                    }
+                }
+            })
+        })
+    </script>
+</body>
+</html>
+
+
+

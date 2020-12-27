@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "DanhSachBV";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var listBV = ViewBag.listBv;
+}
+
+<h2>DanhSachBV</h2>
+@foreach (var item in listBV)
+                            {
+<h2>@item.TieuDe</h2>
+<h2>@item.NhaTro.DienTich</h2>
+                            }

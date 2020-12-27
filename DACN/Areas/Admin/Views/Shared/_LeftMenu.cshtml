@@ -1,0 +1,74 @@
+﻿<link href="~/Content/Admin/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet">
+
+<!-- Custom styles for this template-->
+<link href="~/Content/Admin/css/sb-admin-2.min.css" rel="stylesheet">
+<script src="https://kit.fontawesome.com/yourcode.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="./Home/Index.cshtml">
+        <div class="sidebar-brand-icon rotate-n-15">
+
+        </div>
+        @*<div class="sidebar-brand-text mx-3 h4">SB Admin <sup>2</sup></div>*@
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active mx-3">
+        <a class="nav-link " href="@Url.Action("Index","Home")">
+            <span>Dashboard</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <!-- Heading -->
+    <!-- Nav Item - Pages Collapse Menu -->
+    <!-- Nav Item - Utilities Collapse Menu -->
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <!-- Nav Item - Pages Collapse Menu -->
+    <!-- Nav Item - Charts -->
+    <!-- Nav Item - Tables -->
+    <li class="nav-item text-lg">
+        <a class="nav-link" href="@Url.Action("QLTK","Home")">
+            @*<i class="fa fa-user"></i>*@
+            <span>Quản lý tài khoản</span>
+        </a>
+    </li>
+    <li class="nav-item text-lg">
+        <a class="nav-link" href="@Url.Action("QLBV","Home")">
+            @*<i class="fa fa-user"></i>*@
+            <span>Quản lý bài viết</span>
+        </a>
+    </li>
+    <li class="nav-item text-lg">
+        <a class="nav-link" href="@Url.Action("QLBC","Home")">
+            @*<i class="fa fa-user"></i>*@
+            <span>Quản lý báo cáo</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <!-- Sidebar Message -->
+
+
+</ul>
+
+<script src="~/Content/Admin/js/jquery.min.js"></script>
+<script src="~/Content/Admin/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="~/Content/Admin/js/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="~/Content/Admin/js/sb-admin-2.min.js"></script>
+
+<!-- Page level plugins -->

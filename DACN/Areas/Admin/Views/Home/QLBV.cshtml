@@ -1,0 +1,241 @@
+﻿
+
+@{
+    ViewBag.Title = "QLBV";
+    var listBV = ViewBag.QLBV;
+    var listBVCD = ViewBag.QLBVCD;
+    var listTP = ViewBag.TP;
+    var listQuan = ViewBag.Quan;
+    var listPhuong = ViewBag.Phuong;
+    var listLoaiBDS = ViewBag.LoaiBDS;
+
+}
+<link href="~/Content/Admin/css/all.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="~/Content/Admin/css/dataTables.bootstrap4.min.css" />
+<script>
+    $(function () {
+        $("#slider").responsiveSlides({
+            auto: true,
+            nav: true,
+            speed: 500,
+            namespace: "callbacks",
+            pager: true,
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $("#owl-demo").owlCarousel({
+            items: 1,
+            lazyLoad: true,
+            autoPlay: true,
+            navigation: false,
+            navigationText: false,
+            pagination: true,
+        });
+    });
+</script>
+<!-- Custom styles for this template-->
+<link href="~/Content/Admin/css/sb-admin-2.min.css" rel="stylesheet">
+<div class="tab" style="margin-left: 25px; margin-bottom: 10px">
+    <button class="tablinks btn btn-link" style="color: blue" onclick="openCity(event, 'London')">Bài viết</button>
+    <button class="tablinks btn btn-link" style="color: blue" onclick="openCity(event, 'Paris')">Bài viết chưa duyệt</button>
+</div>
+<div id="London" class="tabcontent" style="display: block">
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Danh sách bài viết</h6>
+                <br />
+                @Html.ActionLink(
+                "Thêm mới",
+                "Posting",
+                "Posts"
+                )
+
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Tiêu đề</th>
+                                <th>Mô tả</th>
+                                <th>Ngày đăng</th>
+                                <th>Diện tích</th>
+                                <th>Phòng ngủ</th>
+                                <th>Lầu</th>
+                                <th>Nhà tắm</th>
+                                <th>Giá</th>
+                                <th style="min-width: 95px">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in listBV)
+                            {
+                                string newdt = item.NgayDang.ToString().Substring(0, 10);
+                                string MoTa = item.MoTa.Substring(0, 20) + "...";
+                                <tr>
+                                    <td>@item.TieuDe</td>
+                                    <td>@(new HtmlString(MoTa))</td>
+                                    <td>@(new HtmlString(newdt))</td>
+                                    <td>@item.NhaTro.DienTich</td>
+                                    <td>@item.NhaTro.PhongNgu</td>
+                                    <td>@item.NhaTro.Lau</td>
+                                    <td>@item.NhaTro.NhaTam</td>
+                                    <td>@item.NhaTro.Gia</td>
+                                    <td>
+
+                                        @Html.ActionLink(
+                                        "Edit",
+                                        "SuaBaiViet",
+                                        "Posts",
+                                        new { id = item.idBV },
+                                        new { @style = "color: white", @class = "btn btn-primary" })
+                                        @Html.ActionLink(
+                                        "Del",
+                                        "XoaBaiViet",
+                                        "Posts",
+                                        new { id = item.idBV },
+                                        //new { idNT = item.idNT},
+                                        new { onclick = "return confirm('Bạn có chắc muốn xóa?');", @style = "color: white", @class = "btn btn-danger" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="Paris" class="tabcontent">
+    <div class="container-fluid">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Danh sách bài viết</h6>
+                <br />
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Tiêu đề</th>
+                                <th>Mô tả</th>
+                                <th>Ngày đăng</th>
+                                <th>Diện tích</th>
+                                <th>Phòng ngủ</th>
+                                <th>Lầu</th>
+                                <th>Nhà tắm</th>
+                                <th>Giá</th>
+                                <th style="min-width: 95px">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in listBVCD)
+                            {
+                                string newdt = item.NgayDang.ToString().Substring(0, 10);
+                                string MoTa = item.MoTa.Substring(0, 20) + "...";
+                                <tr>
+                                    <td>@item.TieuDe</td>
+                                    <td>@(new HtmlString(MoTa))</td>
+                                    <td>@(new HtmlString(newdt))</td>
+                                    <td>@item.NhaTro.DienTich</td>
+                                    <td>@item.NhaTro.PhongNgu</td>
+                                    <td>@item.NhaTro.Lau</td>
+                                    <td>@item.NhaTro.NhaTam</td>
+                                    <td>@item.NhaTro.Gia</td>
+                                    <td>
+
+                                        @Html.ActionLink(
+                                        "Xem",
+                                        "XemBaiViet",
+                                        "Posts",
+                                        new { id = item.idBV },
+                                        new { @style = "color: white", @class = "btn btn-primary" })
+
+                                        @Html.ActionLink(
+                                        "Duyệt",
+                                        "DuyetBaiViet",
+                                        "Posts",
+                                        new { id = item.idBV },
+                                        new { @style = "color: white", @class = "btn btn-primary" })
+                                        
+                                        @Html.ActionLink(
+                                        "Del",
+                                        "XoaBaiViet",
+                                        "Posts",
+                                        new { id = item.idBV },
+                                        //new { idNT = item.idNT},
+                                        new { onclick = "return confirm('Bạn có chắc muốn xóa?');", @style = "color: white", @class = "btn btn-danger" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--ADD Acount-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-info">
+            <div class="modal-header">
+                <h3>Thêm mới</h3>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body real-spa">
+                <div class="login-grids">
+                    <div class="login">
+                        <div class="login-right">
+                            
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="~/Content/Admin/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="~/Content/Admin/js/jquery.dataTables.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="~/Content/Admin/js/jquery.easing.min.js"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="~/Content/Admin/js/sb-admin-2.min.js"></script>
+<script>
+    $('.dataTable').DataTable();
+</script>
+
+@Html.Partial("~/Views/Shared/_FormConfirm.cshtml")
+

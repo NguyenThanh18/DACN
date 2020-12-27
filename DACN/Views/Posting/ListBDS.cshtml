@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "ListBDS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var loaibds = (List<DACN.Models.EF.LoaiBD>)ViewBag.LoaiBDS;
+    var listBV = ViewBag.listBV;
+}
+
+<link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+<!--featured-->
+<div class="container" style="margin-top: -120px">
+    <div class="card" style="background-color: white; border-radius: 5px; margin-bottom: 20px;">
+        <div class="card-header" style="border-bottom: 3px solid #EEEEEE;">
+            <h3 class="tittle1">Bạn Muốn Đăng Gì ?</h3>
+        </div>
+        <div class="card-body">
+            <div class="tab">
+                <button class="tablinks" onclick="openCity(event, 'TypePost')">Loại Bài Viết</button>
+                <button class="tablinks" onclick="openCity(event, 'TypeSer')">Loại Bất Động Sản</button>
+                <button class="tablinks" onclick="openCity(event, 'Location')">Vị Trí Đăng</button>
+            </div>
+
+            <div id="TypePost" class="tabcontent">
+                <div style="width: 490px; margin: 0 auto; height: 500px;">
+                    <div style="box-sizing: border-box; margin-top: 30px;">
+                        @if (listBV != null)
+                        {
+                            foreach (var item in listBV)
+                            {
+                                <h2>@item.TieuDe</h2>
+                                <h2>@item.NhaTro.DienTich</h2>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div id="TypeSer" class="tabcontent">
+                <h3>TypeSer</h3>
+                <p>Paris is the capital of France.</p>
+            </div>
+
+            <div id="Location" class="tabcontent">
+                <h3>Location</h3>
+                <p>Tokyo is the capital of Japan.</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    body {
+        font-family: Arial;
+    }
+
+    /* Style the tab */
+    .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+    }
+
+        /* Style the buttons inside the tab */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+            /* Change background color of buttons on hover */
+            .tab button:hover {
+                background-color: #ddd;
+            }
+
+            /* Create an active/current tablink class */
+            .tab button.active {
+                background-color: #ccc;
+            }
+
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+    }
+</style>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>

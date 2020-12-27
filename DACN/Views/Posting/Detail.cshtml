@@ -1,0 +1,149 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var detail = ViewBag.Detail;
+    var listNhaTro = ViewBag.ListNhaTro;
+    var listnew = (List<DACN.Models.EF.BaiViet>)ViewBag.listnew;
+}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Soft Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript">
+    addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    }
+</script>
+<!--//tags -->
+<link href="~/Assets2/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="~/Assets2/css/style.css" rel="stylesheet" type="text/css" media="all" />
+
+<link href="~/Assets2/css/font-awesome.css" rel="stylesheet">
+<!-- //for bootstrap working -->
+<link href="//fonts.googleapis.com/css?family=Work+Sans:200,300,400,500,600,700" rel="stylesheet">
+<link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic'
+      rel='stylesheet' type='text/css'>
+
+<div class="inner_content_info_agileits">
+    <div class="container">
+        <div class="inner_sec_grids_info_w3ls">
+            <div class="col-md-8 job_info_left">
+                @foreach (var item in detail)
+                {
+                    <div class="single-left1">
+                        <img src="~/Assets/images/a1.jpg" alt=" " class="img-responsive" width="600" height="300" />
+                        <h3>@item.tieude</h3>
+                        <h3>@item.tieudephu</h3>
+                        <ul>
+                            <li><span class="fa fa-user" aria-hidden="true"></span><a href="#">@item.hotentk</a></li>
+                            <li><span class="fa fa-tag" aria-hidden="true"></span><a href="#">5 Tags</a></li>
+                            <li><span class="fa fa-envelope-o" aria-hidden="true"></span><a href="#">5 Comments</a></li>
+                        </ul>
+                        <p>@item.mota</p>
+                    </div>
+                    <div class="admin">
+                        <p>
+                            <i class="fa fa-quote-left" aria-hidden="true"></i> Giá: 4 tỷ 500 triệu
+                            Diện tích sử dụng: 90 m2
+                            Diện tích đất: 45 m2 (4,5x10)
+                            Ngày đăng: 11/12/2020
+                            Mã BĐS: 21095328
+                            Phòng ngủ: 4
+                            Nhà tắm: 3
+                            Pháp lý: Giấy tờ hợp lệ
+                            Hướng: Tây
+                        </p>
+                        <a href="#"><span>@item.hotentk</span></a>
+                    </div>
+                    <div class="comments">
+                        <h3 class="single">Bình Luận</h3>
+                        <div class="comments-grids">
+                            <div class="comments-grid">
+                                <div class="comments-grid-left">
+                                    <img src="~/Assets2/images/pf1.jpg" alt=" " class="img-responsive">
+                                </div>
+                                <div class="comments-grid-right">
+                                    <h4><a href="#">Văn Thanh</a></h4>
+                                    <ul>
+                                        <li>5 Nov 2020 <i>|</i></li>
+                                        <li><a href="#">Trả Lời</a></li>
+                                    </ul>
+                                    <p>
+                                        Nhà này có đầy đủ tiện nghi không ?
+                                    </p>
+                                </div>
+                                <div class="clearfix"> </div>
+                            </div>
+                            <div class="comments-grid">
+                                <div class="comments-grid-left">
+                                    <img src="~/Assets2/images/pf2.jpg" alt=" " class="img-responsive">
+                                </div>
+                                <div class="comments-grid-right">
+                                    <h4><a href="#">Minh Ngọc</a></h4>
+                                    <ul>
+                                        <li>8 Nov 2020 <i>|</i></li>
+                                        <li><a href="#">Trả Lời</a></li>
+                                    </ul>
+                                    <p>
+                                        Có cần đặt cọc trước không. Thanh toán thế nào ?
+                                    </p>
+                                </div>
+                                <div class="clearfix"> </div>
+                            </div>
+                            <div class="w3layouts_mail_grid single">
+                                <h3 class="single">Bình luận cho bài viết</h3>
+                                <form action="#" method="post">
+                                    <div class="col-md-6 wthree_contact_left_grid">
+                                        <input type="text" name="Name" placeholder="Tên" required="">
+                                        <input type="email" name="Email" placeholder="Email" required="">
+                                        <input type="text" name="Telephone" placeholder="Số Điện Thoại" required="">
+                                        <input type="text" name="Subject" placeholder="Tiêu Đề" required="">
+                                    </div>
+                                    <div class="col-md-6 wthree_contact_left_grid">
+                                        <textarea name="Message" placeholder="Gõ bình luận của bạn..." required=""></textarea>
+                                        <input type="submit" value="Gửi bình luận">
+                                    </div>
+                                    <div class="clearfix"> </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="col-md-4 job_info_right">
+                <div class="widget_search">
+                    <img src="~/Assets2/images/single.jpg" alt="">
+                    <p>Đã tham gia: Ngày 23 Tháng 5</p>
+                    <a>0368257602</a>
+                    <a>Gửi tin nhắn</a>
+                </div>
+            </div>
+            <div class="col-md-3 p-lg-3">
+                <h2 class="text-left">Có Thể Bạn Quan Tâm</h2>
+                @foreach (var itemnew in listnew)
+                {
+                    <div class="col-md-5">
+                        <img src="~/Assets/images/ba1.jpg" width="190" height="120" />
+                    </div>
+                    <a style="color: black;" href="/Posting/Detail/@itemnew.idBV">
+                        <div style="border: 1px solid #eee; border-radius: 5px; background-color: #eee; margin-bottom: 15px; margin-top: 10px;">
+                            <div style="padding: 5px 10px 5px 10px;">
+                                <label>@itemnew.TieuDe</label><br />
+                                @itemnew.TieuDePhu<br /><br />
+                                <label style="color:#00deb6">Ngày Đăng: &nbsp;</label>@itemnew.NgayDang
+                            </div>
+                        </div>
+                    </a>
+                }
+            </div>
+
+            <!-- js -->
+            <script type="text/javascript" src="~/Assets2/js/jquery-2.1.4.min.js"></script>
+            <script type="text/javascript" src="~/Assets2/js/bootstrap.js"></script>
+
