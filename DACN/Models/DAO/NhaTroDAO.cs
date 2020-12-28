@@ -13,6 +13,10 @@ namespace DACN.Models.DAO
         {
             dbContext = new DBContext();
         }
+        public NhaTro GetByID(int? id)
+        {
+            return dbContext.NhaTroes.Find(id);
+        }
         public List<NhaTro> ListAll()
         {
             return dbContext.NhaTroes.ToList();

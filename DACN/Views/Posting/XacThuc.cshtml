@@ -2,6 +2,10 @@
 @{
     ViewBag.Title = "XacThuc";
 }
+<link href="~/Assets/css/fontawesome.min.css" rel="stylesheet" type="text/css"/>
+<script src="~/Scripts/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
 <style>
     .content {
         width: 400px;
@@ -17,10 +21,13 @@
     .btn {
     }
 
-        .btn:hover {
-            background-color: #0984e3;
-            color: white;
-        }
+    .btn:hover {
+        background-color: #0984e3;
+        color: white;
+    }
+    .hide{
+        display: none;
+    }
 </style>
 @using (Html.BeginForm("SaveInfo", "Sms", FormMethod.Post))
 {
@@ -48,8 +55,27 @@
             <p class="text-danger" id="verifyOTP1"></p>
         </div>
     </div>
-    <input type="button" class="btn btn-primary" value="Xác nhận" id="btnSubmit" onclick="verifyOTP()" />
-    <input type="submit" class="btn btn-primary" value="Quay lại" id="btnSubmit1" style="display: none" />
+    <div style="justify-content: center; align-items: center; margin-left: 130px">
+        <input type="submit" class="btn btn-primary" value="Quay lại" id="btnSubmit1" style="display: none" />
+
+        <button class="buttonComfirm btn btn-primary" onclick="verifyOTP()" id="btnSubmit">
+            <i class="loading-icon fas fa-spinner fa-spin hide"></i>
+            <span class="btn-txt">Xác nhận</span>
+        </button>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $(".buttonComfirm").on("click", function () {
+                $(".result").text("");
+                $(".loading-icon").removeClass("hide");
+                $(".buttonComfirm").attr("disabled", true);
+                $(".btn-txt").text("Loading...");
+
+                $("#btnSubmit").show();
+                $("#btnSubmit1").hide();
+            });
+        });
+    </script>
 </div>
 }
 

@@ -25,5 +25,11 @@ namespace DACN.Models.DAO
             db.SaveChanges();
             return idBC;
         }
+        public int Insert(BaoCao entity)
+        {
+            db.BaoCaos.Add(entity);
+            db.SaveChanges();
+            return entity.idBC;
+        }
     }
 }

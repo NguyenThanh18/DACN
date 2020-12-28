@@ -7,6 +7,14 @@
     var listnew = (List<DACN.Models.EF.BaiViet>)ViewBag.listnew;
     var session = (DACN.Common.UserLogin)Session[DACN.Common.CommonConstants.USER_SESSION];
 }
+<style>
+    table {
+        table-layout: fixed;
+    }
+    td {
+        word-wrap: break-word
+    }
+</style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Soft Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
@@ -33,7 +41,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!--css-->
     <link href="~/Assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/Assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <!--Front icon-->>
+    <!--Front icon-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--css-->
     <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" data-auto-replace-svg="nest"></script>
@@ -150,27 +158,75 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
 </div>
 <!--Register-->
-<div class="inner_content_info_agileits">
+<div class="inner_content_info_agileits" style="padding: 0">   
     @if (session != null)
     {
         <div id="user_id" hidden>@session.userID</div>
     }
     <div class="inner_sec_grids_info_w3ls">
-        <div class="col-md-8 job_info_left">
+        <div class="col-md-9 job_info_left">
             @foreach (var item in detail)
             {
                 <div class="single-left1">
-                    <div id="idbvyt" hidden>@item.idBV</div>
-                    <img src="~/Assets/images/a1.jpg" alt=" " class="img-responsive" width="600" height="300" />
-                    <h3>@item.tieude</h3>
-                    <h3>@item.tieudephu</h3>
-                    <ul>
-                        <li><span class="fa fa-user" aria-hidden="true"></span><a href="#">@item.hotentk</a></li>
-                        <li><span class="fa fa-tag" aria-hidden="true"></span><a href="#">5 Tags</a></li>
-                        <li><span class="fa fa-envelope-o" aria-hidden="true"></span><a href="#">5 Comments</a></li>
-                    </ul>
-                    <p>@item.mota</p>
+                <div id="idbvyt" hidden>@item.idBV</div>
+
+
+                <img src="~/Assets/images/a1.jpg" alt=" " class="img-responsive" style="width: 100%; height: 700px; border-radius: 5px" />
+                <div class="row">
+                    <div class="col-md-10" style="margin-right: 0">
+                        <h3>@item.tieude</h3>
+                    </div>
+                    <div class="col-md-2" id="idbtnSave" style="padding: 2em 15px 0px 0px; text-align: right">
+                        <button class="btn-success btn">
+                            <i class="fas fa-heart"></i> Lưu tin
+                        </button>
+                    </div>
                 </div>
+                <h3>@item.tieudephu</h3>
+                <ul>
+                    <li><span class="fa fa-user" aria-hidden="true"></span><a href="#">@item.hotentk</a></li>
+                    <li><span class="fa fa-tag" aria-hidden="true"></span><a href="#">5 Tags</a></li>
+                    <li><span class="fa fa-envelope-o" aria-hidden="true"></span><a href="#">5 Comments</a></li>
+                </ul>
+                <p>@item.mota</p>
+                <h3>Thông tin chính</h3>
+                <div class="row" style="margin-left: 10px">
+                    <div class="col-md-4">
+                        <table class="table table-borderless">
+                            <tr>
+                                <td>Giá:</td>
+                                <td>@item.gia</td>
+                            </tr>
+                            <tr>
+                                <td>Nhà tắm:</td>
+                                <td>@item.nhatam</td>
+                            </tr>
+                            <tr>
+                                <td>Lầu:</td>
+                                <td>@item.lau</td>
+                            </tr>
+                            <tr>
+                                <td>Phòng ngủ:</td>
+                                <td>@item.phongngu</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-4">
+                        <table class="table table-borderless">
+                            <tr>
+                                <td>Diện tích:</td>
+                                <td>@item.dientich</td>
+                            </tr>
+                            <tr>
+                                <td>Ngày đăng:</td>
+                                <td>@item.ngaydang</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
                 <div class="admin">
                     <p>
                         <i class="fa fa-quote-left" aria-hidden="true"></i> Giá: 4 tỷ 500 triệu
@@ -184,6 +240,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         Hướng: Tây
                     </p>
                     <a href="#"><span>@item.hotentk</span></a>
+                </div>
+                <div style="margin-bottom: 3em">
+                    <button class="btn-warning btn" style="border-radius: 5px" id="btnReport">
+                        <i class="fas fa-exclamation-triangle"></i> Báo cáo
+                    </button>
                 </div>
                 <div class="comments">
                     <h3 class="single">Bình Luận</h3>
@@ -240,20 +301,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
             }
         </div>
-        <div class="col-md-4 job_info_right">
+        <div class="col-md-3 job_info_right">
             <div class="widget_search">
-                <img src="~/Assets2/images/single.jpg" alt="">
-                <div class="row" style=" margin-top: 10px;">
-                    <div class="col-md-9">
-                        <p>Đã tham gia: Ngày 23 Tháng 5</p>
-                        <a>0368257602</a>
-                        <a>Gửi tin nhắn</a>
+                <img src="~/Assets2/images/single.jpg" alt="" >
+                <div class="row form-inline" style=" margin-top: 10px;">
+                    <div class="col-md-8">
+                        @foreach (var item in detail)
+                        {
+                            <p>@item.hotentk</p>
+                            <p>Đã tham gia: @item.ngaythamgia</p>
+                            <a>@item.phone</a>
+                            <a>Gửi tin nhắn</a>
+                        }
                     </div>
-                    <div class="col-md-1" id="idbtnSave">
-                        <button class="btn-success btn">
-                            <i class="fas fa-heart"></i> Lưu tin
-                        </button>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -261,9 +322,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <h2 class="text-left">Có Thể Bạn Quan Tâm</h2>
             @foreach (var itemnew in listnew)
             {
-                <div class="col-md-5">
-                    <img src="~/Assets/images/ba1.jpg" width="190" height="120" />
-                </div>
                 <a style="color: black;" href="/Posting/Detail/@itemnew.idBV">
                     <div style="border: 1px solid #eee; border-radius: 5px; background-color: #eee; margin-bottom: 15px; margin-top: 10px;">
                         <div style="padding: 5px 10px 5px 10px;">
@@ -277,12 +335,56 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
     </div>
-
+    <div id="reportModal" class="modal" style="width: 600px; margin-left: 30%; align-items: center; justify-content: center">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Báo cáo bài viết</h2>
+                <button type="button" id="btnClose" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                @*@using (Html.BeginForm("Report", "Posting", FormMethod.Post))
+                {
+                    // @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" });
+                    foreach (var item in detail) { 
+                        <input name="idbv" value="@item.idBV" style="display: none"/>
+                    }*@
+                    <div class="form-group">
+                        <label for="TieuDe">Tiêu đề</label>
+                        <input type="text" class="form-control" id="tieude" name="tieude" aria-describedby="emailHelp" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="mota">Mô tả</label>
+                        <textarea class="form-control" id="mota" name="mota" rows="3"></textarea>
+                    </div>
+                    <button id="sendRp" class="btn btn-primary">Gửi báo cáo</button>
+                @*}*@
+            </div>
+        </div>
+    </div>
     <!-- js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
     <script type="text/javascript" src="~/Assets2/js/bootstrap.js"></script>
     <script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script>
+        var btnReport = document.getElementById("btnReport");
+        var btnClose = document.getElementById("btnClose");
+        var modal = document.getElementById("reportModal");
+        var span = document.getElementsByClassName("close")[0];
+
+        btnReport.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        btnClose.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
         $(document).ready(function () {
             $('#idbtnSave').click(function () {
                 var id = $('#idbvyt').text()
@@ -305,6 +407,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     })
                 }
             })
-        }) 
+        })
+        $(document).ready(function () {
+            $('#sendRp').click(function () {
+                var idbv = $('#idbvyt').text()
+                var tieude = document.getElementById("tieude").value;
+                var mota = document.getElementById("mota").value;
+                $.ajax({
+                    type: 'post',
+                    url: '/Posting/Report',
+                    data: { tieude: tieude, mota: mota, idbv: idbv},
+                    dataType: 'json',
+                    success: function () {
+                        alert('Gửi báo cáo thành công')
+                        $(reportModal).hide()
+                    },
+                    error: function () {
+                        alert('Lưu thất bại !!!')
+                    }
+                })
+            })
+        })
     </script>
 

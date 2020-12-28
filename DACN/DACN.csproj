@@ -131,6 +131,7 @@
   <ItemGroup>
     <Content Include="Assets\css\bootstrap.css" />
     <Content Include="Assets\css\flexslider.css" />
+    <Content Include="Assets\css\fontawesome.min.css" />
     <Content Include="Assets\css\owl.carousel.css" />
     <Content Include="Assets\css\smoothbox.css" />
     <Content Include="Assets\css\style.css" />

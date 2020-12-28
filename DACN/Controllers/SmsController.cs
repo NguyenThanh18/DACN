@@ -14,9 +14,9 @@ namespace DACN.Controllers
     {
         private DBContext db = new DBContext();
 
-        private string accountSid = "ACc87d605b64f22ae18611d4bd0da63ba0";
-        private string authToken = "7bac42b35bca061387e7600e74b5141a";
-        private string serviceSid = "VA4f19f1355166a7650362b2fcfa5343b5";
+        private string accountSid = "AC745c0f25a5d22a09b5ac9b4a65ab7ad8";
+        private string authToken = "77bcc7723d9e595e42c906cda2c459e8";
+        private string serviceSid = "VA6e4555560e9122ac67161df99f4f8613";
         // GET: Sms
         public ActionResult Index()
         {

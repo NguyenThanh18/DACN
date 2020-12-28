@@ -19,7 +19,7 @@ var verifyOTP = function () {
         data: { phoneNumber: phoneNumber, OTP: OTPCode },
         success: function (res) {
             if (res == "approved") {
-                document.getElementById("verifyOTP").innerHTML = "Xác thực không thành công!";
+                document.getElementById("verifyOTP").innerHTML = "Xác thực thành công!";
                 document.getElementById("verifyOTP1").innerHTML = "Quay lại trang đăng tin!";
                 document.getElementById('btnSubmit').disabled = false;
                 $(btnSubmit1).show();

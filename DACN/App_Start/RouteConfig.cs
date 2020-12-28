@@ -19,6 +19,12 @@ namespace DACN
                 defaults: new { controller = "Home", action = "HomePage", id = UrlParameter.Optional },
                 namespaces: new[] { "DACN.Controllers" }
             );
+            routes.MapRoute(
+                name: "Detail",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Posting", action = "Detail", id = UrlParameter.Optional },
+                namespaces: new[] { "DACN.Controllers" }
+            );
         }
     }
 }

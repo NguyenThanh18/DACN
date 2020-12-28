@@ -16,11 +16,11 @@ namespace DACN.Models
         public string ngaythamgia { get; set; }
         public string email { get; set; }
         public string phone { get; set; }
-        public int dientich { get; set; }
-        public int phongngu { get; set; }
-        public int lau { get; set; }
-        public int nhatam { get; set; }
-        public int gia { get; set; }
+        public int? dientich { get; set; }
+        public int? phongngu { get; set; }
+        public int? lau { get; set; }
+        public int? nhatam { get; set; }
+        public int? gia { get; set; }
         public string tenbds { get; set; }
         public string tenkieubds { get; set; }
     }
