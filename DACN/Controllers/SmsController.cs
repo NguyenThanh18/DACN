@@ -15,7 +15,7 @@ namespace DACN.Controllers
         private DBContext db = new DBContext();
 
         private string accountSid = "AC745c0f25a5d22a09b5ac9b4a65ab7ad8";
-        private string authToken = "77bcc7723d9e595e42c906cda2c459e8";
+        private string authToken = "7293676f5a15db4ccfde76941a18584f";
         private string serviceSid = "VA6e4555560e9122ac67161df99f4f8613";
         // GET: Sms
         public ActionResult Index()
@@ -35,7 +35,7 @@ namespace DACN.Controllers
         [HttpPost]
         public string sendOTP(string phoneNumber)
         {
-            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+            ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;  
             TwilioClient.Init(accountSid, authToken);
             CreateVerificationOptions options = new CreateVerificationOptions(serviceSid, phoneNumber, "sms");
             var verification = VerificationResource.Create(options);

@@ -1,6 +1,6 @@
 ﻿<link href="~/Assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="~/Assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
-@{ 
+@{
     var session = (DACN.Common.UserLogin)Session[DACN.Common.CommonConstants.USER_SESSION];
 }
 <div class="header" id="home">
@@ -19,18 +19,33 @@
                         }
                         else
                         {
-                            <li><i class="glyphicon glyphicon-lock" aria-hidden="true"></i><a href="#" id="btn-register" data-toggle="modal" data-target="#myModal1" data-modal-show="two">@session.UserName</a></li>
+                            <li><i class="glyphicon glyphicon-lock" aria-hidden="true"></i><a href="#" id="btn-manager">@session.UserName</a></li>
                             <li><a href="/Account/Logout" style="background-color: #000022">Logout</a></li>
                             <li><a href="@Url.Action("Posting","Posting")" class="btn btn-info" style="color: white">Đăng tin</a></li>
+
                         }
                     </ul>
+
                 </div>
+
                 <div class="clearfix"></div>
             </div>
             <div class="logo">
                 <h1><a href="@Url.Action("HomePage","Home")">Green Roof<span>Real Estate</span></a></h1>
             </div>
+
         </div>
+        @*<div class="modal" id="magagerAccount" style=" width: 10%; margin-left: 70%; margin-top: 40px; text-align: left">
+            <div class="modal-content" style="padding-top: 20px; padding-left: 10px">
+                <div class="form-group" style="align-items: center">
+                    <a href="#">Quản lý bài viết</a>
+                </div>
+                <hr />
+                <div class="form-group" style="align-items: center">
+                    <a href="#">Chỉnh sửa tài khoản</a>
+                </div>
+            </div>
+        </div>*@
     </div>
     <div class="container">
         <div class="header-bottom">
@@ -68,3 +83,16 @@
         </div>
     </div>
 </div>
+
+<script>
+    var modal = document.getElementById("magagerAccount");
+    var btn_manager = document.getElementById("btn-manager");
+    var body = document.getElementsByTagName("BODY");
+
+    btn_manager.onclick = function () {
+        modal.style.display = "block";
+    }
+    body.onclick = function () {
+        modal.style.display = "none";
+    }
+</script>
