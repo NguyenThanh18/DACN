@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Admin</title>
 
     <!-- Custom fonts for this template-->
     <link href="~/Content/Admin/css/all.min.css" rel="stylesheet" type="text/css" media="all">
@@ -51,7 +51,6 @@
                 </div>
                 <!-- End of Main Content -->
                 <!-- Footer -->
-                
                 <!-- End of Footer -->
 
             </div>
@@ -96,7 +95,10 @@
 
         <!-- Page level plugins -->
         <!-- Page level custom scripts -->
+        @RenderSection("scripts", false)
+        @RenderSection("upload", required: false)
 
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </body>
 
 </html>

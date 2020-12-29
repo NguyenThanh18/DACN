@@ -35,15 +35,15 @@ namespace DACN.Models.DAO
             dbContext.SaveChanges();
             return model.idNT;
         }
-        public string Update(TaiKhoan model, int id)
+        public int Update(NhaTro model, int id)
         {
-            TaiKhoan dbEntry = dbContext.TaiKhoans.Find(id);
+            NhaTro dbEntry = dbContext.NhaTroes.Find(id);
             if (dbEntry == null)
             {
-                return null;
+                return 0;
             }
             dbContext.SaveChanges();
-            return model.Username;
+            return model.idNT;
         }
     }
 }

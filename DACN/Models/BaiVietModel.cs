@@ -7,7 +7,7 @@ namespace DACN.Models
 {
     public class BaiVietModel
     {
-        public int id { get; set; }
+        public int? id { get; set; }
         public string tieude { get; set; }
         public string tieudephu { get; set; }
         public string mota { get; set; }
