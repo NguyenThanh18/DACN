@@ -19,15 +19,26 @@
                         }
                         else
                         {
-                            <li><i class="glyphicon glyphicon-lock" aria-hidden="true"></i><a href="#" id="btn-manager">@session.UserName</a></li>
+                            <li>
+                                <div class="dropdown show" >
+                                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="glyphicon glyphicon-lock" aria-hidden="true"></i>@session.UserName
+                                    </a>
+
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="width: 200px">
+                                        <a class="dropdown-item" href="#" style="margin: 10px; margin-bottom: 20px"><i class="glyphicon glyphicon-user" aria-hidden="true"></i>Quản lý tài khoản</a><br />
+                                        <a class="dropdown-item" href="#" style="margin: 10px; margin-bottom: 20px"><i class="glyphicon glyphicon-edit" aria-hidden="true"></i>Quản lý bài đăng</a>
+                                    </div>
+                                </div> 
+                            </li>
                             <li><a href="/Account/Logout" style="background-color: #000022">Logout</a></li>
                             <li><a href="@Url.Action("Posting","Posting")" class="btn btn-info" style="color: white">Đăng tin</a></li>
 
                         }
+
                     </ul>
-
+                    
                 </div>
-
                 <div class="clearfix"></div>
             </div>
             <div class="logo">
