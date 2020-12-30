@@ -173,5 +173,10 @@ namespace DACN.Controllers
             db.SaveChanges();
             return View();
         }
+        public ActionResult PostManager(int? id)
+        {
+            var postlist = db.BaiViets.SqlQuery("Select * From BaiViet Where idTK = id").ToList();
+            return View();
+        }
     }
 }

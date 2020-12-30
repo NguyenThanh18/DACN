@@ -26,7 +26,7 @@
                                     </a>
 
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="width: 200px">
-                                        <a class="dropdown-item" href="#" style="margin: 10px; margin-bottom: 20px"><i class="glyphicon glyphicon-user" aria-hidden="true"></i>Quản lý tài khoản</a><br />
+                                        <a class="dropdown-item" href="@Url.Action("PostManager","Posting", new {id = session.userID})" style="margin: 10px; margin-bottom: 20px"><i class="glyphicon glyphicon-user" aria-hidden="true"></i>Quản lý tài khoản</a><br />
                                         <a class="dropdown-item" href="#" style="margin: 10px; margin-bottom: 20px"><i class="glyphicon glyphicon-edit" aria-hidden="true"></i>Quản lý bài đăng</a>
                                     </div>
                                 </div> 
