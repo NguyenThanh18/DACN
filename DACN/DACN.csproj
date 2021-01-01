@@ -329,6 +329,7 @@
     <Content Include="Views\Posting\Posted.cshtml" />
     <Content Include="Views\Posting\XacThuc.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Posting\PostManager.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
