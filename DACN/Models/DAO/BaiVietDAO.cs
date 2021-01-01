@@ -31,16 +31,21 @@ namespace DACN.Models.DAO
             db.SaveChanges();
             return model.idBV;
         }
-        public int Update(BaiViet model1, int id, NhaTro model2)
+        public int Update(BaiViet model)
         {
-            //BaiViet dbEntry = db.BaiViets.Find(id);
-            //if (dbEntry == null)
-            //{
-            //    return null;
-            //}
-
+            BaiViet dbEntry = db.BaiViets.Find(model.idBV);
+            if (dbEntry == null)
+            {
+                return 0;
+            }
+            else
+            {
+                dbEntry.TieuDe = model.TieuDe;
+                dbEntry.TieuDePhu = model.TieuDePhu;
+                dbEntry.MoTa = model.MoTa;
+            }
             db.SaveChanges();
-            return model1.idBV;
+            return model.idBV;
         }
     }
 }

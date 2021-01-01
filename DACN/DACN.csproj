@@ -54,9 +54,20 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=1.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.1.1.2\lib\net451\Microsoft.IdentityModel.Logging.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.5.1.2\lib\net451\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.1.2\lib\net451\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -78,6 +89,15 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Twilio, Version=5.52.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Twilio.5.52.1\lib\net451\Twilio.dll</HintPath>
+    </Reference>
+    <Reference Include="Twilio.AspNet.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Twilio.AspNet.Common.5.37.2\lib\net45\Twilio.AspNet.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Twilio.AspNet.Mvc, Version=5.37.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Twilio.AspNet.Mvc.5.37.2\lib\net451\Twilio.AspNet.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
     </Reference>
@@ -111,6 +131,7 @@
   <ItemGroup>
     <Content Include="Assets\css\bootstrap.css" />
     <Content Include="Assets\css\flexslider.css" />
+    <Content Include="Assets\css\fontawesome.min.css" />
     <Content Include="Assets\css\owl.carousel.css" />
     <Content Include="Assets\css\smoothbox.css" />
     <Content Include="Assets\css\style.css" />
@@ -210,12 +231,16 @@
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Home\QLTK.cshtml" />
     <Content Include="Scripts\scripts.js" />
+    <Content Include="Scripts\SmsScripts\Sms.js" />
     <Content Include="Views\Shared\_FormConfirm.cshtml" />
     <Content Include="Areas\Admin\Views\Account\SuaTaiKhoan.cshtml" />
     <Content Include="Areas\Admin\Views\Home\QLBV.cshtml" />
     <Content Include="Areas\Admin\Views\Home\QLBC.cshtml" />
     <Content Include="Areas\Admin\Views\Posts\XemBaiViet.cshtml" />
     <Content Include="Areas\Admin\Views\Posts\Posting.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\QLBVChuaDuyet.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\QLBVCD.cshtml" />
+    <Content Include="Areas\Admin\Views\Posts\SuaBaiViet.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -236,11 +261,13 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostingController.cs" />
+    <Compile Include="Controllers\SmsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BaiVietModel.cs" />
     <Compile Include="Models\BaiVietNewDAO.cs" />
+    <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\DAO\AdminDao.cs" />
     <Compile Include="Models\DAO\BaiVietDAO.cs" />
     <Compile Include="Models\DAO\KieuBDSDAO.cs" />
@@ -253,6 +280,8 @@
     <Compile Include="Models\DetailModel.cs" />
     <Compile Include="Models\EF\BaiViet.cs" />
     <Compile Include="Models\EF\BaoCao.cs" />
+    <Compile Include="Models\EF\Comment.cs" />
+    <Compile Include="Models\EF\DanhSachYeuThich.cs" />
     <Compile Include="Models\EF\DBContext.cs" />
     <Compile Include="Models\EF\HinhAnh.cs" />
     <Compile Include="Models\EF\KieuBD.cs" />
@@ -299,6 +328,7 @@
     <Content Include="Views\Posting\Posting.cshtml" />
     <Content Include="Views\Posting\Posted.cshtml" />
     <Content Include="Views\Posting\XacThuc.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -311,6 +341,7 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\SharedAdmin\" />
     <Folder Include="ScriptSQL\" />
+    <Folder Include="Views\Sms\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -5,7 +5,16 @@
     var detail = ViewBag.Detail;
     var listNhaTro = ViewBag.ListNhaTro;
     var listnew = (List<DACN.Models.EF.BaiViet>)ViewBag.listnew;
+    var session = (DACN.Common.UserLogin)Session[DACN.Common.CommonConstants.USER_SESSION];
 }
+<style>
+    table {
+        table-layout: fixed;
+    }
+    td {
+        word-wrap: break-word
+    }
+</style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Soft Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
@@ -28,122 +37,396 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="//fonts.googleapis.com/css?family=Work+Sans:200,300,400,500,600,700" rel="stylesheet">
 <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic'
       rel='stylesheet' type='text/css'>
+<head>
+    <!--css-->
+    <link href="~/Assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!--Front icon-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--css-->
+    <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" data-auto-replace-svg="nest"></script>
 
-<div class="inner_content_info_agileits">
-    <div class="container">
-        <div class="inner_sec_grids_info_w3ls">
-            <div class="col-md-8 job_info_left">
-                @foreach (var item in detail)
-                {
-                    <div class="single-left1">
-                        <img src="~/Assets/images/a1.jpg" alt=" " class="img-responsive" width="600" height="300" />
-                        <h3>@item.tieude</h3>
-                        <h3>@item.tieudephu</h3>
-                        <ul>
-                            <li><span class="fa fa-user" aria-hidden="true"></span><a href="#">@item.hotentk</a></li>
-                            <li><span class="fa fa-tag" aria-hidden="true"></span><a href="#">5 Tags</a></li>
-                            <li><span class="fa fa-envelope-o" aria-hidden="true"></span><a href="#">5 Comments</a></li>
-                        </ul>
-                        <p>@item.mota</p>
-                    </div>
-                    <div class="admin">
-                        <p>
-                            <i class="fa fa-quote-left" aria-hidden="true"></i> Giá: 4 tỷ 500 triệu
-                            Diện tích sử dụng: 90 m2
-                            Diện tích đất: 45 m2 (4,5x10)
-                            Ngày đăng: 11/12/2020
-                            Mã BĐS: 21095328
-                            Phòng ngủ: 4
-                            Nhà tắm: 3
-                            Pháp lý: Giấy tờ hợp lệ
-                            Hướng: Tây
-                        </p>
-                        <a href="#"><span>@item.hotentk</span></a>
-                    </div>
-                    <div class="comments">
-                        <h3 class="single">Bình Luận</h3>
-                        <div class="comments-grids">
-                            <div class="comments-grid">
-                                <div class="comments-grid-left">
-                                    <img src="~/Assets2/images/pf1.jpg" alt=" " class="img-responsive">
-                                </div>
-                                <div class="comments-grid-right">
-                                    <h4><a href="#">Văn Thanh</a></h4>
-                                    <ul>
-                                        <li>5 Nov 2020 <i>|</i></li>
-                                        <li><a href="#">Trả Lời</a></li>
-                                    </ul>
-                                    <p>
-                                        Nhà này có đầy đủ tiện nghi không ?
-                                    </p>
-                                </div>
-                                <div class="clearfix"> </div>
-                            </div>
-                            <div class="comments-grid">
-                                <div class="comments-grid-left">
-                                    <img src="~/Assets2/images/pf2.jpg" alt=" " class="img-responsive">
-                                </div>
-                                <div class="comments-grid-right">
-                                    <h4><a href="#">Minh Ngọc</a></h4>
-                                    <ul>
-                                        <li>8 Nov 2020 <i>|</i></li>
-                                        <li><a href="#">Trả Lời</a></li>
-                                    </ul>
-                                    <p>
-                                        Có cần đặt cọc trước không. Thanh toán thế nào ?
-                                    </p>
-                                </div>
-                                <div class="clearfix"> </div>
-                            </div>
-                            <div class="w3layouts_mail_grid single">
-                                <h3 class="single">Bình luận cho bài viết</h3>
-                                <form action="#" method="post">
-                                    <div class="col-md-6 wthree_contact_left_grid">
-                                        <input type="text" name="Name" placeholder="Tên" required="">
-                                        <input type="email" name="Email" placeholder="Email" required="">
-                                        <input type="text" name="Telephone" placeholder="Số Điện Thoại" required="">
-                                        <input type="text" name="Subject" placeholder="Tiêu Đề" required="">
-                                    </div>
-                                    <div class="col-md-6 wthree_contact_left_grid">
-                                        <textarea name="Message" placeholder="Gõ bình luận của bạn..." required=""></textarea>
-                                        <input type="submit" value="Gửi bình luận">
-                                    </div>
-                                    <div class="clearfix"> </div>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Home Plat Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link rel="stylesheet" href="~/Assets/css/flexslider.css" type="text/css" media="screen" />
+    <!--js-->
+    @*<script src="~/Assets/js/jquery.min.js"></script>*@
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Assets/js/bootstrap.min.js"></script>
+    <!--js-->
+    <!--webfonts-->
+    <link href='//fonts.googleapis.com/css?family=Josefin+Sans:400,700italic,700,600italic,600,400italic,300italic,300,100italic,100' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <!--webfonts-->
+    <script src="~/Assets/js/responsiveslides.min.js"></script>
 
-                                </form>
-                            </div>
+    <script>
+        $(function () {
+            $("#slider").responsiveSlides({
+                auto: true,
+                nav: true,
+                speed: 500,
+                namespace: "callbacks",
+                pager: true,
+            });
+        });
+    </script>
+    <link href="~/Assets/css/owl.carousel.css" rel="stylesheet">
+    <script src="~/Assets/js/owl.carousel.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#owl-demo").owlCarousel({
+                items: 1,
+                lazyLoad: true,
+                autoPlay: true,
+                navigation: false,
+                navigationText: false,
+                pagination: true,
+            });
+        });
+    </script>
+</head>
+<!--signin-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-info">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body real-spa">
+                <div class="login-grids">
+                    <div class="login">
+                        <div class="login-right">
+                            @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                            {
+                                // @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(false, "", new { @class = "text-danger" });
+                                <h3>Sign In</h3>
+                                <input type="text" name="username" placeholder="Enter your UserName" required="">
+                                <input type="password" name="Password" placeholder="Password" required="">
+                                <h4><a href="#">Forgot password</a> / <a href="#">Create new password</a></h4>
+                                <div class="single-bottom">
+                                    <input type="checkbox" id="brand" value="">
+                                    <label for="brand"><span></span>Remember Me.</label>
+                                </div>
+                                <input type="submit" value="Sign In">
+                            }
                         </div>
                     </div>
-                }
-            </div>
-            <div class="col-md-4 job_info_right">
-                <div class="widget_search">
-                    <img src="~/Assets2/images/single.jpg" alt="">
-                    <p>Đã tham gia: Ngày 23 Tháng 5</p>
-                    <a>0368257602</a>
-                    <a>Gửi tin nhắn</a>
+                    <p>By logging in you agree to our <a href="#">Terms</a> and <a href="#">Conditions</a> and <a href="#">Privacy Policy</a></p>
                 </div>
             </div>
-            <div class="col-md-3 p-lg-3">
-                <h2 class="text-left">Có Thể Bạn Quan Tâm</h2>
-                @foreach (var itemnew in listnew)
-                {
-                    <div class="col-md-5">
-                        <img src="~/Assets/images/ba1.jpg" width="190" height="120" />
-                    </div>
-                    <a style="color: black;" href="/Posting/Detail/@itemnew.idBV">
-                        <div style="border: 1px solid #eee; border-radius: 5px; background-color: #eee; margin-bottom: 15px; margin-top: 10px;">
-                            <div style="padding: 5px 10px 5px 10px;">
-                                <label>@itemnew.TieuDe</label><br />
-                                @itemnew.TieuDePhu<br /><br />
-                                <label style="color:#00deb6">Ngày Đăng: &nbsp;</label>@itemnew.NgayDang
-                            </div>
-                        </div>
-                    </a>
-                }
+        </div>
+    </div>
+</div>
+<!--signin-->
+<!--Register-->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-info">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
+            <div class="modal-body real-spa">
+                <div class="login-grids">
+                    <div class="login">
+                        <div class="login-right">
+                            @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+                            {
+                                // @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <h3>Register</h3>
+                                <input type="text" name="username" placeholder="Enter your UserName" required="">
+                                <input type="text" name="phone" placeholder="Enter your number phone" required="">
+                                <input type="text" name="email" placeholder="Enter your Email" required="">
+                                <input type="password" name="Password" placeholder="Password" required="">
+                                <h4><a href="#">Forgot password</a> / <a href="#">Create new password</a></h4>
 
-            <!-- js -->
-            <script type="text/javascript" src="~/Assets2/js/jquery-2.1.4.min.js"></script>
-            <script type="text/javascript" src="~/Assets2/js/bootstrap.js"></script>
+                                <input type="submit" value="Register Now">
+                            }
+
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <p>By logging in you agree to our <a href="#">Terms</a> and <a href="#">Conditions</a> and <a href="#">Privacy Policy</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Register-->
+<div class="inner_content_info_agileits" style="padding: 0">   
+    @if (session != null)
+    {
+        <div id="user_id" hidden>@session.userID</div>
+    }
+    <div class="inner_sec_grids_info_w3ls">
+        <div class="col-md-9 job_info_left">
+            @foreach (var item in detail)
+            {
+                <div class="single-left1">
+                <div id="idbvyt" hidden>@item.idBV</div>
+
+
+                <img src="~/Assets/images/a1.jpg" alt=" " class="img-responsive" style="width: 100%; height: 700px; border-radius: 5px" />
+                <div class="row">
+                    <div class="col-md-10" style="margin-right: 0">
+                        <h3>@item.tieude</h3>
+                    </div>
+                    <div class="col-md-2" id="idbtnSave" style="padding: 2em 15px 0px 0px; text-align: right">
+                        <button class="btn-success btn">
+                            <i class="fas fa-heart"></i> Lưu tin
+                        </button>
+                    </div>
+                </div>
+                <h3>@item.tieudephu</h3>
+                <ul>
+                    <li><span class="fa fa-user" aria-hidden="true"></span><a href="#">@item.hotentk</a></li>
+                    <li><span class="fa fa-tag" aria-hidden="true"></span><a href="#">5 Tags</a></li>
+                    <li><span class="fa fa-envelope-o" aria-hidden="true"></span><a href="#">5 Comments</a></li>
+                </ul>
+                <p>@item.mota</p>
+                <h3>Thông tin chính</h3>
+                <div class="row" style="margin-left: 10px">
+                    <div class="col-md-4">
+                        <table class="table table-borderless">
+                            <tr>
+                                <td>Giá:</td>
+                                <td>@item.gia</td>
+                            </tr>
+                            <tr>
+                                <td>Nhà tắm:</td>
+                                <td>@item.nhatam</td>
+                            </tr>
+                            <tr>
+                                <td>Lầu:</td>
+                                <td>@item.lau</td>
+                            </tr>
+                            <tr>
+                                <td>Phòng ngủ:</td>
+                                <td>@item.phongngu</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-4">
+                        <table class="table table-borderless">
+                            <tr>
+                                <td>Diện tích:</td>
+                                <td>@item.dientich</td>
+                            </tr>
+                            <tr>
+                                <td>Ngày đăng:</td>
+                                <td>@item.ngaydang</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+                <div class="admin">
+                    <p>
+                        <i class="fa fa-quote-left" aria-hidden="true"></i> Giá: 4 tỷ 500 triệu
+                        Diện tích sử dụng: 90 m2
+                        Diện tích đất: 45 m2 (4,5x10)
+                        Ngày đăng: 11/12/2020
+                        Mã BĐS: 21095328
+                        Phòng ngủ: 4
+                        Nhà tắm: 3
+                        Pháp lý: Giấy tờ hợp lệ
+                        Hướng: Tây
+                    </p>
+                    <a href="#"><span>@item.hotentk</span></a>
+                </div>
+                <div style="margin-bottom: 3em">
+                    <button class="btn-warning btn" style="border-radius: 5px" id="btnReport">
+                        <i class="fas fa-exclamation-triangle"></i> Báo cáo
+                    </button>
+                </div>
+                <div class="comments">
+                    <h3 class="single">Bình Luận</h3>
+                    <div class="comments-grids">
+                        <div class="comments-grid">
+                            <div class="comments-grid-left">
+                                <img src="~/Assets2/images/pf1.jpg" alt=" " class="img-responsive">
+                            </div>
+                            <div class="comments-grid-right">
+                                <h4><a href="#">@item</a></h4>
+                                <ul>
+                                    <li>5 Nov 2020 <i>|</i></li>
+                                    <li><a href="#">Trả Lời</a></li>
+                                </ul>
+                                <p>
+                                    Nhà này có đầy đủ tiện nghi không ?
+                                </p>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        @*<div class="comments-grid">
+                            <div class="comments-grid-left">
+                                <img src="~/Assets2/images/pf2.jpg" alt=" " class="img-responsive">
+                            </div>
+                            <div class="comments-grid-right">
+                                <h4><a href="#">Minh Ngọc</a></h4>
+                                <ul>
+                                    <li>8 Nov 2020 <i>|</i></li>
+                                    <li><a href="#">Trả Lời</a></li>
+                                </ul>
+                                <p>
+                                    Có cần đặt cọc trước không. Thanh toán thế nào ?
+                                </p>
+                            </div>
+                            <div class="clearfix"> </div>*@
+                    </div>
+                    <div class="w3layouts_mail_grid single">
+                        <h3 class="single">Bình luận cho bài viết</h3>
+                        <form action="#" method="post">
+                            <div class="col-md-6 wthree_contact_left_grid">
+                                <input type="text" name="UserName" placeholder="Tên" required="">
+                                <input type="email" name="Email" placeholder="Email" required="">
+                                <input type="text" name="Telephone" placeholder="Số Điện Thoại" required="">
+                                <input type="text" name="Subject" placeholder="Tiêu Đề" required="">
+                            </div>
+                            <div class="col-md-6 wthree_contact_left_grid">
+                                <textarea id="content" name="Message" placeholder="Gõ bình luận của bạn..." required=""></textarea>
+                                <button id="btn_Comment" type="submit" value="Gửi bình luận" />
+                            </div>
+                            <div class="clearfix"> </div>
+
+                        </form>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-md-3 job_info_right">
+            <div class="widget_search">
+                <img src="~/Assets2/images/single.jpg" alt="" >
+                <div class="row form-inline" style=" margin-top: 10px;">
+                    <div class="col-md-8">
+                        @foreach (var item in detail)
+                        {
+                            <p>@item.hotentk</p>
+                            <p>Đã tham gia: @item.ngaythamgia</p>
+                            <a>@item.phone</a>
+                            <a>Gửi tin nhắn</a>
+                        }
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 p-lg-3">
+            <h2 class="text-left">Có Thể Bạn Quan Tâm</h2>
+            @foreach (var itemnew in listnew)
+            {
+                <a style="color: black;" href="/Posting/Detail/@itemnew.idBV">
+                    <div style="border: 1px solid #eee; border-radius: 5px; background-color: #eee; margin-bottom: 15px; margin-top: 10px;">
+                        <div style="padding: 5px 10px 5px 10px;">
+                            <label>@itemnew.TieuDe</label><br />
+                            @itemnew.TieuDePhu<br /><br />
+                            <label style="color:#00deb6">Ngày Đăng: &nbsp;</label>@itemnew.NgayDang
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+    </div>
+    <div id="reportModal" class="modal" style="width: 600px; margin-left: 30%; align-items: center; justify-content: center">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Báo cáo bài viết</h2>
+                <button type="button" id="btnClose" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                @*@using (Html.BeginForm("Report", "Posting", FormMethod.Post))
+                {
+                    // @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" });
+                    foreach (var item in detail) { 
+                        <input name="idbv" value="@item.idBV" style="display: none"/>
+                    }*@
+                    <div class="form-group">
+                        <label for="TieuDe">Tiêu đề</label>
+                        <input type="text" class="form-control" id="tieude" name="tieude" aria-describedby="emailHelp" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="mota">Mô tả</label>
+                        <textarea class="form-control" id="mota" name="mota" rows="3"></textarea>
+                    </div>
+                    <button id="sendRp" class="btn btn-primary">Gửi báo cáo</button>
+                @*}*@
+            </div>
+        </div>
+    </div>
+    <!-- js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Assets2/js/bootstrap.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script>
+        var btnReport = document.getElementById("btnReport");
+        var btnClose = document.getElementById("btnClose");
+        var modal = document.getElementById("reportModal");
+        var span = document.getElementsByClassName("close")[0];
+
+        btnReport.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        btnClose.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        $(document).ready(function () {
+            $('#idbtnSave').click(function () {
+                var id = $('#idbvyt').text()
+                var user_id = $('#user_id').text()
+                if (user_id == "") {
+                    alert('Bạn cần đăng nhập để thực hiện thao tác này !!!!')
+                }
+                else if (user_id != 0) {
+                    $.ajax({
+                        type: 'post',
+                        url: '/Posting/SaveWishlist',
+                        data: { id: id, user_id: user_id },
+                        dataType: 'json',
+                        success: function () {
+                            alert('Bạn đã lưu thành công !!!')
+                        },
+                        error: function () {
+                            alert('Lưu thất bại !!!')
+                        }
+                    })
+                }
+            })
+        })
+        $(document).ready(function () {
+            $('#sendRp').click(function () {
+                var idbv = $('#idbvyt').text()
+                var tieude = document.getElementById("tieude").value;
+                var mota = document.getElementById("mota").value;
+                $.ajax({
+                    type: 'post',
+                    url: '/Posting/Report',
+                    data: { tieude: tieude, mota: mota, idbv: idbv},
+                    dataType: 'json',
+                    success: function () {
+                        alert('Gửi báo cáo thành công')
+                        $(reportModal).hide()
+                    },
+                    error: function () {
+                        alert('Lưu thất bại !!!')
+                    }
+                })
+            })
+        })
+    </script>
 

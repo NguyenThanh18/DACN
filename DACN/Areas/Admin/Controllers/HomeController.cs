@@ -41,12 +41,17 @@ namespace DACN.Areas.Admin.Controllers
         {
             var qltk = db.BaiViets.SqlQuery("select * from BaiViet b, NhaTro n where b.idNT = n.idNT").ToList();
             ViewBag.QLBV = qltk;
-            var qlbvcd = db.BaiViets.SqlQuery("select * from BaiViet b, NhaTro n where b.idNT = n.idNT and b.TrangThai = 0").ToList();
-            ViewBag.QLBVCD = qltk;
+            
             ViewBag.TP = db.ThanhPhoes.ToList();
             ViewBag.Quan = db.Quans.ToList();
             ViewBag.Phuong = db.Phuongs.ToList();
             ViewBag.LoaiBDS = db.LoaiBDS.ToList();
+            return View();
+        }
+        public ActionResult QLBVCD()
+        {
+            var qlbvcd = db.BaiViets.SqlQuery("select * from BaiViet b, NhaTro n where b.idNT = n.idNT and b.TrangThai = 0").ToList();
+            ViewBag.QLBVCD = qlbvcd;
             return View();
         }
         public ActionResult QLBC()

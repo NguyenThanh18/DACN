@@ -1,10 +1,10 @@
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
+using System.Linq;
+
 namespace DACN.Models.EF
 {
-    using System;
-    using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
-
     public partial class DBContext : DbContext
     {
         public DBContext()
@@ -14,6 +14,8 @@ namespace DACN.Models.EF
 
         public virtual DbSet<BaiViet> BaiViets { get; set; }
         public virtual DbSet<BaoCao> BaoCaos { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
+        public virtual DbSet<DanhSachYeuThich> DanhSachYeuThiches { get; set; }
         public virtual DbSet<HinhAnh> HinhAnhs { get; set; }
         public virtual DbSet<KieuBD> KieuBDS { get; set; }
         public virtual DbSet<LoaiBaiViet> LoaiBaiViets { get; set; }
@@ -32,6 +34,10 @@ namespace DACN.Models.EF
 
             modelBuilder.Entity<LoaiBD>()
                 .Property(e => e.Alias)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<NhaTro>()
+                .Property(e => e.Image)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Phuong>()
@@ -68,6 +74,14 @@ namespace DACN.Models.EF
 
             modelBuilder.Entity<TaiKhoan>()
                 .Property(e => e.CMND)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TaiKhoan>()
+                .Property(e => e.QuyenHan)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<TaiKhoan>()
+                .Property(e => e.Avatar)
                 .IsUnicode(false);
 
             modelBuilder.Entity<ThanhPho>()

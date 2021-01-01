@@ -4,10 +4,10 @@ using DACN.Models.EF;
 using DACN.Models.Function;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
 namespace DACN.Areas.Admin.Controllers
 {
     public class PostsController : Controller
@@ -65,6 +65,56 @@ namespace DACN.Areas.Admin.Controllers
             }
             return RedirectToAction("QLBV", "Home");
         }
+        [HttpPost]
+        public ActionResult SuaBaiViet(DetailModel model)
+        {
+            var bv = db.BaiViets.Find(model.idBV);
+            var nt = new NhaTroDAO().GetByID(bv.idNT);
+            bv.TieuDe = model.tieude;
+            bv.TieuDePhu = model.tieudephu;
+            bv.MoTa = model.mota;
+            nt.Lau = model.lau;
+            nt.NhaTam = model.nhatam;
+            nt.PhongNgu = model.phongngu;
+            nt.DienTich = model.dientich;
+            var bvdao = new BaiVietDAO();
+            bvdao.Update(bv);
+            var ntdao = new NhaTroDAO();
+            int idnt = (int)bv.idNT;
+            ntdao.Update(nt, idnt);
+            return RedirectToAction("QLBV", "Home");
+        }
+        public ActionResult SuaBaiViet(int idbv)
+        {
+            var bv = db.BaiViets.Find(idbv);
+            var nt = new NhaTroDAO().GetByID(bv.idNT);
+            var tk = new UserDAO().GetByID(bv.idTK);
+            var result = new List<DetailModel>();
+            result.Add(new DetailModel
+            {
+                idBV = bv.idBV,
+                tieude = bv.TieuDe,
+                tieudephu = bv.TieuDePhu,
+                mota = bv.MoTa,
+                ngaydang = bv.NgayDang.ToString().Substring(0, 10),
+                hotentk = tk.HoTen,
+                ngaythamgia = tk.NgayTao.ToString().Substring(0, 10),
+                email = tk.Email,
+                phone = tk.SDT,
+                gia = nt.Gia,
+                lau = nt.Lau,
+                phongngu = nt.PhongNgu,
+                nhatam = nt.NhaTam,
+                dientich = nt.DienTich
+
+            });
+            ViewBag.TP = db.ThanhPhoes.ToList();
+            ViewBag.Quan = db.Quans.ToList();
+            ViewBag.Phuong = db.Phuongs.ToList();
+            ViewBag.LoaiBDS = db.LoaiBDS.ToList();
+            ViewBag.Detail = result;
+            return View(result);
+        }
         public ActionResult Posting()
         {
             ViewBag.TP = db.ThanhPhoes.ToList();
@@ -79,6 +129,13 @@ namespace DACN.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
+                if (model.ImageUpload != null)
+                {
+                    string fileName = Path.GetFileNameWithoutExtension(model.ImageUpload.FileName);
+                    //string extension = Path.GetExtension(model.ImageUpload.FileName);
+                    //file.SaveAs(Server.MapPath("~/Content/Images/" + file.FileName));
+                    model.Images = "~/Content/Images/" + fileName;
+                }
                 var daoNT = new NhaTroDAO();
                 var daoPost = new BaiVietDAO();
 
@@ -92,6 +149,7 @@ namespace DACN.Areas.Admin.Controllers
                 nt.Gia = model.Gia;
                 nt.SoNha = model.SoNha;
                 nt.idPhuong = model.idPhuong;
+                nt.Image = model.Images;
                 nt.idQuan = model.idQuan;
                 daoNT.Insert(nt);
 
@@ -111,7 +169,12 @@ namespace DACN.Areas.Admin.Controllers
 
 
             }
-            return RedirectToAction("QLBV", "Home");
+            return View("Posted", model);
+        }
+        public string ProcessUpload(HttpPostedFileBase file)
+        {
+            file.SaveAs(Server.MapPath("~/Content/Images/" + file.FileName));
+            return "/Content/Images" + file.FileName;
         }
     }
 }

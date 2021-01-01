@@ -8,9 +8,10 @@
 <body style="margin-top: 0">
     @Html.Partial("_Header")
     @RenderBody()
+    @Html.Partial("_Footer")
     @RenderSection("scripts", false)
     @RenderSection("upload", required: false)
-        
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </body>
 </html>

@@ -47,24 +47,27 @@ namespace DACN.Controllers
         public ActionResult Detail(int id)
         {
             var baiviet = new BaiVietDAO().GetByID(id);
-            var nhatro = new NhaTroDAO().ListAll();
+            var nhatro = new NhaTroDAO().GetByID(baiviet.idNT);
             var taikhoan = new UserDAO().GetByID(baiviet.idTK);
             var result = new List<DetailModel>();
-            foreach (var item in nhatro.Where(x => x.idNT == baiviet.idNT))
+            result.Add(new DetailModel
             {
-                result.Add(new DetailModel
-                {
-                    idBV = baiviet.idTK,
-                    tieude = baiviet.TieuDe,
-                    mota = baiviet.MoTa,
-                    ngaydang = baiviet.NgayDang.ToString(),
-                    hotentk = taikhoan.HoTen,
-                    ngaythamgia = taikhoan.NgayTao.ToString(),
-                    email = taikhoan.Email,
-                    phone = taikhoan.SDT,
-                });
-            }
+                idBV = baiviet.idBV,
+                tieude = baiviet.TieuDe,
+                mota = baiviet.MoTa,
+                ngaydang = baiviet.NgayDang.ToString().Substring(0, 10),
+                hotentk = taikhoan.HoTen,
+                ngaythamgia = taikhoan.NgayTao.ToString().Substring(0,10),
+                email = taikhoan.Email,
+                phone = taikhoan.SDT,
+                gia = nhatro.Gia,
+                lau = nhatro.Lau,
+                phongngu = nhatro.PhongNgu,
+                nhatam = nhatro.NhaTam,
+                dientich = nhatro.DienTich
+            });
             ViewBag.Detail = result;
+            ViewBag.listnew = db.BaiViets.SqlQuery("select * from BaiViet where NgayDang >= GETDATE()").ToList();
             return View();
         }
         public ActionResult Posting()
@@ -80,6 +83,21 @@ namespace DACN.Controllers
             ViewBag.Phuong = db.Phuongs.ToList();
             ViewBag.LoaiBDS = db.LoaiBDS.ToList();
             return View();
+        }
+        [HttpPost]
+        public ActionResult Report(string tieude, string mota, string idbv)
+        {
+            var session = (DACN.Common.UserLogin)Session[DACN.Common.CommonConstants.USER_SESSION];
+            BaoCao bc = new BaoCao();
+            var bcdao = new ReportDao();
+            bc.TieuDe = tieude;
+            bc.TenBaoCao = mota;
+            DateTime now = DateTime.Now;
+            bc.NgayBC = now;
+            bc.TrangThai = false;
+            bcdao.Insert(bc);
+            return Json(new { Message = "success", JsonRequestBehavior = JsonRequestBehavior.AllowGet });
+
         }
         [HttpPost]
         public ActionResult Posting(PostingModel model)
@@ -133,6 +151,27 @@ namespace DACN.Controllers
         {
             file.SaveAs(Server.MapPath("~/Content/Images/" + file.FileName));
             return "/Content/Images" + file.FileName;
+        }
+
+        public ActionResult SaveWishlist(int id, int user_id)
+        {
+            var wishlist = new DanhSachYeuThich();
+            wishlist.IdBV = id;
+            wishlist.IdTK = user_id;
+            wishlist.DaySave = DateTime.Now;
+            db.DanhSachYeuThiches.Add(wishlist);
+            db.SaveChanges();
+            return Json(new { Message = "success", JsonRequestBehavior = JsonRequestBehavior.AllowGet });
+        }
+        public ActionResult Comment(CommentModel model)
+        {
+            var comment = new Comment();
+            comment.UserName = model.UserName;
+            comment.ContentComment = model.ContentComment;
+            comment.DateComment = DateTime.Now;
+            db.Comments.Add(comment);
+            db.SaveChanges();
+            return View();
         }
     }
 }
