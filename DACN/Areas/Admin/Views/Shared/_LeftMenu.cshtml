@@ -1,11 +1,6 @@
-﻿<link href="~/Content/Admin/css/all.min.css" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-      rel="stylesheet">
-
-<!-- Custom styles for this template-->
+﻿<!-- Custom styles for this template-->
 <link href="~/Content/Admin/css/sb-admin-2.min.css" rel="stylesheet">
-<script src="https://kit.fontawesome.com/yourcode.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Assets/css/fontawesome.min.css" rel="stylesheet" type="text/css" />
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
@@ -39,16 +34,22 @@
     <!-- Nav Item - Tables -->
     <li class="nav-item text-lg">
         <a class="nav-link" href="@Url.Action("QLTK","Home")">
-            @*<i class="fa fa-user"></i>*@
             <span>Quản lý tài khoản</span>
         </a>
     </li>
-    <li class="nav-item text-lg">
-        <a class="nav-link" href="@Url.Action("QLBV","Home")">
-            @*<i class="fa fa-user"></i>*@
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="@Url.Action("QLBV","Home")" data-toggle="collapse" data-target="#collapseTwo"
+           aria-expanded="true" aria-controls="collapseTwo">
             <span>Quản lý bài viết</span>
         </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="@Url.Action("QLBV","Home")">Bài viết</a>
+                <a class="collapse-item" href="@Url.Action("QLBVCD","Home")">Bài viết chưa duyệt</a>
+            </div>
+        </div>
     </li>
+
     <li class="nav-item text-lg">
         <a class="nav-link" href="@Url.Action("QLBC","Home")">
             @*<i class="fa fa-user"></i>*@
@@ -62,13 +63,7 @@
 
 </ul>
 
-<script src="~/Content/Admin/js/jquery.min.js"></script>
-<script src="~/Content/Admin/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="~/Content/Admin/js/jquery.easing.min.js"></script>
-
 <!-- Custom scripts for all pages-->
-<script src="~/Content/Admin/js/sb-admin-2.min.js"></script>
-
 <!-- Page level plugins -->

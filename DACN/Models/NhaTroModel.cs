@@ -7,7 +7,7 @@ namespace DACN.Models
 {
     public class NhaTroModel
     {
-        public int id { get; set; }
+        public int? id { get; set; }
         public int dientich { get; set; }
         public int phongngu { get; set; }
         public int lau { get; set; }
