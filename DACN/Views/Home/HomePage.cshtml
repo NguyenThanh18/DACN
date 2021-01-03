@@ -239,7 +239,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
     <!--Register-->
-    </div>
     <script>
         $(document).ready(function () {
             $('#idQuan').change(function () {
@@ -283,7 +282,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     dataType: "json",
                     success: function (result) {
                         if (result.length != 0) {
-                            $('#quan').html('<h5>Quận/Huyện</h5><select class= "sel" id = "idQuan" name = "idQuan"><option value="">Tất Cả</option></select >')
+                            $('#quan').html('<h5>Quận/Huyện</h5><select class= "sel" id = "idQuan" name = "idQuan"></select >')
                             $.each(result, function (index, value) {
                                 $('#idQuan').append('<option value="' + value[0] + '">' + value[1] + '</option>')
                             })

@@ -130,6 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\css\bootstrap.css" />
+    <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Assets\css\flexslider.css" />
     <Content Include="Assets\css\fontawesome.min.css" />
     <Content Include="Assets\css\owl.carousel.css" />
@@ -270,6 +271,7 @@
     <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\DAO\AdminDao.cs" />
     <Compile Include="Models\DAO\BaiVietDAO.cs" />
+    <Compile Include="Models\DAO\CommentDAO.cs" />
     <Compile Include="Models\DAO\KieuBDSDAO.cs" />
     <Compile Include="Models\DAO\LoaiBDSDAO.cs" />
     <Compile Include="Models\DAO\NhaTroDAO.cs" />
@@ -329,6 +331,7 @@
     <Content Include="Views\Posting\Posted.cshtml" />
     <Content Include="Views\Posting\XacThuc.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Posting\PostsManager.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

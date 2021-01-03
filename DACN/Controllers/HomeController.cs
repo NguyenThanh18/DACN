@@ -1,6 +1,7 @@
 ﻿using DACN.Models;
 using DACN.Models.DAO;
 using DACN.Models.EF;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,10 +29,51 @@ namespace DACN.Controllers
             ViewBag.listKieuBDS = new KieuBDSDAO().ListAll();
             return PartialView();
         }
+        public JsonResult listPhuong(string name)
+        {
+            var listPhuong = db.Phuongs.ToList();
+            string value = string.Empty;
+            value = JsonConvert.SerializeObject(listPhuong, Formatting.Indented, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            return Json(value, JsonRequestBehavior.AllowGet);
+        }
         public JsonResult ListPhuongByID(int id)
         {
             var listPhuong = new PhuongDAO().GetListByID(id);
             return Json(listPhuong, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult ListPhuongByName(string name)
+        {
+            var listAllPhuong = new PhuongDAO().ListAll();
+            var listResult = new List<List<string>>();
+            name = name.ToUpper();
+            string convert = "ĂÂÀẰẦÁẮẤẢẲẨÃẴẪẠẶẬỄẼỂẺÉÊÈỀẾẸỆÔÒỒƠỜÓỐỚỎỔỞÕỖỠỌỘỢƯÚÙỨỪỦỬŨỮỤỰÌÍỈĨỊỲÝỶỸỴĐăâàằầáắấảẳẩãẵẫạặậễẽểẻéêèềếẹệôòồơờóốớỏổởõỗỡọộợưúùứừủửũữụựìíỉĩịỳýỷỹỵđ";
+            string To = "AAAAAAAAAAAAAAAAAEEEEEEEEEEEOOOOOOOOOOOOOOOOOUUUUUUUUUUUIIIIIYYYYYDaaaaaaaaaaaaaaaaaeeeeeeeeeeeooooooooooooooooouuuuuuuuuuuiiiiiyyyyyd";
+            for (int i = 0; i < To.Length; i++)
+            {
+                name = name.Replace(convert[i], To[i]);
+            }
+            foreach (var item in listAllPhuong)
+            {
+                for (int i = 0; i < To.Length; i++)
+                {
+                    item.TenPhuong = item.TenPhuong.Replace(convert[i], To[i]);
+                }
+                foreach (var phuong in listAllPhuong)
+                {
+                    if (phuong.idPhuong == item.idPhuong)
+                    {
+                        listResult.Add(new List<string>
+                        {
+                            phuong.idPhuong.ToString(),
+                            phuong.TenPhuong
+                        });
+                    }
+                }
+            }
+            return Json(listResult, JsonRequestBehavior.AllowGet);
         }
         public JsonResult ListQuanByName(string name)
         {
@@ -68,6 +110,7 @@ namespace DACN.Controllers
                 }
 
             }
+            var list = listResult;
             return Json(listResult, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Search(SearchModel entity)

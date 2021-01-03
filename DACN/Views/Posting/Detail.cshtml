@@ -5,6 +5,7 @@
     var listNhaTro = ViewBag.ListNhaTro;
     var listnew = (List<DACN.Models.EF.BaiViet>)ViewBag.listnew;
     var session = (DACN.Common.UserLogin)Session[DACN.Common.CommonConstants.USER_SESSION];
+    var listcomment = ViewBag.comment;
 }
 <style>
     table {
@@ -125,7 +126,7 @@
     </div>
 </div>
 <!--Register-->
-<div class="" style="padding: 0; margin-bottom: 2100px">   
+<div class="" style="padding: 0; margin-bottom: 2500px">   
     @if (session != null)
     {
         <div id="user_id" hidden>@session.userID</div>
@@ -135,65 +136,65 @@
             @foreach (var item in detail)
             {
                 <div class="single-left1">
-                <div id="idbvyt" hidden>@item.idBV</div>
+                    <div id="idbvyt" hidden>@item.idBV</div>
 
 
-                <img src="~/Assets/images/a1.jpg" alt=" " class="img-responsive" style="width: 100%; height: 700px; border-radius: 5px" />
-                <div class="row">
-                    <div class="col-md-10" style="margin-right: 0">
-                        <h3>@item.tieude</h3>
+                    <img src="~/Assets/images/a1.jpg" alt=" " class="img-responsive" style="width: 100%; height: 700px; border-radius: 5px" />
+                    <div class="row">
+                        <div class="col-md-10" style="margin-right: 0">
+                            <h3>@item.tieude</h3>
+                        </div>
+                        <div class="col-md-2" id="idbtnSave" style="padding: 2em 15px 0px 0px; text-align: right">
+                            <button class="btn-success btn">
+                                <i class="fa fa-heart"></i> Lưu tin
+                            </button>
+                        </div>
                     </div>
-                    <div class="col-md-2" id="idbtnSave" style="padding: 2em 15px 0px 0px; text-align: right">
-                        <button class="btn-success btn">
-                            <i class="fa fa-heart"></i> Lưu tin
-                        </button>
+                    <h3>@item.tieudephu</h3>
+                    <ul>
+                        <li><span class="fa fa-user" aria-hidden="true"></span><a href="#">@item.hotentk</a></li>
+                        <li><span class="fa fa-tag" aria-hidden="true"></span><a href="#">5 Tags</a></li>
+                        <li><span class="fa fa-envelope-o" aria-hidden="true"></span><a href="#">5 Comments</a></li>
+                    </ul>
+                    <p>@item.mota</p>
+                    <h3>Thông tin chính</h3>
+                    <div class="row" style="margin-left: 10px">
+                        <div class="col-md-4">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td>Giá:</td>
+                                    <td>@item.gia</td>
+                                </tr>
+                                <tr>
+                                    <td>Nhà tắm:</td>
+                                    <td>@item.nhatam</td>
+                                </tr>
+                                <tr>
+                                    <td>Lầu:</td>
+                                    <td>@item.lau</td>
+                                </tr>
+                                <tr>
+                                    <td>Phòng ngủ:</td>
+                                    <td>@item.phongngu</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-4">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <td>Diện tích:</td>
+                                    <td>@item.dientich</td>
+                                </tr>
+                                <tr>
+                                    <td>Ngày đăng:</td>
+                                    <td>@item.ngaydang</td>
+                                </tr>
+                            </table>
+                        </div>
+
                     </div>
+
                 </div>
-                <h3>@item.tieudephu</h3>
-                <ul>
-                    <li><span class="fa fa-user" aria-hidden="true"></span><a href="#">@item.hotentk</a></li>
-                    <li><span class="fa fa-tag" aria-hidden="true"></span><a href="#">5 Tags</a></li>
-                    <li><span class="fa fa-envelope-o" aria-hidden="true"></span><a href="#">5 Comments</a></li>
-                </ul>
-                <p>@item.mota</p>
-                <h3>Thông tin chính</h3>
-                <div class="row" style="margin-left: 10px">
-                    <div class="col-md-4">
-                        <table class="table table-borderless">
-                            <tr>
-                                <td>Giá:</td>
-                                <td>@item.gia</td>
-                            </tr>
-                            <tr>
-                                <td>Nhà tắm:</td>
-                                <td>@item.nhatam</td>
-                            </tr>
-                            <tr>
-                                <td>Lầu:</td>
-                                <td>@item.lau</td>
-                            </tr>
-                            <tr>
-                                <td>Phòng ngủ:</td>
-                                <td>@item.phongngu</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="col-md-4">
-                        <table class="table table-borderless">
-                            <tr>
-                                <td>Diện tích:</td>
-                                <td>@item.dientich</td>
-                            </tr>
-                            <tr>
-                                <td>Ngày đăng:</td>
-                                <td>@item.ngaydang</td>
-                            </tr>
-                        </table>
-                    </div>
-
-                </div>
-
-            </div>
                 <div class="admin">
                     <p>
                         <i class="fa fa-quote-left" aria-hidden="true"></i> Giá: 4 tỷ 500 triệu
@@ -213,58 +214,55 @@
                         <i class="fa fa-exclamation-triangle"></i> Báo cáo
                     </button>
                 </div>
+                <div class="w3layouts_mail_grid single" style="margin-bottom: 30px">
+                    <h3 class="single">Bình luận cho bài viết</h3>
+                    <form action="#" method="post">
+                        <div class="col-md-6 wthree_contact_left_grid">
+                            <textarea id="content" name="Message" placeholder="Gõ bình luận của bạn..." rows="2" required=""></textarea>
+                            <button id="btn_Comment" type="submit" class="btn btn-primary">Gửi bình luận</button>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </form>
+                </div>
                 <div class="comments">
                     <h3 class="single">Bình Luận</h3>
-                    <div class="comments-grids">
-                        <div class="comments-grid">
-                            <div class="comments-grid-left">
-                                <img src="~/Assets2/images/pf1.jpg" alt=" " class="img-responsive">
+                    <div class="comments-grids" id="listComments">
+                        @foreach (var item1 in listcomment)
+                        {
+                            <div class="comments-grid">
+                                <div class="comments-grid-left">
+                                    <img src="~/Assets2/images/pf1.jpg" alt=" " style="width: 100px; height: 100px" class="img-responsive">
+                                </div>
+                                <div class="comments-grid-right">
+                                    <h4><a href="#">@item1.UserName</a></h4>
+                                    <ul>
+                                        <li>@item1.DateComment<i>|</i></li>
+                                        <li><a href="#">Trả Lời</a></li>
+                                    </ul>
+                                    <p>
+                                        @item1.ContentComment
+                                    </p>
+                                </div>
+                                <div class="clearfix"> </div>
                             </div>
-                            <div class="comments-grid-right">
-                                <h4><a href="#">@item</a></h4>
-                                <ul>
-                                    <li>5 Nov 2020 <i>|</i></li>
-                                    <li><a href="#">Trả Lời</a></li>
-                                </ul>
-                                <p>
-                                    Nhà này có đầy đủ tiện nghi không ?
-                                </p>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
+                        }
                         @*<div class="comments-grid">
-                            <div class="comments-grid-left">
-                                <img src="~/Assets2/images/pf2.jpg" alt=" " class="img-responsive">
-                            </div>
-                            <div class="comments-grid-right">
-                                <h4><a href="#">Minh Ngọc</a></h4>
-                                <ul>
-                                    <li>8 Nov 2020 <i>|</i></li>
-                                    <li><a href="#">Trả Lời</a></li>
-                                </ul>
-                                <p>
-                                    Có cần đặt cọc trước không. Thanh toán thế nào ?
-                                </p>
-                            </div>
-                            <div class="clearfix"> </div>*@
+                    <div class="comments-grid-left">
+                        <img src="~/Assets2/images/pf2.jpg" alt=" " class="img-responsive">
                     </div>
-                    <div class="w3layouts_mail_grid single">
-                        <h3 class="single">Bình luận cho bài viết</h3>
-                        <form action="#" method="post">
-                            <div class="col-md-6 wthree_contact_left_grid">
-                                <input type="text" name="UserName" placeholder="Tên" required="">
-                                <input type="email" name="Email" placeholder="Email" required="">
-                                <input type="text" name="Telephone" placeholder="Số Điện Thoại" required="">
-                                <input type="text" name="Subject" placeholder="Tiêu Đề" required="">
-                            </div>
-                            <div class="col-md-6 wthree_contact_left_grid">
-                                <textarea id="content" name="Message" placeholder="Gõ bình luận của bạn..." required=""></textarea>
-                                <button id="btn_Comment" type="submit" value="Gửi bình luận" />
-                            </div>
-                            <div class="clearfix"> </div>
+                    <div class="comments-grid-right">
+                        <h4><a href="#">Minh Ngọc</a></h4>
+                        <ul>
+                            <li>8 Nov 2020 <i>|</i></li>
+                            <li><a href="#">Trả Lời</a></li>
+                        </ul>
+                        <p>
+                            Có cần đặt cọc trước không. Thanh toán thế nào ?
+                        </p>
+                    </div>
+                    <div class="clearfix"> </div>*@
+                    </div>
 
-                        </form>
-                    </div>
                 </div>
             }
         </div>
@@ -388,6 +386,26 @@
                 success: function () {
                     alert('Gửi báo cáo thành công')
                     $(reportModal).hide()
+                },
+                error: function () {
+                    alert('Lưu thất bại !!!')
+                }
+            })
+        })
+    })
+    $(document).ready(function () {
+        $('#btn_Comment').click(function () {
+            var content = document.getElementById("content").value;
+            var idbv = $('#idbvyt').text()
+            $.ajax({
+                type: 'post',
+                url: '/Posting/Comment',
+                data: { Message: content, idbv: idbv},
+                dataType: 'json',
+                success: function (result) {
+                    $.each(result, function (index, value) {
+                        $('#listComments').append('<div class="comments-grid"><div class="comments-grid-left"><img src="~/Assets2/images/pf1.jpg" alt=" " style="width: 100px; height: 100px" class="img-responsive"></div><div class="comments-grid-right"><h4><a href="#">' +value.UserName+'</a ></h4 ><ul><li>'+value.DateComment+'<i>|</i></li><li><a href="#">Trả Lời</a></li></ul><p>'+value.ContentComment+'</p></div > <div class="clearfix"> </div></div>')
+                    })
                 },
                 error: function () {
                     alert('Lưu thất bại !!!')

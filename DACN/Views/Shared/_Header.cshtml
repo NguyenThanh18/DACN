@@ -1,4 +1,5 @@
 ﻿<link href="~/Assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    
 <link href="~/Assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
 @{
     var session = (DACN.Common.UserLogin)Session[DACN.Common.CommonConstants.USER_SESSION];
@@ -27,8 +28,8 @@
                                     </a>
 
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="width: 200px">
-                                        <a class="dropdown-item" href="#" style="margin: 10px; margin-bottom: 20px"><i class="glyphicon glyphicon-user" aria-hidden="true"></i>Quản lý tài khoản</a><br />
-                                        <a class="dropdown-item" href="#" style="margin: 10px; margin-bottom: 20px"><i class="glyphicon glyphicon-edit" aria-hidden="true"></i>Quản lý bài đăng</a>
+                                        <a class="dropdown-item" href="@Url.Action("PostsManager","Posting")" style="margin: 10px; margin-bottom: 20px"><i class="glyphicon glyphicon-user" aria-hidden="true"></i>Quản lý bài đăng</a><br />
+                                        <a class="dropdown-item" href="#" style="margin: 10px; margin-bottom: 20px"><i class="glyphicon glyphicon-edit" aria-hidden="true"></i>Quản lý tài khoản</a>
                                     </div>
                                 </div> 
                             </li>
