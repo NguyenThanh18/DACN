@@ -1,7 +1,6 @@
 ﻿
 @{
     ViewBag.Title = "Detail";
-    Layout = "~/Views/Shared/_Layout.cshtml";
     var detail = ViewBag.Detail;
     var listNhaTro = ViewBag.ListNhaTro;
     var listnew = (List<DACN.Models.EF.BaiViet>)ViewBag.listnew;
@@ -15,51 +14,20 @@
         word-wrap: break-word
     }
 </style>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Soft Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
-<script type="application/x-javascript">
-    addEventListener("load", function () {
-        setTimeout(hideURLbar, 0);
-    }, false);
-
-    function hideURLbar() {
-        window.scrollTo(0, 1);
-    }
-</script>
 <!--//tags -->
 <link href="~/Assets2/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="~/Assets2/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="~/Assets/css/fontawesome.min.css" rel="stylesheet" type="text/css" media="all"/>
 
 <link href="~/Assets2/css/font-awesome.css" rel="stylesheet">
 <!-- //for bootstrap working -->
-<link href="//fonts.googleapis.com/css?family=Work+Sans:200,300,400,500,600,700" rel="stylesheet">
-<link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic'
-      rel='stylesheet' type='text/css'>
-<head>
     <!--css-->
     <link href="~/Assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/Assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <!--Front icon-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!--css-->
-    <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" data-auto-replace-svg="nest"></script>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Home Plat Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
-    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-    <link rel="stylesheet" href="~/Assets/css/flexslider.css" type="text/css" media="screen" />
-    <!--js-->
     @*<script src="~/Assets/js/jquery.min.js"></script>*@
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Assets/js/bootstrap.min.js"></script>
     <!--js-->
-    <!--webfonts-->
-    <link href='//fonts.googleapis.com/css?family=Josefin+Sans:400,700italic,700,600italic,600,400italic,300italic,300,100italic,100' rel='stylesheet' type='text/css'>
-    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
     <!--webfonts-->
     <script src="~/Assets/js/responsiveslides.min.js"></script>
 
@@ -88,7 +56,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             });
         });
     </script>
-</head>
 <!--signin-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -158,7 +125,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
 </div>
 <!--Register-->
-<div class="inner_content_info_agileits" style="padding: 0">   
+<div class="" style="padding: 0; margin-bottom: 2100px">   
     @if (session != null)
     {
         <div id="user_id" hidden>@session.userID</div>
@@ -178,7 +145,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
                     <div class="col-md-2" id="idbtnSave" style="padding: 2em 15px 0px 0px; text-align: right">
                         <button class="btn-success btn">
-                            <i class="fas fa-heart"></i> Lưu tin
+                            <i class="fa fa-heart"></i> Lưu tin
                         </button>
                     </div>
                 </div>
@@ -243,7 +210,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
                 <div style="margin-bottom: 3em">
                     <button class="btn-warning btn" style="border-radius: 5px" id="btnReport">
-                        <i class="fas fa-exclamation-triangle"></i> Báo cáo
+                        <i class="fa fa-exclamation-triangle"></i> Báo cáo
                     </button>
                 </div>
                 <div class="comments">
@@ -362,71 +329,72 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
         </div>
     </div>
-    <!-- js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-    <script type="text/javascript" src="~/Assets2/js/bootstrap.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script>
-        var btnReport = document.getElementById("btnReport");
-        var btnClose = document.getElementById("btnClose");
-        var modal = document.getElementById("reportModal");
-        var span = document.getElementsByClassName("close")[0];
+<!-- js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="~/Assets2/js/bootstrap.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    var btnReport = document.getElementById("btnReport");
+    var btnClose = document.getElementById("btnClose");
+    var modal = document.getElementById("reportModal");
+    var span = document.getElementsByClassName("close")[0];
 
-        btnReport.onclick = function () {
-            modal.style.display = "block";
-        }
+    btnReport.onclick = function () {
+        modal.style.display = "block";
+    }
 
-        btnClose.onclick = function () {
+    btnClose.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
             modal.style.display = "none";
         }
-
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
+    }
+    $(document).ready(function () {
+        $('#idbtnSave').click(function () {
+            var id = $('#idbvyt').text()
+            var user_id = $('#user_id').text()
+            if (user_id == "") {
+                alert('Bạn cần đăng nhập để thực hiện thao tác này !!!!')
             }
-        }
-        $(document).ready(function () {
-            $('#idbtnSave').click(function () {
-                var id = $('#idbvyt').text()
-                var user_id = $('#user_id').text()
-                if (user_id == "") {
-                    alert('Bạn cần đăng nhập để thực hiện thao tác này !!!!')
-                }
-                else if (user_id != 0) {
-                    $.ajax({
-                        type: 'post',
-                        url: '/Posting/SaveWishlist',
-                        data: { id: id, user_id: user_id },
-                        dataType: 'json',
-                        success: function () {
-                            alert('Bạn đã lưu thành công !!!')
-                        },
-                        error: function () {
-                            alert('Lưu thất bại !!!')
-                        }
-                    })
-                }
-            })
-        })
-        $(document).ready(function () {
-            $('#sendRp').click(function () {
-                var idbv = $('#idbvyt').text()
-                var tieude = document.getElementById("tieude").value;
-                var mota = document.getElementById("mota").value;
+            else if (user_id != 0) {
                 $.ajax({
                     type: 'post',
-                    url: '/Posting/Report',
-                    data: { tieude: tieude, mota: mota, idbv: idbv},
+                    url: '/Posting/SaveWishlist',
+                    data: { id: id, user_id: user_id },
                     dataType: 'json',
                     success: function () {
-                        alert('Gửi báo cáo thành công')
-                        $(reportModal).hide()
+                        alert('Bạn đã lưu thành công !!!')
                     },
                     error: function () {
                         alert('Lưu thất bại !!!')
                     }
                 })
+            }
+        })
+    })
+    $(document).ready(function () {
+        $('#sendRp').click(function () {
+            var idbv = $('#idbvyt').text()
+            var tieude = document.getElementById("tieude").value;
+            var mota = document.getElementById("mota").value;
+            $.ajax({
+                type: 'post',
+                url: '/Posting/Report',
+                data: { tieude: tieude, mota: mota, idbv: idbv},
+                dataType: 'json',
+                success: function () {
+                    alert('Gửi báo cáo thành công')
+                    $(reportModal).hide()
+                },
+                error: function () {
+                    alert('Lưu thất bại !!!')
+                }
             })
         })
-    </script>
+    })
+</script>
+
 
