@@ -1,0 +1,13 @@
+diff a/DACN/Controllers/PostingController.cs b/DACN/Controllers/PostingController.cs	(rejected hunks)
+@@ -173,5 +173,10 @@
+             db.SaveChanges();
+             return View();
+         }
++        public ActionResult PostManager(int? id)
++        {
++            var postlist = db.BaiViets.SqlQuery("Select * From BaiViet Where idTK = id").ToList();
++            return View();
++        }
+     }
+ }
+\ No newline at end of file
