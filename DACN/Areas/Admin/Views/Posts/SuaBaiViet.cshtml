@@ -7,6 +7,8 @@
     var listLoaiBDS = ViewBag.LoaiBDS;
     var res = ViewBag.Detail;
 }
+@using DACN.Models.EF
+@model BaiViet
 <style>
 
     .dropzone {
@@ -123,7 +125,7 @@
             <div class="form-group row">
                 <label for="post_content" class="col-md-12 col-form-label">Nội dung mô tả</label>
                 <div class="col-md-9">
-                    <textarea class="form-control" name="MoTa" rows="10" required=""  minlength="100" ></textarea>
+                    @Html.TextAreaFor(Model => Model.MoTa, new { @class = "form-control", rows = "3"})
                 </div>
             </div>
             <div class="row mt-3">
