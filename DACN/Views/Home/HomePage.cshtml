@@ -239,6 +239,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
     <!--Register-->
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script>
         $(document).ready(function () {
             $('#idQuan').change(function () {
@@ -265,6 +266,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     }
                                 })
                             }
+                        }
+                    })
+                }
+                else {
+                    $.ajax({
+                        type: "post",
+                        url: "/Home/ListAllPhuong",
+                        data: { id: idQuan },
+                        dataType: "json",
+                        success: function (result) {
+                            $('#phuong').html('<h5>Phường/Xã</h5><select class= "sel" id = "idPhuong" name = "idPhuong"><option value="">Tất Cả</option></select >')
+                            $.each(result, function (index, value) {
+                                $('#idPhuong').append('<option value="' + value.idPhuong + '">' + value.TenPhuong + '</option>')
+                            })
                         }
                     })
                 }

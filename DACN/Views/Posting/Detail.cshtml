@@ -337,13 +337,13 @@
     var modal = document.getElementById("reportModal");
     var span = document.getElementsByClassName("close")[0];
 
-    btnReport.onclick = function () {
+    btnReport.click(function() {
         modal.style.display = "block";
-    }
+    })
 
-    btnClose.onclick = function () {
+    btnClose.click(function () {
         modal.style.display = "none";
-    }
+    })
 
     window.onclick = function (event) {
         if (event.target == modal) {

@@ -96,15 +96,14 @@
         </div>
     </div>
 </div>
-
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script>
     var modal = document.getElementById("magagerAccount");
-    var btn_manager = document.getElementById("btn-manager");
     var body = document.getElementsByTagName("BODY");
 
-    btn_manager.onclick = function () {
+    $("btn-manager").click(function() {
         modal.style.display = "block";
-    }
+    })
     body.onclick = function () {
         modal.style.display = "none";
     }

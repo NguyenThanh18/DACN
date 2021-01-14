@@ -29,6 +29,11 @@ namespace DACN.Controllers
             ViewBag.listKieuBDS = new KieuBDSDAO().ListAll();
             return PartialView();
         }
+        public JsonResult ListAllPhuong()
+        {
+            var listPhuong = new PhuongDAO().ListAll();
+            return Json(listPhuong, JsonRequestBehavior.AllowGet);
+        }
         public JsonResult listPhuong(string name)
         {
             var listPhuong = db.Phuongs.ToList();
