@@ -270,6 +270,11 @@ namespace DACN.Controllers
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             });
             return Json(value, JsonRequestBehavior.AllowGet);
+        }    
+        public ActionResult PostManager(int? id)
+        {
+            var postlist = db.BaiViets.SqlQuery("Select * From BaiViet Where idTK = id").ToList();
+            return View();
         }
     }
 }
