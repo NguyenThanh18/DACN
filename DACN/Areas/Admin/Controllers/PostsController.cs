@@ -42,8 +42,6 @@ namespace DACN.Areas.Admin.Controllers
             var HamNT = new FunctionNhaTro();
             var HamBC = new ReportDao();
             HamBC.Delete(Int32.Parse(id));
-            HamP.Delete(bv.idBV);
-            HamNT.Delete(nt.idNT);
 
             return RedirectToAction("QLBC", "Home");
         }
@@ -113,7 +111,7 @@ namespace DACN.Areas.Admin.Controllers
             ViewBag.Phuong = db.Phuongs.ToList();
             ViewBag.LoaiBDS = db.LoaiBDS.ToList();
             ViewBag.Detail = result;
-            return View(result);
+            return View(bv);
         }
         public ActionResult Posting()
         {
