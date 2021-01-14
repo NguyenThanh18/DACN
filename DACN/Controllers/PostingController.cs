@@ -98,7 +98,6 @@ namespace DACN.Controllers
             DateTime now = DateTime.Now;
             bc.NgayBC = now;
             bc.TrangThai = false;
-            bc.idBV = Int32.Parse(idbv);
             bcdao.Insert(bc);
             return Json(new { Message = "success", JsonRequestBehavior = JsonRequestBehavior.AllowGet });
 
