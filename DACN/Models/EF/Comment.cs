@@ -10,7 +10,6 @@ namespace DACN.Models.EF
     public partial class Comment
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int IdComment { get; set; }
 
         [StringLength(100)]
@@ -20,5 +19,7 @@ namespace DACN.Models.EF
         public string UserName { get; set; }
 
         public DateTime? DateComment { get; set; }
+
+        public int? idBV { get; set; }
     }
 }

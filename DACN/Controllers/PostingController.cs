@@ -2,6 +2,8 @@
 using DACN.Models;
 using DACN.Models.DAO;
 using DACN.Models.EF;
+using DACN.Models.Function;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -66,6 +68,7 @@ namespace DACN.Controllers
                 nhatam = nhatro.NhaTam,
                 dientich = nhatro.DienTich
             });
+            ViewBag.comment = db.Comments.SqlQuery("Select * from Comment c where c.idBV = " + id);
             ViewBag.Detail = result;
             ViewBag.listnew = db.BaiViets.SqlQuery("select * from BaiViet where NgayDang >= GETDATE()").ToList();
             return View();
@@ -98,6 +101,31 @@ namespace DACN.Controllers
             bcdao.Insert(bc);
             return Json(new { Message = "success", JsonRequestBehavior = JsonRequestBehavior.AllowGet });
 
+        }
+        [HttpPost]
+        public ActionResult SuaBaiViet(PostingModel model)
+        {
+            BaiViet bv = db.BaiViets.Find(model.idBV);
+            NhaTro nt = db.NhaTroes.Find(bv.idNT);
+            bv.TieuDe = model.TieuDe;
+            bv.TieuDePhu = model.TieuDePhu;
+            bv.MoTa = model.MoTa;
+
+            nt.SoNha = model.SoNha;
+            nt.Gia = model.Gia;
+            nt.Lau = model.Lau;
+            nt.idPhuong = model.idPhuong;
+            nt.idQuan = model.idQuan;
+            nt.PhongNgu = model.PhongNgu;
+            nt.NhaTam = model.NhaTam;
+
+            var bvdao = new BaiVietDAO();
+            bvdao.Update(bv);
+            var ntdao = new NhaTroDAO();
+            int idnt = (int)bv.idNT;
+            ntdao.Update(nt, idnt);
+
+            return RedirectToAction("PostsManager","Posting");
         }
         [HttpPost]
         public ActionResult Posting(PostingModel model)
@@ -163,16 +191,86 @@ namespace DACN.Controllers
             db.SaveChanges();
             return Json(new { Message = "success", JsonRequestBehavior = JsonRequestBehavior.AllowGet });
         }
-        public ActionResult Comment(CommentModel model)
+        //public ActionResult Comment(CommentModel model)
+        //{
+        //    var comment = new Comment();
+        //    comment.UserName = model.UserName;
+        //    comment.ContentComment = model.ContentComment;
+        //    comment.DateComment = DateTime.Now;
+        //    db.Comments.Add(comment);
+        //    db.SaveChanges();
+        //    return View();
+        //}
+        public ActionResult PostsManager()
         {
-            var comment = new Comment();
-            comment.UserName = model.UserName;
-            comment.ContentComment = model.ContentComment;
-            comment.DateComment = DateTime.Now;
-            db.Comments.Add(comment);
-            db.SaveChanges();
+            ViewBag.TP = db.ThanhPhoes.ToList();
+            ViewBag.Quan = db.Quans.ToList();
+            ViewBag.Phuong = db.Phuongs.ToList();
+            ViewBag.LoaiBDS = db.LoaiBDS.ToList();
+            var session = (DACN.Common.UserLogin)Session[DACN.Common.CommonConstants.USER_SESSION];
+            var postlist = db.BaiViets.SqlQuery("select * from BaiViet b, NhaTro n where b.idNT = n.idNT and b.idTK = "+session.userID);
+            ViewBag.postlist = postlist;
             return View();
         }
+        public ActionResult XoaBaiViet()
+        {
+            string id = RouteData.Values["id"].ToString();
+            // Trước khi xóa bài viết sau đó xóa nhà trọ
+            var bv = db.BaiViets.Find(Int32.Parse(id));
+            var nv = db.NhaTroes.Find(bv.idNT);
+            var HamP = new FunctionPosts();
+            var HamNT = new FunctionNhaTro();
+            HamP.Delete(Int32.Parse(id));
+            HamNT.Delete(nv.idNT);
+
+            return RedirectToAction("PostsManager", "Posting");
+        }
+        public JsonResult Comment(string Message, string idbv)
+        {
+            var session = (DACN.Common.UserLogin)Session[DACN.Common.CommonConstants.USER_SESSION];
+            TaiKhoan tk = db.TaiKhoans.Find(session.userID);
+            Comment cm = new Comment();
+            cm.ContentComment = Message;
+            cm.DateComment =  DateTime.Now;
+            cm.idBV = Int32.Parse(idbv);
+            if (tk == null) cm.UserName = null;
+            else cm.UserName = tk.Username;
+
+            var commentdao = new CommentDAO();
+            commentdao.Insert(cm);
+            Comment temp = db.Comments.OrderByDescending(p => p.IdComment).FirstOrDefault();
+            string value = string.Empty;
+            value = JsonConvert.SerializeObject(temp, Formatting.Indented, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            return Json(value, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetData(int idBV)
+        {
+            BaiViet bv = db.BaiViets.Where(x => x.idBV == idBV).SingleOrDefault();
+            NhaTro nt = db.NhaTroes.Where(x => x.idNT == bv.idNT).SingleOrDefault();
+            PostingModel view = new PostingModel();
+            view.TieuDe = bv.TieuDe;
+            view.TieuDePhu = bv.TieuDePhu;
+            view.NgayDang = bv.NgayDang;
+            view.DienTich = nt.DienTich;
+            view.Lau = (int)nt.Lau;
+            view.PhongNgu = (int)nt.PhongNgu;
+            view.NhaTam = (int)nt.NhaTam;
+            view.MoTa = bv.MoTa;
+            view.SoNha = nt.SoNha;
+            view.Gia = (int)nt.Gia;
+            view.idQuan = (int)nt.idQuan;
+            view.idPhuong = (int)nt.idPhuong;
+            view.idBV = idBV;
+            string value = string.Empty;
+            value = JsonConvert.SerializeObject(view, Formatting.Indented, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            return Json(value, JsonRequestBehavior.AllowGet);
+        }    
         public ActionResult PostManager(int? id)
         {
             var postlist = db.BaiViets.SqlQuery("Select * From BaiViet Where idTK = id").ToList();

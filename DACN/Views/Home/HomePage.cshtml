@@ -239,7 +239,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
     <!--Register-->
-    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script>
         $(document).ready(function () {
             $('#idQuan').change(function () {
@@ -269,6 +269,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         }
                     })
                 }
+                else {
+                    $.ajax({
+                        type: "post",
+                        url: "/Home/ListAllPhuong",
+                        data: { id: idQuan },
+                        dataType: "json",
+                        success: function (result) {
+                            $('#phuong').html('<h5>Phường/Xã</h5><select class= "sel" id = "idPhuong" name = "idPhuong"><option value="">Tất Cả</option></select >')
+                            $.each(result, function (index, value) {
+                                $('#idPhuong').append('<option value="' + value.idPhuong + '">' + value.TenPhuong + '</option>')
+                            })
+                        }
+                    })
+                }
             })
         })
         $('#idPhuong').change(function () {
@@ -283,7 +297,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     dataType: "json",
                     success: function (result) {
                         if (result.length != 0) {
-                            $('#quan').html('<h5>Quận/Huyện</h5><select class= "sel" id = "idQuan" name = "idQuan"><option value="">Tất Cả</option></select >')
+                            $('#quan').html('<h5>Quận/Huyện</h5><select class= "sel" id = "idQuan" name = "idQuan"></select >')
                             $.each(result, function (index, value) {
                                 $('#idQuan').append('<option value="' + value[0] + '">' + value[1] + '</option>')
                             })
