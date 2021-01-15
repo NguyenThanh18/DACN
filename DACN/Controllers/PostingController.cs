@@ -276,5 +276,11 @@ namespace DACN.Controllers
             var postlist = db.BaiViets.SqlQuery("Select * From BaiViet Where idTK = id").ToList();
             return View();
         }
+        public ActionResult DanhSachDaLuu()
+        {
+            var session = (DACN.Common.UserLogin)Session[DACN.Common.CommonConstants.USER_SESSION];
+            ViewBag.listluu = db.BaiViets.SqlQuery("select* from BaiViet b, DanhSachYeuThich d where b.idTK = "+session.userID+" and d.IdBV = b.idBV");
+            return View();
+        }
     }
 }

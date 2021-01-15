@@ -38,12 +38,8 @@ namespace DACN.Areas.Admin.Controllers
             var bc = db.BaoCaos.Find(Int32.Parse(id));
             var bv = db.BaiViets.Find(bc.idBV);
             var nt = db.NhaTroes.Find(bv.idNT);
-            var HamP = new FunctionPosts();
-            var HamNT = new FunctionNhaTro();
             var HamBC = new ReportDao();
             HamBC.Delete(Int32.Parse(id));
-            HamP.Delete(bv.idBV);
-            HamNT.Delete(nt.idNT);
 
             return RedirectToAction("QLBC", "Home");
         }

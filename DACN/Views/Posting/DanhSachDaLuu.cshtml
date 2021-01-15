@@ -1,0 +1,244 @@
+﻿@model DACN.Models.PostingModel
+
+@{
+    var postlist = ViewBag.postlist;
+    Layout = "";
+    var listtp = ViewBag.TP;
+    var listquan = ViewBag.Quan;
+    var listphuong = ViewBag.Phuong;
+    var listloaibds = ViewBag.LoaiBDS;
+    var listluu = ViewBag.listluu;
+}
+@{
+    var session = (DACN.Common.UserLogin)Session[DACN.Common.CommonConstants.USER_SESSION];
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/Admin/css/all.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="~/Content/Admin/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Assets/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link href="~/Assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <style>
+        h2 {
+            margin-top: 20px;
+            margin-left: 20px
+        }
+
+        .modal-dialog {
+            margin-left: 20%;
+        }
+
+        .modal-content {
+            width: 1000px; /* New width for default modal */
+        }
+    </style>
+</head>
+<body>
+    <div class="header" id="home" style="zoom: 90%">
+        <div class="header-top">
+            <div class="container">
+                <div class="head-top">
+                    <div class="indicate">
+                        <i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i><a href="#">General Pvt 66, Dong Da Hanoi, Vietnam.</a>
+                    </div>
+                    <div class="deatils">
+                        <ul>
+                            @if (session == null)
+                            {
+                                <li><i class="glyphicon glyphicon-log-in" aria-hidden="true"></i><a id="btn-sign-in" data-toggle="modal" data-target="#myModal" data-modal-show="one">Sign In</a></li>
+                                <li><i class="glyphicon glyphicon-lock" aria-hidden="true"></i><a href="#" id="btn-register" data-toggle="modal" data-target="#myModal1" data-modal-show="two">Register</a></li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <div class="dropdown show">
+                                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="glyphicon glyphicon-lock" aria-hidden="true"></i>@session.UserName
+                                        </a>
+
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="width: 200px">
+                                            <a class="dropdown-item" href="@Url.Action("PostsManager","Posting")" style="margin: 10px; margin-bottom: 20px"><i class="glyphicon glyphicon-user" aria-hidden="true"></i>Quản lý tài khoản</a><br />
+                                            <a class="dropdown-item" href="#" style="margin: 10px; margin-bottom: 20px"><i class="glyphicon glyphicon-edit" aria-hidden="true"></i>Quản lý bài đăng</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><a href="/Account/Logout" style="background-color: #000022">Logout</a></li>
+                                <li><a href="@Url.Action("Posting","Posting")" class="btn btn-info" style="color: white">Đăng tin</a></li>
+
+                            }
+
+                        </ul>
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="logo">
+                    <h1><a href="@Url.Action("HomePage","Home")">Green Roof<span>Real Estate</span></a></h1>
+                </div>
+
+            </div>
+            @*<div class="modal" id="magagerAccount" style=" width: 10%; margin-left: 70%; margin-top: 40px; text-align: left">
+                    <div class="modal-content" style="padding-top: 20px; padding-left: 10px">
+                        <div class="form-group" style="align-items: center">
+                            <a href="#">Quản lý bài viết</a>
+                        </div>
+                        <hr />
+                        <div class="form-group" style="align-items: center">
+                            <a href="#">Chỉnh sửa tài khoản</a>
+                        </div>
+                    </div>
+                </div>*@
+        </div>
+    </div>
+    <div class="row" style="margin-top: 50px; padding: 10px">
+        <div class="col-2">
+            <div class="user_info" style="margin-left: 20px">
+                <a href="#" class="clearfix">
+                    <div class="user_avatar"><img src=""></div>
+                    <div class="user_meta">
+                        <div class="inner">
+                            <div class="user_name">Sơn Thanh</div>
+                            <div class="user_verify" style="color: #555; font-size: 1.2rem;">0368257602</div>
+                            <div><a class="btn btn-dark btn-sm" href="@Url.Action("Posting","Posting")" style="background-color:#02B875">Đăng tin</a></div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <ul class="nav nav-sidebar">
+                <li class="nav-item">
+                    <a class="nav-link active" href="@Url.Action("PostsManager","Posting")" style="margin-top: 30px">
+                        <svg xmlns="" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        Quản lý tin đăng
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="">
+                        <svg xmlns="" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                        Sửa thông tin cá nhân
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="">
+                        <svg xmlns="" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                        Bài viết đã lưu
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Account/Logout">
+                        <svg xmlns="" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                        Thoát
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-10" style="padding: 0">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                <div class="container-fluid">
+                    <div class="card shadow mb-4">
+                        <h2 class="text-left">Bài viết đã lưu</h2>
+                        <div class="popular-grids" id="listbaiviet">
+                            <div class="row " id="show_bai_viet" style="margin-left: 20px">
+                                @foreach (var item in listluu)
+                                {
+                                    <a style="color: black;" class="col-md-8" href="/Posting/Detail/@item.idBV">
+                                        <div class="" style="height: 150px">
+                                            <div class="form-row">
+                                                <div class="col-md-3">
+                                                    <img src="~/Assets/images/ba1.jpg" width="190" height="120" />
+                                                </div>
+                                                <div class="col-md-5" style="width: 55%">
+                                                    <label>@item.TieuDe</label><br />
+                                                    @item.TieuDePhu<br />
+                                                    <label style="color:#00deb6">Ngày Đăng: &nbsp;</label>@item.NgayDang
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <button class="btn btn-success" style="margin-bottom: 5px">Xem</button><br />
+                                                    <button class="btn btn-danger">Xóa</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+    })
+    function EditPost(idBV) {
+
+        var url = "/Posting/GetData";
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: {idBV: idBV},
+            success: function (data) {
+                var obj = JSON.parse(data);
+                $("#TieuDe").val(obj.TieuDe);
+                $("#TieuDePhu").val(obj.TieuDePhu);
+                $("#MoTa").val(obj.MoTa);
+                $("#PhongNgu").val(obj.PhongNgu);
+                $("#Lau").val(obj.Lau);
+                $("#NhaTam").val(obj.NhaTam);
+                $("#DienTich").val(obj.DienTich);
+                $("#Gia").val(obj.Gia);
+                $("#SoNha").val(obj.SoNha);
+                $("#idPhuong").val(obj.idPhuong);
+                $("#idQuan").val(obj.idQuan);
+                $("#idBV").val(obj.idBV);
+                $.ajax({
+                    type: "post",
+                    url: "/Home/ListQuanByName",
+                    data: { name: name },
+                    dataType: "json",
+                    success: function (result) {
+                        if (result.length != 0) {
+                            $('#quan').html('<h5>Quận/Huyện</h5><select class= "sel" id = "idQuan" name = "idQuan"><option value="">Tất Cả1</option></select >')
+                            $.each(result, function (index, value) {
+                                if (value[0] == obj.idQuan) {
+                                    $('#idQuan').append('<option selected="selected" value="' + value[0] + '">' + value[1] + '</option>')
+                                } else {
+                                    $('#idQuan').append('<option value="' + value[0] + '">' + value[1] + '</option>')
+                                }
+                            })
+                        }
+                    }
+                });
+                //$.ajax({
+                //    type: "post",
+                //    url: "/Home/ListPhuongByName",
+                //    data: { name: name },
+                //    dataType: "json",
+                //    success: function (result) {
+                //        if (result.length != 0) {
+                //            $('#phuong').html('<h5>Phường/Xã</h5><select class= "sel" id = "idPhuong" name = "idPhuong"><option value="">Tất Cả</option></select >')
+                //            $.each(result, function (index, value) {
+                //                if (value[0].localeCompare(obj.idPhuong) == 0) {
+                //                    $('#idPhuong').append('<option selected="selected" value="' + value[0] + '">' + value[1] + '</option>')
+                //                } else {
+                //                    $('#idPhuong').append('<option value="' + value[0] + '">' + value[1] + '</option>')
+                //                }
+                //            })
+                //        }
+                //    }
+                //})
+            }
+        })
+    }
+
+</script>
+

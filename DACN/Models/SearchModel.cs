@@ -13,5 +13,6 @@ namespace DACN.Models
         public int idBDS { get; set; }
         public int MucGia { get; set; }
         public int idKieuBDS { get; set; }
+        public int idLoaiBDS { get; set; }
     }
 }

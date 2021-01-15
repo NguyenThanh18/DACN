@@ -310,8 +310,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         $('#btn_search').click(function () {
             param = $('#BaiVietFrm').serializeArray();
             var user_id = $('#user_id').text();
-            $('#listbaiviet').remove('div[id="show_bai_viet"]');
-            $('#listbaiviet').html('<div class="row" id="show_bai_viet"></div>')
             $.ajax({
                 type: "post",
                 url: "/Home/Search",
@@ -321,7 +319,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     console.log(result.length == 0)
                     if (result != null) {
                         $.each(result, function (index, value) {
-                            $('#show_bai_viet').append('<a style="color: black;" href="/posting/detail/' + value.idbv + '"><div class="col-md-6" style="height: 150px"><div class="form-row"><div class="col-md-5"><img src="~/assets/images/ba1.jpg" width="190" height="120" /></div><div class="col-md-7" style="width: 55%"><label>' + value.tieude + '</label><br />' + value.tieudephu + '<br /><br /><label>ngày đăng: &nbsp;</label>' + value.ngaydang + '</div></div></div></a>')
+                            $('#show_bai_viet').append('<a style="color: black;" href="/posting/detail/' + value.idBV + '"><div class="col-md-6" style="height: 150px"><div class="form-row"><div class="col-md-5"><img src="~/assets/images/ba1.jpg" width="190" height="120" /></div><div class="col-md-7" style="width: 55%"><label>' + value.TieuDe + '</label><br />' + value.TieuDePhu + '<br /><br /><label>ngày đăng: &nbsp;</label>' + value.NgayDang + '</div></div></div></a>')
                         })
                     }
                     if (result.length == 0) {
