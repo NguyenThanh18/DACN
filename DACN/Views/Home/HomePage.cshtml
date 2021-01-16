@@ -33,29 +33,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!--webfonts-->
     <script src="~/Assets/js/responsiveslides.min.js"></script>
     <script>
-        $(function () {
-            $("#slider").responsiveSlides({
-                auto: true,
-                nav: true,
-                speed: 500,
-                namespace: "callbacks",
-                pager: true,
-            });
-        });
+       
     </script>
     <link href="~/Assets/css/owl.carousel.css" rel="stylesheet">
     <script src="~/Assets/js/owl.carousel.js"></script>
     <script>
-        $(document).ready(function () {
-            $("#owl-demo").owlCarousel({
-                items: 1,
-                lazyLoad: true,
-                autoPlay: true,
-                navigation: false,
-                navigationText: false,
-                pagination: true,
-            });
-        });
+        
     </script>
 </head>
 <body>
@@ -115,60 +98,59 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
                 </form>
                 <div class="clearfix"></div>
-                </div>
             </div>
-            <div class="popular-w3">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-9  p-lg-3">
-                            <h2 class="text-left">Tất Cả Bài Viết</h2>
-                            <div class="popular-grids" id="listbaiviet">
-                                <div class="row" id="show_bai_viet">
-                                    @foreach (var item in listBaiViet)
-                                    {
-                                        <a style="color: black;" href="/Posting/Detail/@item.idBV">
-                                            <div class="col-md-6" style="height: 150px">
-                                                <div class="form-row">
-                                                    <div class="col-md-5">
-                                                        <img src="~/Assets/images/ba1.jpg" width="190" height="120" />
-                                                    </div>
-                                                    <div class="col-md-7" style="width: 55%">
-                                                        <label>@item.TieuDe</label><br />
-                                                        @item.TieuDePhu<br /><br />
-                                                        <label style="color:#00deb6">Ngày Đăng: &nbsp;</label>@item.NgayDang
-                                                    </div>
+        </div>
+        <div class="popular-w3">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-9  p-lg-3">
+                        <h2 class="text-left">Tất Cả Bài Viết</h2>
+                        <div class="popular-grids" id="listbaiviet">
+                            <div class="row" id="show_bai_viet">
+                                @foreach (var item in listBaiViet)
+                                {
+                                    <a style="color: black;" href="/Posting/Detail/@item.idBV" id="muchremove">
+                                        <div class="col-md-6" style="height: 150px">
+                                            <div class="form-row">
+                                                <div class="col-md-5">
+                                                    <img src="~/Assets/images/ba1.jpg" width="190" height="120" />
+                                                </div>
+                                                <div class="col-md-7" style="width: 55%">
+                                                    <label>@item.TieuDe</label><br />
+                                                    @item.TieuDePhu<br /><br />
+                                                    <label style="color:#00deb6">Ngày Đăng: &nbsp;</label>@item.NgayDang
                                                 </div>
                                             </div>
-                                        </a>
-                                    }
-                                </div>
+                                        </div>
+                                    </a>
+                                }
                             </div>
                         </div>
-                        <div class="col-md-3 p-lg-3">
-                            <h2 class="text-left">Tin Mới Đăng</h2>
-                            @foreach (var itemnew in listnew)
-                            {
-                                <a style="color: black;" href="/Posting/Detail/@itemnew.idBV">
-                                    <div style="border: 1px solid #eee; border-radius: 5px; background-color: #eee; margin-bottom: 15px; margin-top: 10px;">
-                                        <div style="padding: 5px 10px 5px 10px;">
-                                            <label>@itemnew.TieuDe</label><br />
-                                            @itemnew.TieuDePhu<br /><br />
-                                            <label style="color:#00deb6">Ngày Đăng: &nbsp;</label>@itemnew.NgayDang
-                                        </div>
+                    </div>
+                    <div class="col-md-3 p-lg-3">
+                        <h2 class="text-left">Tin Mới Đăng</h2>
+                        @foreach (var itemnew in listnew)
+                        {
+                            <a style="color: black;" href="/Posting/Detail/@itemnew.idBV">
+                                <div style="border: 1px solid #eee; border-radius: 5px; background-color: #eee; margin-bottom: 15px; margin-top: 10px;">
+                                    <div style="padding: 5px 10px 5px 10px;">
+                                        <label>@itemnew.TieuDe</label><br />
+                                        @itemnew.TieuDePhu<br /><br />
+                                        <label style="color:#00deb6">Ngày Đăng: &nbsp;</label>@itemnew.NgayDang
                                     </div>
-                                </a>
-                            }
-                        </div>
+                                </div>
+                            </a>
+                        }
                     </div>
                 </div>
             </div>
-            <!--popular-->
-            <!--footer-->
-            
         </div>
+        <!--popular-->
+        <!--footer-->
+
+    </div>
     <!--footer-->
     <!--copy-->
-    
     <!--copy-->
     <!--signin-->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
@@ -311,17 +293,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             param = $('#BaiVietFrm').serializeArray();
             var user_id = $('#user_id').text();
             $('#listbaiviet').remove('div[id="show_bai_viet"]');
-            $('#listbaiviet').html('<div class="row" id="show_bai_viet"></div>')
             $.ajax({
                 type: "post",
                 url: "/Home/Search",
                 data: param,
                 dataType: "json",
                 success: function (result) {
-                    console.log(result.length == 0)
                     if (result != null) {
+                        $('#listbaiviet').html('<div class="row" id="show_bai_viet"></div>')
                         $.each(result, function (index, value) {
-                            $('#show_bai_viet').append('<a style="color: black;" href="/posting/detail/' + value.idbv + '"><div class="col-md-6" style="height: 150px"><div class="form-row"><div class="col-md-5"><img src="~/assets/images/ba1.jpg" width="190" height="120" /></div><div class="col-md-7" style="width: 55%"><label>' + value.tieude + '</label><br />' + value.tieudephu + '<br /><br /><label>ngày đăng: &nbsp;</label>' + value.ngaydang + '</div></div></div></a>')
+                            $('#show_bai_viet').append('<a style="color: black;" href="/Posting/Detail/'+value.idBV+'" id="muchremove"><div class="col-md-6" style="height: 150px"><div class="form-row"><div class="col-md-5"><img src="~/Assets/images/ba1.jpg" width="190" height="120" /></div><div class="col-md-7" style="width: 55%"><label>'+value.TieuDe+'</label><br />'+value.TieuDePhu+'<br /><br /><label style="color:#00deb6">Ngày Đăng: &nbsp;</label>'+value.NgayDang+'</div></div></div></a>')
                         })
                     }
                     if (result.length == 0) {

@@ -2,13 +2,10 @@
 using DACN.Models.DAO;
 using DACN.Models.EF;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Web;
 using System.Web.Mvc;
-
+using System.Web.Script.Serialization;
 namespace DACN.Controllers
 {
     public class HomeController : Controller
@@ -20,6 +17,7 @@ namespace DACN.Controllers
             ViewBag.listBaiViet = new BaiVietDAO().ListAll();
             ViewBag.Quan = db.Quans.ToList();
             ViewBag.listKieuBDS = db.KieuBDS.ToList();
+            ViewBag.listLoaiBDS = db.LoaiBDS.ToList();
             ViewBag.Phuong = db.Phuongs.SqlQuery("select distinct * from Phuong").ToList();
             ViewBag.listnew = db.BaiViets.SqlQuery("select * from BaiViet where NgayDang >= GETDATE()").ToList();
             return View();
@@ -118,70 +116,48 @@ namespace DACN.Controllers
             var list = listResult;
             return Json(listResult, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Search(SearchModel entity)
+        static string NullToString(string Value)
         {
-            var listBaiViet = new List<Models.EF.BaiViet>();
+
+            // Value.ToString() allows for Value being DBNull, but will also convert int, double, etc.
+            return Value == null ? "" : Value.ToString();
+
+        }
+        public JsonResult Search(SearchModel entity)
+        {
+            List<BaiViet> listBaiViet = new List<BaiViet>();
+            var res = db.BaiViets.ToList();
             //Search Quan
-            if (entity.idPhuong == 0 && entity.idBDS == 0 && entity.MucGia == 0)
+            Quan q = db.Quans.Find(entity.idQuan);
+            Phuong p = db.Phuongs.Find(entity.idPhuong);
+            KieuBD k = db.KieuBDS.Find(entity.idBDS);
+            LoaiBD l = db.LoaiBDS.Find(entity.idLoaiBDS);
+
+            string temp = "";
+            if (q == null) temp = "";
+            else temp = q.TenQuan;
+            if (p == null) temp = temp;
+            else temp += " " + p.TenPhuong;
+            if (l == null) temp = temp;
+            else temp += " " + l.TenLoai;
+            if (k == null) temp = temp;
+            else temp += " " + k.TenKieu;
+
+            var listNT = db.NhaTroes.SqlQuery("select * from NhaTro n where n.SoNha like N'%" + temp + "%'").ToList();
+            foreach (var item in res)
             {
-                listBaiViet = db.BaiViets.SqlQuery("select * from NhaTro n, BaiViet b where n.idNT = b.idNT and n.idQuan =" + entity.idQuan).ToList();
+                foreach (var item1 in listNT)
+                {
+                    if (item.idNT == item1.idNT)
+                        listBaiViet.Add(item);
+                }
             }
-            //Search Phuong
-            if (entity.idQuan == 0 && entity.idBDS == 0 && entity.MucGia == 0)
+            string tempJ = string.Empty;
+            tempJ = JsonConvert.SerializeObject(listBaiViet, Formatting.Indented, new JsonSerializerSettings
             {
-                listBaiViet = db.BaiViets.SqlQuery("select * from NhaTro n, BaiViet b, where n.idNT = b.idNT and n.idPhuong = " + entity.idPhuong).ToList();
-            }
-            //Search Phuong + Quan
-            if (entity.idBDS == 0 && entity.MucGia == 0)
-            {
-                listBaiViet = db.BaiViets.SqlQuery("select * from NhaTro n, BaiViet b where n.idNT = b.idNT and n.idPhuong = " + entity.idPhuong + " and n.idQuan = " + entity.idQuan).ToList();
-            }
-            //Search Phuong + Quan + Dich vu
-            if (entity.MucGia == 0)
-            {
-                listBaiViet = db.BaiViets.SqlQuery("select * from NhaTro n, BaiViet b where n.idNT = b.idNT and idQuan = " + entity.idQuan + " and idPhuong = " + entity.idPhuong + " and idKieuBDS = " + entity.idKieuBDS).ToList();
-            }
-            //Search Phuong + Quan + Dich vu + Gia
-            if (entity.idQuan != 0 && entity.idPhuong != 0 && entity.idKieuBDS != 0 && entity.MucGia != 0)
-            {
-                listBaiViet = db.BaiViets.SqlQuery("select * from NhaTro n, BaiViet b where n.idNT = b.idNT and idQuan = " + entity.idQuan + " and idPhuong = " + entity.idPhuong + " and idKieuBDS = " + entity.idKieuBDS + " and Gia = " + entity.MucGia).ToList();
-            }
-            //Search Dich vu
-            if (entity.idQuan == 0 && entity.idPhuong == 0 && entity.MucGia == 0)
-            {
-                listBaiViet = db.BaiViets.SqlQuery("select * from NhaTro n, BaiViet b where n.idNT = b.idNT and n.idKieuBDS = " + entity.idKieuBDS).ToList();
-            }
-            //Search Muc Gia
-            if (entity.idQuan == 0 && entity.idPhuong == 0 && entity.idKieuBDS == 0)
-            {
-                listBaiViet = db.BaiViets.SqlQuery("select * from NhaTro n, BaiViet b where n.idNT = b.idNT and n.Gia = " + entity.MucGia).ToList();
-            }
-            //Search Muc Gia + Dich vu
-            if (entity.idQuan == 0 && entity.idPhuong == 0)
-            {
-                listBaiViet = db.BaiViets.SqlQuery("select * from NhaTro n, BaiViet b where n.idNT = b.idNT and n.Gia = " + entity.MucGia + " and n.idKieuBDS = " + entity.idKieuBDS).ToList();
-            }
-            //Search Quan + Dich Vu
-            if (entity.idPhuong == 0 && entity.MucGia == 0)
-            {
-                listBaiViet = db.BaiViets.SqlQuery("select * from NhaTro n, BaiViet b where n.idNT = b.idNT and n.idQuan = " + entity.idQuan + " and n.idKieuBDS = " + entity.idKieuBDS).ToList();
-            }
-            //Search Quan + Muc Gia
-            if (entity.idPhuong == 0 && entity.idKieuBDS == 0)
-            {
-                listBaiViet = db.BaiViets.SqlQuery("select * from NhaTro n, BaiViet b where n.idNT = b.idNT and n.idQuan = " + entity.idQuan + " and n.Gia = " + entity.MucGia).ToList();
-            }
-            //Search Phuong + Dich Vu
-            if (entity.idQuan == 0 && entity.MucGia == 0)
-            {
-                listBaiViet = db.BaiViets.SqlQuery("select * from NhaTro n, BaiViet b where n.idNT = b.idNT and n.idQuan = " + entity.idQuan + " and n.idKieuBDS = " + entity.idKieuBDS).ToList();
-            }
-            //Search Quan + Muc Gia
-            if (entity.idPhuong == 0 && entity.idKieuBDS == 0)
-            {
-                listBaiViet = db.BaiViets.SqlQuery("select * from NhaTro n, BaiViet b where n.idNT = b.idNT and n.idQuan = " + entity.idQuan + " and n.Gia = " + entity.MucGia).ToList();
-            }
-            return Json(listBaiViet, JsonRequestBehavior.AllowGet);
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            return Json(tempJ, JsonRequestBehavior.AllowGet);
         }
     }
 }

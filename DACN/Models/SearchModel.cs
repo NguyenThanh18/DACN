@@ -11,6 +11,7 @@ namespace DACN.Models
         public int idQuan { get; set; }
         public int idPhuong { get; set; }
         public int idBDS { get; set; }
+        public int idLoaiBDS { get; set; }
         public int MucGia { get; set; }
         public int idKieuBDS { get; set; }
     }
