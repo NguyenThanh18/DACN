@@ -9,13 +9,6 @@ namespace DACN.Models.EF
     [Table("NhaTro")]
     public partial class NhaTro
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public NhaTro()
-        {
-            BaiViets = new HashSet<BaiViet>();
-            HinhAnhs = new HashSet<HinhAnh>();
-        }
-
         [Key]
         public int idNT { get; set; }
 
@@ -41,10 +34,5 @@ namespace DACN.Models.EF
 
         public string Image { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BaiViet> BaiViets { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HinhAnh> HinhAnhs { get; set; }
     }
 }

@@ -299,6 +299,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 data: param,
                 dataType: "json",
                 success: function (result) {
+                    console.log(result)
                     if (result != null) {
                         $('#listbaiviet').html('<div class="row" id="show_bai_viet"></div>')
                         $.each(result, function (index, value) {

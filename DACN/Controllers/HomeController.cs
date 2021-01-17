@@ -152,12 +152,13 @@ namespace DACN.Controllers
                         listBaiViet.Add(item);
                 }
             }
-            string tempJ = string.Empty;
-            tempJ = JsonConvert.SerializeObject(listBaiViet, Formatting.Indented, new JsonSerializerSettings
-            {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            });
-            return Json(tempJ, JsonRequestBehavior.AllowGet);
+            //string tempJ = string.Empty;
+            //tempJ = JsonConvert.SerializeObject(listBaiViet, Formatting.Indented, new JsonSerializerSettings
+            //{
+            //    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            //});
+
+            return Json(listBaiViet, JsonRequestBehavior.AllowGet);
         }
     }
 }
