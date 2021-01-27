@@ -9,6 +9,12 @@ namespace DACN.Models.EF
     [Table("BaiViet")]
     public partial class BaiViet
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public BaiViet()
+        {
+            BaoCaos = new HashSet<BaoCao>();
+        }
+
         [Key]
         public int idBV { get; set; }
 
@@ -29,5 +35,11 @@ namespace DACN.Models.EF
         [Column(TypeName = "date")]
         public DateTime? NgayDang { get; set; }
 
+        public virtual NhaTro NhaTro { get; set; }
+
+        public virtual TaiKhoan TaiKhoan { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BaoCao> BaoCaos { get; set; }
     }
 }

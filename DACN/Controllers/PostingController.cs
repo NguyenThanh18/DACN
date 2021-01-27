@@ -277,5 +277,13 @@ namespace DACN.Controllers
             var postlist = db.BaiViets.SqlQuery("Select * From BaiViet Where idTK = id").ToList();
             return View();
         }
+        public ActionResult EditInfo()
+        {
+            string idTK = RouteData.Values["id"].ToString();
+            int temp = Int32.Parse(idTK);
+            var tk = db.TaiKhoans.Find(temp);
+            ViewBag.tk = tk;
+            return View();
+        }
     }
 }
