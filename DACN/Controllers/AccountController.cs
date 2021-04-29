@@ -41,7 +41,7 @@ namespace DACN.Controllers
 
                 else if (resuft == 0)
                 {
-                    ModelState.AddModelError("", "Account does not exist !");
+                    ModelState.AddModelError("", "Account does not exist!!");
                 }
                 else if (resuft == -1)
                 {
@@ -49,7 +49,7 @@ namespace DACN.Controllers
                 }
                 else if (resuft == -2)
                 {
-                    ModelState.AddModelError("", "Password does not corret !");
+                    ModelState.AddModelError("", "Password does not correts!!");
                 }
                 else
                 {
