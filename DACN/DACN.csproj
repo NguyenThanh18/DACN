@@ -266,9 +266,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\BaiVietModel.cs" />
-    <Compile Include="Models\BaiVietNewDAO.cs" />
-    <Compile Include="Models\CommentModel.cs" />
+    <Compile Include="Models\BaiViet.cs" />
+    <Compile Include="Models\BaoCao.cs" />
+    <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\DanhSachYeuThich.cs" />
     <Compile Include="Models\DAO\AdminDao.cs" />
     <Compile Include="Models\DAO\BaiVietDAO.cs" />
     <Compile Include="Models\DAO\BaoCaoDao.cs" />
@@ -280,7 +281,7 @@
     <Compile Include="Models\DAO\QuanDAO.cs" />
     <Compile Include="Models\DAO\ReportDao.cs" />
     <Compile Include="Models\DAO\UserDAO.cs" />
-    <Compile Include="Models\DetailModel.cs" />
+    <Compile Include="Models\DBContext.cs" />
     <Compile Include="Models\EF\BaiViet.cs" />
     <Compile Include="Models\EF\BaoCao.cs" />
     <Compile Include="Models\EF\Comment.cs" />
@@ -298,11 +299,15 @@
     <Compile Include="Models\Function\FunctionAccount.cs" />
     <Compile Include="Models\Function\FunctionNhaTro.cs" />
     <Compile Include="Models\Function\FunctionPosts.cs" />
-    <Compile Include="Models\LoginModel.cs" />
-    <Compile Include="Models\NhaTroModel.cs" />
-    <Compile Include="Models\PostingModel.cs" />
-    <Compile Include="Models\RegisterModel.cs" />
-    <Compile Include="Models\SearchModel.cs" />
+    <Compile Include="Models\HinhAnh.cs" />
+    <Compile Include="Models\KieuBD.cs" />
+    <Compile Include="Models\LoaiBaiViet.cs" />
+    <Compile Include="Models\LoaiBD.cs" />
+    <Compile Include="Models\NhaTro.cs" />
+    <Compile Include="Models\Phuong.cs" />
+    <Compile Include="Models\Quan.cs" />
+    <Compile Include="Models\TaiKhoan.cs" />
+    <Compile Include="Models\ThanhPho.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
